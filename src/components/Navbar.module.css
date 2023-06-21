@@ -1,0 +1,45 @@
+.mainNav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background-color: #c70101;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
+}
+
+.navLeft {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: inline-block;
+  padding: 10px;
+}
+
+.logo img {
+  height: 60px;
+}
+
+.menuList a {
+  color: white;
+  margin-left: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.navRight {
+  display: flex;
+}
+
+.signUp a {
+  color: white;
+  text-decoration: none;
+}
+
+.seperation {
+  padding: 0 10px;
+  color: white;
+}

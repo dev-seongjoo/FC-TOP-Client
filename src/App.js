@@ -4,9 +4,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // We import all the components we need in our app
-import Login from "./pages/login";
+import Login from "./pages/Login/Login";
 import Main from "./pages/Main";
-import SignUp from "./pages/signUp";
+import SignUp from "./pages/SignUp/SignUp";
 
 const App = () => {
   return (

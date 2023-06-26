@@ -1,5 +1,6 @@
 import { useState } from "react";
 import * as S from "./styled";
+import axios from "axios";
 
 const SignUp = () => {
   const [korLastName, setKorLastName] = useState("");
@@ -12,35 +13,48 @@ const SignUp = () => {
   const [cellPhoneAuth, setCellPhoneAuth] = useState("");
   const [zipCode, setZipCode] = useState("");
   const [roadName, setRoadName] = useState("");
+  const [year, setYear] = useState("출생 연도");
+  const [month, setMonth] = useState("월");
+  const [day, setDay] = useState("일");
+  const [preferPositionFirst, setPreferPositionFirst] = useState("");
+  const [preferPositionSecond, setPreferPositionSecond] = useState("");
+  const [preferPositionThird, setPreferPositionThird] = useState("");
+  const [preferFoot, setPreferFoot] = useState("선택");
 
   const handleKorLastNameChange = (event) => {
-    setKorLastName(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setKorLastName(inputValue);
+    console.log(inputValue);
   };
 
   const handleKorFirstNameChange = (event) => {
-    setKorFirstName(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setKorFirstName(inputValue);
+    console.log(inputValue);
   };
 
   const handleEngLastNameChange = (event) => {
-    setEngLastName(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value;
+    setEngLastName(inputValue);
+    console.log(inputValue);
   };
 
   const handleEngFirstNameChange = (event) => {
-    setEngFirstName(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value;
+    setEngFirstName(inputValue);
+    console.log(inputValue);
   };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value;
+    setPassword(inputValue);
+    console.log(inputValue);
   };
 
   const handlePasswordCheckChange = (event) => {
-    setPasswordCheck(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value;
+    setPasswordCheck(inputValue);
+    console.log(inputValue);
   };
 
   const handleCellPhoneChange = (event) => {
@@ -63,8 +77,65 @@ const SignUp = () => {
     console.log(event.target.value);
   };
 
+  const handleYearChange = (event) => {
+    setYear(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleMonthChange = (event) => {
+    setMonth(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handleDayChange = (event) => {
+    setDay(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handlePreferPositionFirstChange = (event) => {
+    setPreferPositionFirst(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handlePreferPositionSecondChange = (event) => {
+    setPreferPositionSecond(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handlePreferPositionThirdChange = (event) => {
+    setPreferPositionThird(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const handlePreferFootChange = (event) => {
+    setPreferFoot(event.target.value);
+    console.log(event.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    axios
+      .post("http://localhost:4000/signUp", option)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+
+  const option = {
+    korLastName,
+    korFirstName,
+    engLastName,
+    engFirstName,
+    password,
+    cellPhone,
+    zipCode,
+    address: roadName,
+    year,
+    month,
+    day,
+    preferPositionFirst,
+    preferPositionSecond,
+    preferPositionThird,
+    preferFoot,
   };
 
   const today = new Date();
@@ -90,25 +161,30 @@ const SignUp = () => {
   }
 
   const positions = [
-    { value: "FW", label: "FW", disabled: true },
+    { value: "FW", label: "----------FW----------", disabled: true },
     { value: "ST", label: "ST" },
-    { value: "CF", label: "CF" },
     { value: "LW", label: "LW" },
     { value: "RW", label: "RW" },
-    { value: "MF", label: "MF", disabled: true },
+    { value: "MF", label: "----------MF----------", disabled: true },
     { value: "CAM", label: "CAM" },
-    { value: "CM", label: "CM" },
     { value: "CDM", label: "CDM" },
     { value: "LM", label: "LM" },
     { value: "RM", label: "RM" },
-    { value: "DF", label: "DF", disabled: true },
+    { value: "DF", label: "----------DF----------", disabled: true },
     { value: "CB", label: "CB" },
     { value: "LB", label: "LB" },
     { value: "RB", label: "RB" },
-    { value: "GK", label: "GK", disabled: true },
+    { value: "GK", label: "----------GK----------", disabled: true },
     { value: "GK", label: "GK" },
   ];
 
+  const isPasswordLengthValid = password.length >= 8;
+  const isPasswordEngValid = /[a-zA-Z]/.test(password);
+  const isPasswordNumValid = /\d/.test(password);
+  const isPasswordSlValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const isPasswordCheckValid = () => {
+    return password === passwordCheck;
+  };
   return (
     <form onSubmit={handleSubmit}>
       <S.Container>
@@ -147,7 +223,23 @@ const SignUp = () => {
           <S.PasswordLabel>
             <S.Label htmlFor='Password'>비밀번호</S.Label>
             <S.PasswordCondition>
-              조건: 최소 8자리 이상, 영문, 숫자, 특수문자의 조합으로 구성
+              조건:
+              <span style={{ color: isPasswordLengthValid ? "blue" : "red" }}>
+                8자리 이상
+              </span>
+              ,
+              <span style={{ color: isPasswordEngValid ? "blue" : "red" }}>
+                영문
+              </span>
+              ,
+              <span style={{ color: isPasswordNumValid ? "blue" : "red" }}>
+                숫자
+              </span>
+              ,
+              <span style={{ color: isPasswordSlValid ? "blue" : "red" }}>
+                특수문자
+              </span>
+              의 조합으로 구성
             </S.PasswordCondition>
           </S.PasswordLabel>
           <S.PasswordInput
@@ -157,7 +249,18 @@ const SignUp = () => {
             placeholder='비밀번호 입력'
             required
           />
-          <S.Label htmlFor='CheckPassword'>비밀번호 확인</S.Label>
+          <S.PasswordLabel>
+            <S.Label htmlFor='CheckPassword'>비밀번호 확인</S.Label>
+            <S.PasswordCondition>
+              {isPasswordCheckValid() ? (
+                <span style={{ color: "blue" }}>비밀번호가 일치합니다.</span>
+              ) : (
+                <span style={{ color: "red" }}>
+                  비밀번호가 일치하지 않습니다.
+                </span>
+              )}
+            </S.PasswordCondition>
+          </S.PasswordLabel>
           <S.PasswordInput
             onChange={handlePasswordCheckChange}
             id='CheckPassword'
@@ -199,114 +302,73 @@ const SignUp = () => {
             onChange={handleRoadNameAddressChange}
           />
           <S.Label>생년월일</S.Label>
-          <S.Select>
-            <S.Option value=''>출생 연도</S.Option>
+          <S.Select onChange={handleYearChange}>
+            <S.Option>출생 연도</S.Option>
             {years.map((year) => (
               <S.Option key={year} value={year}>
                 {year}
               </S.Option>
             ))}
           </S.Select>
-          <S.Select>
-            <S.Option value=''>월</S.Option>
+          <S.Select onChange={handleMonthChange}>
+            <S.Option>월</S.Option>
             {months.map((month) => (
               <S.Option key={month} value={month}>
                 {month}
               </S.Option>
             ))}
           </S.Select>
-          <S.Select>
-            <S.Option value=''>일</S.Option>
+          <S.Select onChange={handleDayChange}>
+            <S.Option>일</S.Option>
             {days.map((day) => (
               <S.Option key={day} value={day}>
                 {day}
               </S.Option>
             ))}
           </S.Select>
-
           <S.Label>선호 포지션</S.Label>
-          {[1, 2, 3].map((rank) => (
-            <S.Select key={rank}>
-              <S.Option selected disabled>
-                {rank}순위
+          <S.Select onChange={handlePreferPositionFirstChange}>
+            <S.Option>1순위</S.Option>
+            {positions.map((position) => (
+              <S.Option
+                value={position.value}
+                key={position.label}
+                disabled={position.disabled}
+              >
+                {position.label}
               </S.Option>
-              {positions.map((position) => (
-                <S.Option
-                  key={position.value}
-                  value={position.value}
-                  disabled={position.disabled}
-                >
-                  {position.label}
-                </S.Option>
-              ))}
-            </S.Select>
-          ))}
-          {/* <S.Select>
-            <S.Option disabled>1순위</S.Option>
-            <S.Option disabled>FW</S.Option>
-            <S.Option>ST</S.Option>
-            <S.Option>CF</S.Option>
-            <S.Option>LW</S.Option>
-            <S.Option>RW</S.Option>
-            <S.Option disabled>MF</S.Option>
-            <S.Option>CAM</S.Option>
-            <S.Option>CM</S.Option>
-            <S.Option>CDM</S.Option>
-            <S.Option>LM</S.Option>
-            <S.Option>RM</S.Option>
-            <S.Option disabled>DF</S.Option>
-            <S.Option>CB</S.Option>
-            <S.Option>LB</S.Option>
-            <S.Option>RB</S.Option>
-            <S.Option disabled>GK</S.Option>
-            <S.Option>GK</S.Option>
+            ))}
           </S.Select>
-          <S.Select>
-            <S.Option value=''>2순위</S.Option>
-            <S.Option disabled>FW</S.Option>
-            <S.Option>ST</S.Option>
-            <S.Option>CF</S.Option>
-            <S.Option>LW</S.Option>
-            <S.Option>RW</S.Option>
-            <S.Option disabled>MF</S.Option>
-            <S.Option>CAM</S.Option>
-            <S.Option>CM</S.Option>
-            <S.Option>CDM</S.Option>
-            <S.Option>LM</S.Option>
-            <S.Option>RM</S.Option>
-            <S.Option disabled>DF</S.Option>
-            <S.Option>CB</S.Option>
-            <S.Option>LB</S.Option>
-            <S.Option>RB</S.Option>
-            <S.Option disabled>GK</S.Option>
-            <S.Option>GK</S.Option>
+          <S.Select onChange={handlePreferPositionSecondChange}>
+            <S.Option>2순위</S.Option>
+            {positions.map((position) => (
+              <S.Option
+                value={position.value}
+                key={position.label}
+                disabled={position.disabled}
+              >
+                {position.label}
+              </S.Option>
+            ))}
           </S.Select>
-          <S.Select>
-            <S.Option value=''>3순위</S.Option>
-            <S.Option disabled>FW</S.Option>
-            <S.Option>ST</S.Option>
-            <S.Option>CF</S.Option>
-            <S.Option>LW</S.Option>
-            <S.Option>RW</S.Option>
-            <S.Option disabled>MF</S.Option>
-            <S.Option>CAM</S.Option>
-            <S.Option>CM</S.Option>
-            <S.Option>CDM</S.Option>
-            <S.Option>LM</S.Option>
-            <S.Option>RM</S.Option>
-            <S.Option disabled>DF</S.Option>
-            <S.Option>CB</S.Option>
-            <S.Option>LB</S.Option>
-            <S.Option>RB</S.Option>
-            <S.Option disabled>GK</S.Option>
-            <S.Option>GK</S.Option>
-          </S.Select> */}
+          <S.Select onChange={handlePreferPositionThirdChange}>
+            <S.Option>3순위</S.Option>
+            {positions.map((position) => (
+              <S.Option
+                value={position.value}
+                key={position.label}
+                disabled={position.disabled}
+              >
+                {position.label}
+              </S.Option>
+            ))}
+          </S.Select>
           <S.Label>주발</S.Label>
-          <S.Select>
-            <S.Option value=''>선택</S.Option>
-            <S.Option value=''>왼발</S.Option>
-            <S.Option value=''>오른발</S.Option>
-            <S.Option value=''>양발</S.Option>
+          <S.Select onChange={handlePreferFootChange}>
+            <S.Option>선택</S.Option>
+            <S.Option value='left'>왼발</S.Option>
+            <S.Option value='right'>오른발</S.Option>
+            <S.Option value='both'>양발</S.Option>
           </S.Select>
         </S.Content>
         <S.SignUpBtn type='submit'>회원가입</S.SignUpBtn>

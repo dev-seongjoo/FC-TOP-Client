@@ -153,6 +153,10 @@ export const SignUpBtn = styled.button`
   border-radius: 30px;
   border: none;
   margin-top: 10px;
+
+  &: hover {
+    cursor: pointer;
+  }
 `;
 
 export const StyledLink = styled(Link)`

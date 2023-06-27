@@ -2,10 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import * as S from "./styled";
 import Modal from "../../components/Modal/Modal";
 import DaumPostcode from "react-daum-postcode";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
+import { generateRandomCode } from "../../utils/generateRandomCode";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [korLastName, setKorLastName] = useState("");
@@ -23,128 +27,280 @@ const SignUp = () => {
   const [year, setYear] = useState("출생 연도");
   const [month, setMonth] = useState("월");
   const [day, setDay] = useState("일");
-  const [preferPositionFirst, setPreferPositionFirst] = useState("");
-  const [preferPositionSecond, setPreferPositionSecond] = useState("");
-  const [preferPositionThird, setPreferPositionThird] = useState("");
+  const [preferPositionFirst, setPreferPositionFirst] = useState("1순위");
+  const [preferPositionSecond, setPreferPositionSecond] = useState("2순위");
+  const [preferPositionThird, setPreferPositionThird] = useState("3순위");
   const [preferFoot, setPreferFoot] = useState("선택");
 
   const [isSent, setIsSent] = useState(false);
   const [timer, setTimer] = useState(180);
 
+  const korLastNameRef = useRef(null);
+  const korFirstNameRef = useRef(null);
+  const engLastNameRef = useRef(null);
+  const engFirstNameRef = useRef(null);
+  const passwordRef = useRef(null);
+  const passwordCheckRef = useRef(null);
+  const phoneRef = useRef(null);
+  const yearRef = useRef(null);
+  const monthRef = useRef(null);
+  const dayRef = useRef(null);
+  const positionFirstRef = useRef(null);
+  const positionSecondRef = useRef(null);
+  const positionThirdRef = useRef(null);
+  const footRef = useRef(null);
+
+  const isPasswordLengthValid = password.length >= 8;
+  const isPasswordEngValid = /[a-zA-Z]/.test(password);
+  const isPasswordNumValid = /\d/.test(password);
+  const isPasswordSlValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+  const isPasswordCheckValid = () => {
+    return password === passwordCheck;
+  };
+
+  const option = {
+    korLastName,
+    korFirstName,
+    engLastName,
+    engFirstName,
+    password,
+    phone,
+    postCode,
+    address,
+    year,
+    month,
+    day,
+    preferPositionFirst,
+    preferPositionSecond,
+    preferPositionThird,
+    preferFoot,
+  };
+
   const handleKorLastNameChange = (event) => {
     const inputValue = event.target.value.trim();
     setKorLastName(inputValue);
-    console.log(inputValue);
   };
 
   const handleKorFirstNameChange = (event) => {
     const inputValue = event.target.value.trim();
     setKorFirstName(inputValue);
-    console.log(inputValue);
   };
 
   const handleEngLastNameChange = (event) => {
-    const inputValue = event.target.value;
+    const inputValue = event.target.value.trim();
     setEngLastName(inputValue);
-    console.log(inputValue);
   };
 
   const handleEngFirstNameChange = (event) => {
-    const inputValue = event.target.value;
+    const inputValue = event.target.value.trim();
     setEngFirstName(inputValue);
-    console.log(inputValue);
   };
 
   const handlePasswordChange = (event) => {
-    const inputValue = event.target.value;
+    const inputValue = event.target.value.trim();
     setPassword(inputValue);
-    console.log(inputValue);
   };
 
   const handlePasswordCheckChange = (event) => {
-    const inputValue = event.target.value;
+    const inputValue = event.target.value.trim();
     setPasswordCheck(inputValue);
-    console.log(inputValue);
   };
 
   const handlePhoneChange = (event) => {
-    setPhone(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setPhone(inputValue);
   };
 
   const handleInputAuthCodeChange = (event) => {
-    setInputAuthCode(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handlePostCodeChange = (event) => {
-    setPostCode(event.target.value);
-    console.log(event.target.value);
-  };
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setInputAuthCode(inputValue);
   };
 
   const handleYearChange = (event) => {
-    setYear(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setYear(inputValue);
   };
 
   const handleMonthChange = (event) => {
-    setMonth(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setMonth(inputValue);
   };
 
   const handleDayChange = (event) => {
-    setDay(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setDay(inputValue);
   };
 
   const handlePreferPositionFirstChange = (event) => {
-    setPreferPositionFirst(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setPreferPositionFirst(inputValue);
   };
 
   const handlePreferPositionSecondChange = (event) => {
-    setPreferPositionSecond(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setPreferPositionSecond(inputValue);
   };
 
   const handlePreferPositionThirdChange = (event) => {
-    setPreferPositionThird(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setPreferPositionThird(inputValue);
   };
 
   const handlePreferFootChange = (event) => {
-    setPreferFoot(event.target.value);
-    console.log(event.target.value);
+    const inputValue = event.target.value.trim();
+    setPreferFoot(inputValue);
   };
 
-  const handleSubmit = (event) => {
+  const handleSignUp = (event) => {
     event.preventDefault();
+    if (korLastName === "") {
+      alert("성(한글)을 입력해 주세요.");
+      korLastNameRef.current.focus();
+      return;
+    }
+
+    if (korFirstName === "") {
+      alert("이름(한글)을 입력해 주세요.");
+      korFirstNameRef.current.focus();
+      return;
+    }
+
+    if (engLastName === "") {
+      alert("성(영문)을 입력해 주세요.");
+      engLastNameRef.current.focus();
+      return;
+    }
+
+    if (engFirstName === "") {
+      alert("이름(영문)을 입력해 주세요.");
+      engFirstNameRef.current.focus();
+      return;
+    }
+
+    if (!isPasswordLengthValid) {
+      alert("비밀번호는 8자리 이상이어야 합니다.");
+      passwordRef.current.focus();
+      return;
+    } else if (!isPasswordEngValid) {
+      alert("비밀번호는 영문이 포함되어야 합니다.");
+      passwordRef.current.focus();
+      return;
+    } else if (!isPasswordNumValid) {
+      alert("비밀번호는 숫자가 포함되어야 합니다.");
+      passwordRef.current.focus();
+      return;
+    } else if (!isPasswordSlValid) {
+      alert("비밀번호는 특수문자가 포함되어야 합니다.");
+      passwordRef.current.focus();
+      return;
+    }
+
+    if (password !== passwordCheck) {
+      alert("비밀번호가 일치하지 않습니다.");
+      passwordCheckRef.current.focus();
+      return;
+    }
+
+    if (!authCodeVerification) {
+      alert("핸드폰 인증을 완료해 주세요.");
+      phoneRef.current.focus();
+      return;
+    }
+
+    if (postCode === "" || address === "") {
+      alert("우편번호 및 주소를 입력해 주세요.");
+
+      const btn = document.querySelector(".addressSearchBtn");
+      btn.classList.add("highlight-animation");
+
+      setTimeout(() => {
+        btn.classList.remove("highlight-animation");
+      }, 1000);
+
+      return;
+    }
+
+    if (year === "출생 연도") {
+      alert("생년월일(출생 연도)을 선택해 주세요.");
+      yearRef.current.focus();
+      return;
+    }
+
+    if (month === "월") {
+      alert("생년월일(월)을 선택해 주세요.");
+      monthRef.current.focus();
+      return;
+    }
+
+    if (day === "일") {
+      alert("생년월일(일)을 선택해 주세요.");
+      dayRef.current.focus();
+      return;
+    }
+
+    if (preferPositionFirst === "1순위") {
+      alert("선호 포지션 1순위를 선택해 주세요.");
+      positionFirstRef.current.focus();
+      return;
+    }
+
+    if (preferPositionSecond === "2순위") {
+      alert("선호 포지션 2순위를 선택해 주세요.");
+      positionSecondRef.current.focus();
+      return;
+    }
+
+    if (preferPositionThird === "3순위") {
+      alert("선호 포지션 3순위를 선택해 주세요.");
+      positionThirdRef.current.focus();
+      return;
+    }
+
+    if (preferPositionFirst === preferPositionSecond) {
+      alert("선호 포지션은 중복 선택할 수 없습니다.");
+      positionSecondRef.current.focus();
+      return;
+    }
+
+    if (preferPositionFirst === preferPositionThird) {
+      alert("선호 포지션은 중복 선택할 수 없습니다.");
+      positionThirdRef.current.focus();
+      return;
+    }
+
+    if (preferPositionSecond === preferPositionThird) {
+      alert("선호 포지션은 중복 선택할 수 없습니다.");
+      positionThirdRef.current.focus();
+      return;
+    }
+
+    if (preferFoot === "선택") {
+      alert("주발을 선택해주세요.");
+      footRef.current.focus();
+      return;
+    }
+
     axios
       .post("http://localhost:4000/signUp", option)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
+
+    alert("회원가입이 완료되었습니다.");
+    navigate("/");
   };
 
-  function generateRandomCode(n) {
-    let str = "";
-    for (let i = 0; i < n; i++) {
-      str += Math.floor(Math.random() * 10);
-    }
-    return str;
-  }
+  const handlephoneInputResetClick = (event) => {
+    event.preventDefault();
+    setIsSent(false);
+    setTimer(0);
+    phoneRef.current.focus();
+  };
 
   const handleSendPhoneAuthenticationNumber = (event) => {
     event.preventDefault();
-    if (phone === "") {
-      alert("핸드폰 번호를 입력해주세요.");
-      return;
-    } else if (phone.length !== 11) {
-      alert("핸드폰 번호가 올바르지 않습니다.");
+    if (phone.length !== 11) {
+      alert("핸드폰 번호가 올바르지 않습니다. ('-' 제외 11자리 입력)");
+      phoneRef.current.focus();
       return;
     }
     const authCode = generateRandomCode(4);
@@ -205,29 +361,11 @@ const SignUp = () => {
     };
   }, [isSent, timer]);
 
-  const option = {
-    korLastName,
-    korFirstName,
-    engLastName,
-    engFirstName,
-    password,
-    phone,
-    postCode,
-    address,
-    year,
-    month,
-    day,
-    preferPositionFirst,
-    preferPositionSecond,
-    preferPositionThird,
-    preferFoot,
-  };
-
   const today = new Date();
-  const endYear = today.getFullYear();
-  const startYear = endYear - 60;
+  const startYear = today.getFullYear();
+  const endYear = startYear - 60;
   const years = [];
-  for (let year = startYear; year <= endYear; year++) {
+  for (let year = startYear; year >= endYear; year--) {
     years.push(year);
   }
 
@@ -263,52 +401,51 @@ const SignUp = () => {
     { value: "GK", label: "GK" },
   ];
 
-  const isPasswordLengthValid = password.length >= 8;
-  const isPasswordEngValid = /[a-zA-Z]/.test(password);
-  const isPasswordNumValid = /\d/.test(password);
-  const isPasswordSlValid = /[!@#$%^&*(),.?":{}|<>]/.test(password);
-  const isPasswordCheckValid = () => {
-    return password === passwordCheck;
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSignUp}>
       <S.Container>
         <S.Title>회원가입</S.Title>
         <S.Content>
-          <S.Label htmlFor='KoreanLastName'>이름(한글)</S.Label>
+          <S.Label htmlFor='KorLastName'>이름(한글)</S.Label>
           <S.LastNameInput
             onChange={handleKorLastNameChange}
-            id='KoreanLastName'
+            id='KorLastName'
             type='text'
             placeholder='성'
-            required
+            value={korLastName}
+            ref={korLastNameRef}
           />
           <S.FirstNameInput
             onChange={handleKorFirstNameChange}
-            id='KoreanFirstName'
+            id='KorFirstName'
             type='text'
             placeholder='이름'
-            required
+            value={korFirstName}
+            ref={korFirstNameRef}
           />
-          <S.Label htmlFor='EnglishLastName'>이름(영어)</S.Label>
+          <S.LabelGroup>
+            <S.Label htmlFor='EnglishLastName'>이름(영문)</S.Label>
+            <S.Msg>공백 없이 입력</S.Msg>
+          </S.LabelGroup>
           <S.LastNameInput
             onChange={handleEngLastNameChange}
             id='EnglishLastName'
             type='text'
             placeholder='last name'
-            required
+            value={engLastName}
+            ref={engLastNameRef}
           />
           <S.FirstNameInput
             onChange={handleEngFirstNameChange}
             id='EnglishFirstName'
             type='text'
             placeholder='first name'
-            required
+            value={engFirstName}
+            ref={engFirstNameRef}
           />
-          <S.PasswordLabel>
+          <S.LabelGroup>
             <S.Label htmlFor='Password'>비밀번호</S.Label>
-            <S.PasswordCondition>
+            <S.Msg>
               조건:
               <span style={{ color: isPasswordLengthValid ? "blue" : "red" }}>
                 8자리 이상
@@ -326,18 +463,19 @@ const SignUp = () => {
                 특수문자
               </span>
               의 조합으로 구성
-            </S.PasswordCondition>
-          </S.PasswordLabel>
+            </S.Msg>
+          </S.LabelGroup>
           <S.PasswordInput
             onChange={handlePasswordChange}
             id='Password'
             type='password'
             placeholder='비밀번호 입력'
-            required
+            value={password}
+            ref={passwordRef}
           />
-          <S.PasswordLabel>
+          <S.LabelGroup>
             <S.Label htmlFor='CheckPassword'>비밀번호 확인</S.Label>
-            <S.PasswordCondition>
+            <S.Msg>
               {isPasswordCheckValid() ? (
                 <span style={{ color: "blue" }}>비밀번호가 일치합니다.</span>
               ) : (
@@ -345,22 +483,32 @@ const SignUp = () => {
                   비밀번호가 일치하지 않습니다.
                 </span>
               )}
-            </S.PasswordCondition>
-          </S.PasswordLabel>
+            </S.Msg>
+          </S.LabelGroup>
           <S.PasswordInput
             onChange={handlePasswordCheckChange}
             id='CheckPassword'
             type='password'
             placeholder='비밀번호 재입력'
-            required
+            value={passwordCheck}
+            ref={passwordCheckRef}
           />
-          <S.Label htmlFor='phone'>핸드폰</S.Label>
+          <S.LabelGroup>
+            <S.Label htmlFor='phone'>핸드폰</S.Label>
+            {isSent && !authCodeVerification && (
+              <S.ResetMsg onClick={handlephoneInputResetClick}>
+                핸드폰 번호 재입력
+              </S.ResetMsg>
+            )}
+          </S.LabelGroup>
           <S.Phone>
             <S.PhoneInput
               onChange={handlePhoneChange}
               id='phone'
               type='text'
               placeholder="핸드폰 번호 입력 ('-' 제외 11자리 입력)"
+              value={phone}
+              ref={phoneRef}
               disabled={isSent}
             />
             <S.PhoneBtn
@@ -371,7 +519,7 @@ const SignUp = () => {
             </S.PhoneBtn>
           </S.Phone>
           <S.PhoneAuth>
-            <S.PhoneInputTimer>
+            <S.PhoneInputWithTimer>
               <S.PhoneAuthInput
                 onChange={handleInputAuthCodeChange}
                 type='text'
@@ -385,7 +533,7 @@ const SignUp = () => {
                     .padStart(2, "0")}`}
                 </S.PhoneAuthTimer>
               )}
-            </S.PhoneInputTimer>
+            </S.PhoneInputWithTimer>
             <S.PhoneAuthBtn
               onClick={handleVerifyPhoneAuthenticationNumber}
               disabled={!isSent || timer === 0 || authCodeVerification}
@@ -399,9 +547,12 @@ const SignUp = () => {
               type='text'
               placeholder='우편번호 입력'
               value={postCode}
-              onChange={handlePostCodeChange}
+              disabled
             />
-            <S.PostCodeSearchBtn onClick={handleAddressSearchClick}>
+            <S.PostCodeSearchBtn
+              className='addressSearchBtn'
+              onClick={handleAddressSearchClick}
+            >
               우편번호 찾기
             </S.PostCodeSearchBtn>
           </S.PostCode>
@@ -410,12 +561,12 @@ const SignUp = () => {
           </Modal>
           <S.Address
             type='text'
-            placeholder='주소 입력'
+            placeholder='주소 입력 (상세 주소 제외)'
             value={address}
-            onChange={handleAddressChange}
+            disabled
           />
           <S.Label>생년월일</S.Label>
-          <S.Select onChange={handleYearChange}>
+          <S.Select onChange={handleYearChange} ref={yearRef}>
             <S.Option>출생 연도</S.Option>
             {years.map((year) => (
               <S.Option key={year} value={year}>
@@ -423,7 +574,7 @@ const SignUp = () => {
               </S.Option>
             ))}
           </S.Select>
-          <S.Select onChange={handleMonthChange}>
+          <S.Select onChange={handleMonthChange} ref={monthRef}>
             <S.Option>월</S.Option>
             {months.map((month) => (
               <S.Option key={month} value={month}>
@@ -431,7 +582,7 @@ const SignUp = () => {
               </S.Option>
             ))}
           </S.Select>
-          <S.Select onChange={handleDayChange}>
+          <S.Select onChange={handleDayChange} ref={dayRef}>
             <S.Option>일</S.Option>
             {days.map((day) => (
               <S.Option key={day} value={day}>
@@ -440,7 +591,10 @@ const SignUp = () => {
             ))}
           </S.Select>
           <S.Label>선호 포지션</S.Label>
-          <S.Select onChange={handlePreferPositionFirstChange}>
+          <S.Select
+            onChange={handlePreferPositionFirstChange}
+            ref={positionFirstRef}
+          >
             <S.Option>1순위</S.Option>
             {positions.map((position) => (
               <S.Option
@@ -452,7 +606,10 @@ const SignUp = () => {
               </S.Option>
             ))}
           </S.Select>
-          <S.Select onChange={handlePreferPositionSecondChange}>
+          <S.Select
+            onChange={handlePreferPositionSecondChange}
+            ref={positionSecondRef}
+          >
             <S.Option>2순위</S.Option>
             {positions.map((position) => (
               <S.Option
@@ -464,7 +621,10 @@ const SignUp = () => {
               </S.Option>
             ))}
           </S.Select>
-          <S.Select onChange={handlePreferPositionThirdChange}>
+          <S.Select
+            onChange={handlePreferPositionThirdChange}
+            ref={positionThirdRef}
+          >
             <S.Option>3순위</S.Option>
             {positions.map((position) => (
               <S.Option
@@ -477,7 +637,7 @@ const SignUp = () => {
             ))}
           </S.Select>
           <S.Label>주발</S.Label>
-          <S.Select onChange={handlePreferFootChange}>
+          <S.Select onChange={handlePreferFootChange} ref={footRef}>
             <S.Option>선택</S.Option>
             <S.Option value='left'>왼발</S.Option>
             <S.Option value='right'>오른발</S.Option>

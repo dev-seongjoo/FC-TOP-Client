@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
@@ -41,15 +41,26 @@ export const FirstNameInput = styled.input`
   border-radius: 5px;
 `;
 
-export const PasswordLabel = styled.label`
+export const LabelGroup = styled.label`
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
 
-export const PasswordCondition = styled.span`
+export const Msg = styled.span`
   color: rgba(0, 0, 0, 0.6);
   font-size: 0.8em;
+  margin-right: 5px;
+`;
+
+export const ResetMsg = styled.span`
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.8em;
+  margin-right: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const PasswordInput = styled.input`
@@ -99,7 +110,7 @@ export const PhoneAuth = styled.div`
   display: flex;
 `;
 
-export const PhoneInputTimer = styled.div`
+export const PhoneInputWithTimer = styled.div`
   position: relative;
 `;
 
@@ -156,6 +167,20 @@ export const PostCodeInput = styled.input`
   margin-right: 5px;
 `;
 
+const highlightAnimation = keyframes`
+  0% {
+    background-color: transparent;
+  }
+
+  50% {
+    background-color: rgba(0,0,0,0.1);
+  }
+
+  100% {
+    background-color: transparent;
+  }
+`;
+
 export const PostCodeSearchBtn = styled.button`
   width: 145px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -169,6 +194,10 @@ export const PostCodeSearchBtn = styled.button`
 
   &:active {
     background-color: transparent;
+  }
+
+  &.highlight-animation {
+    animation: ${highlightAnimation} 1s;
   }
 `;
 
@@ -203,12 +232,12 @@ export const SignUpBtn = styled.button`
   border: none;
   margin-top: 10px;
 
-  &: hover {
+  &:hover {
     opacity: 0.9;
     cursor: pointer;
   }
 
-  &: active {
+  &:active {
     opacity: 1;
   }
 `;

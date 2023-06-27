@@ -60,12 +60,12 @@ export const PasswordInput = styled.input`
   border-radius: 5px;
 `;
 
-export const CellPhone = styled.div`
+export const Phone = styled.div`
   display: flex;
   margin-bottom: 3px;
 `;
 
-export const CellPhoneInput = styled.input`
+export const PhoneInput = styled.input`
   width: 250px;
   height: 25px;
   padding: 10px;
@@ -74,18 +74,44 @@ export const CellPhoneInput = styled.input`
   margin-right: 5px;
 `;
 
-export const CellPhoneBtn = styled.button`
+export const PhoneBtn = styled.button`
   width: 145px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: transparent;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+
+  &:disabled:hover {
+    background-color: transparent;
+    cursor: default;
+  }
 `;
 
-export const CellPhoneAuth = styled.div`
+export const PhoneAuth = styled.div`
   display: flex;
 `;
 
-export const CellPhoneAuthInput = styled.input`
+export const PhoneInputTimer = styled.div`
+  position: relative;
+`;
+
+export const PhoneAuthTimer = styled.div`
+  position: absolute;
+  top: 19px;
+  right: 20px;
+  font-size: 12px;
+  color: #888;
+`;
+
+export const PhoneAuthInput = styled.input`
   width: 250px;
   height: 25px;
   padding: 10px;
@@ -94,19 +120,33 @@ export const CellPhoneAuthInput = styled.input`
   margin-right: 5px;
 `;
 
-export const CellPhoneAuthBtn = styled.button`
+export const PhoneAuthBtn = styled.button`
   width: 145px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: transparent;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+
+  &:disabled:hover {
+    background-color: transparent;
+    cursor: default;
+  }
 `;
 
-export const ZipCode = styled.div`
+export const PostCode = styled.div`
   display: flex;
   margin-bottom: 3px;
 `;
 
-export const ZipCodeInput = styled.input`
+export const PostCodeInput = styled.input`
   display: inline;
   width: 250px;
   height: 25px;
@@ -116,14 +156,23 @@ export const ZipCodeInput = styled.input`
   margin-right: 5px;
 `;
 
-export const ZipCodeSearchBtn = styled.button`
+export const PostCodeSearchBtn = styled.button`
   width: 145px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background-color: transparent;
+  }
 `;
 
-export const RoadNameAddress = styled.input`
+export const Address = styled.input`
   display: block;
   width: 400px;
   height: 25px;
@@ -155,7 +204,12 @@ export const SignUpBtn = styled.button`
   margin-top: 10px;
 
   &: hover {
+    opacity: 0.9;
     cursor: pointer;
+  }
+
+  &: active {
+    opacity: 1;
   }
 `;
 
@@ -165,4 +219,9 @@ export const StyledLink = styled(Link)`
   text-align: center;
   color: rgba(0, 0, 0, 0.5);
   text-decoration: none;
+`;
+
+export const kakaoMap = styled.div`
+  width: 500px;
+  height: 500px;
 `;

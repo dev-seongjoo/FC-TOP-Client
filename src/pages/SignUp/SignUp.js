@@ -133,16 +133,52 @@ const SignUp = () => {
 
   const handlePreferPositionFirstChange = (event) => {
     const inputValue = event.target.value.trim();
+
+    if (
+      inputValue === preferPositionSecond ||
+      inputValue === preferPositionThird
+    ) {
+      alert("선호 포지션은 중복 선택할 수 없습니다");
+      positionFirstRef.current.focus();
+      setPreferPositionFirst("1순위");
+      event.target.value = "1순위";
+      return;
+    }
+
     setPreferPositionFirst(inputValue);
   };
 
   const handlePreferPositionSecondChange = (event) => {
     const inputValue = event.target.value.trim();
+
+    if (
+      inputValue === preferPositionFirst ||
+      inputValue === preferPositionThird
+    ) {
+      alert("선호 포지션은 중복 선택할 수 없습니다");
+      positionSecondRef.current.focus();
+      setPreferPositionSecond("2순위");
+      event.target.value = "2순위";
+      return;
+    }
+
     setPreferPositionSecond(inputValue);
   };
 
   const handlePreferPositionThirdChange = (event) => {
     const inputValue = event.target.value.trim();
+
+    if (
+      inputValue === preferPositionFirst ||
+      inputValue === preferPositionSecond
+    ) {
+      alert("선호 포지션은 중복 선택할 수 없습니다");
+      positionThirdRef.current.focus();
+      setPreferPositionThird("3순위");
+      event.target.value = "3순위";
+      return;
+    }
+
     setPreferPositionThird(inputValue);
   };
 
@@ -252,24 +288,6 @@ const SignUp = () => {
 
     if (preferPositionThird === "3순위") {
       alert("선호 포지션 3순위를 선택해 주세요.");
-      positionThirdRef.current.focus();
-      return;
-    }
-
-    if (preferPositionFirst === preferPositionSecond) {
-      alert("선호 포지션은 중복 선택할 수 없습니다.");
-      positionSecondRef.current.focus();
-      return;
-    }
-
-    if (preferPositionFirst === preferPositionThird) {
-      alert("선호 포지션은 중복 선택할 수 없습니다.");
-      positionThirdRef.current.focus();
-      return;
-    }
-
-    if (preferPositionSecond === preferPositionThird) {
-      alert("선호 포지션은 중복 선택할 수 없습니다.");
       positionThirdRef.current.focus();
       return;
     }

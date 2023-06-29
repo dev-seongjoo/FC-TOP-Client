@@ -7,18 +7,23 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { generateRandomCode } from "../../utils/generateRandomCode";
 
-const SignUp = () => {
+const SignUpPage = () => {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [korLastName, setKorLastName] = useState("");
   const [korFirstName, setKorFirstName] = useState("");
+  const [isKorean, setIsKorean] = useState(true);
   const [engLastName, setEngLastName] = useState("");
   const [engFirstName, setEngFirstName] = useState("");
+  const [isEnglish, setIsEnglish] = useState(true);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const [phone, setPhone] = useState("");
+  const [isNumber, setIsNumber] = useState(true);
+  const [isPhoneLength, setIsPhoneLength] = useState(true);
+  const [isDuplicatedPhone, setIsDuplicatedPhone] = useState(false);
   const [inputAuthCode, setInputAuthCode] = useState("");
   const [sentAuthCode, setSentAuthCode] = useState("");
   const [authCodeVerification, setAuthCodeVerification] = useState(false);
@@ -30,6 +35,7 @@ const SignUp = () => {
   const [preferPositionFirst, setPreferPositionFirst] = useState("1순위");
   const [preferPositionSecond, setPreferPositionSecond] = useState("2순위");
   const [preferPositionThird, setPreferPositionThird] = useState("3순위");
+  const [isDuplication, setIsDuplication] = useState(false);
   const [preferFoot, setPreferFoot] = useState("선택");
 
   const [isSent, setIsSent] = useState(false);
@@ -75,25 +81,48 @@ const SignUp = () => {
     preferPositionThird,
     preferFoot,
   };
+  const koreanRegex = /^[ㄱ-힣]*$/;
+  const englishRegex = /^[a-zA-Z]*$/;
+  const numberRegex = /^[0-9]*$/;
 
   const handleKorLastNameChange = (event) => {
     const inputValue = event.target.value.trim();
-    setKorLastName(inputValue);
+    if (koreanRegex.test(inputValue)) {
+      setIsKorean(true);
+      setKorLastName(inputValue);
+    } else {
+      setIsKorean(false);
+    }
   };
 
   const handleKorFirstNameChange = (event) => {
     const inputValue = event.target.value.trim();
-    setKorFirstName(inputValue);
+    if (koreanRegex.test(inputValue)) {
+      setIsKorean(true);
+      setKorFirstName(inputValue);
+    } else {
+      setIsKorean(false);
+    }
   };
 
   const handleEngLastNameChange = (event) => {
-    const inputValue = event.target.value.trim();
-    setEngLastName(inputValue);
+    const inputValue = event.target.value.trim().toUpperCase();
+    if (englishRegex.test(inputValue)) {
+      setIsEnglish(true);
+      setEngLastName(inputValue);
+    } else {
+      setIsEnglish(false);
+    }
   };
 
   const handleEngFirstNameChange = (event) => {
-    const inputValue = event.target.value.trim();
-    setEngFirstName(inputValue);
+    const inputValue = event.target.value.trim().toUpperCase();
+    if (englishRegex.test(inputValue)) {
+      setIsEnglish(true);
+      setEngFirstName(inputValue);
+    } else {
+      setIsEnglish(false);
+    }
   };
 
   const handlePasswordChange = (event) => {
@@ -108,7 +137,14 @@ const SignUp = () => {
 
   const handlePhoneChange = (event) => {
     const inputValue = event.target.value.trim();
-    setPhone(inputValue);
+    if (numberRegex.test(inputValue)) {
+      setIsNumber(true);
+      setPhone(inputValue);
+    } else {
+      setIsNumber(false);
+      setIsPhoneLength(true);
+      setIsDuplicatedPhone(false);
+    }
   };
 
   const handleInputAuthCodeChange = (event) => {
@@ -138,13 +174,13 @@ const SignUp = () => {
       inputValue === preferPositionSecond ||
       inputValue === preferPositionThird
     ) {
-      alert("선호 포지션은 중복 선택할 수 없습니다");
+      setIsDuplication(true);
       positionFirstRef.current.focus();
       setPreferPositionFirst("1순위");
       event.target.value = "1순위";
       return;
     }
-
+    setIsDuplication(false);
     setPreferPositionFirst(inputValue);
   };
 
@@ -155,13 +191,13 @@ const SignUp = () => {
       inputValue === preferPositionFirst ||
       inputValue === preferPositionThird
     ) {
-      alert("선호 포지션은 중복 선택할 수 없습니다");
+      setIsDuplication(true);
       positionSecondRef.current.focus();
       setPreferPositionSecond("2순위");
       event.target.value = "2순위";
       return;
     }
-
+    setIsDuplication(false);
     setPreferPositionSecond(inputValue);
   };
 
@@ -172,13 +208,13 @@ const SignUp = () => {
       inputValue === preferPositionFirst ||
       inputValue === preferPositionSecond
     ) {
-      alert("선호 포지션은 중복 선택할 수 없습니다");
+      setIsDuplication(true);
       positionThirdRef.current.focus();
       setPreferPositionThird("3순위");
       event.target.value = "3순위";
       return;
     }
-
+    setIsDuplication(false);
     setPreferPositionThird(inputValue);
   };
 
@@ -189,26 +225,27 @@ const SignUp = () => {
 
   const handleSignUp = (event) => {
     event.preventDefault();
+
     if (korLastName === "") {
-      alert("성(한글)을 입력해 주세요.");
+      alert("성(한글)을 입력해주세요.");
       korLastNameRef.current.focus();
       return;
     }
 
     if (korFirstName === "") {
-      alert("이름(한글)을 입력해 주세요.");
+      alert("이름(한글)을 입력해주세요.");
       korFirstNameRef.current.focus();
       return;
     }
 
     if (engLastName === "") {
-      alert("성(영문)을 입력해 주세요.");
+      alert("성(영문)을 입력해주세요.");
       engLastNameRef.current.focus();
       return;
     }
 
     if (engFirstName === "") {
-      alert("이름(영문)을 입력해 주세요.");
+      alert("성(한글)을 입력해주세요.");
       engFirstNameRef.current.focus();
       return;
     }
@@ -316,27 +353,45 @@ const SignUp = () => {
 
   const handleSendPhoneAuthenticationNumber = (event) => {
     event.preventDefault();
+
     if (phone.length !== 11) {
-      alert("핸드폰 번호가 올바르지 않습니다. ('-' 제외 11자리 입력)");
+      setIsNumber(true);
+      setIsPhoneLength(false);
+      setIsDuplicatedPhone(false);
       phoneRef.current.focus();
       return;
     }
-    const authCode = generateRandomCode(4);
+    setIsNumber(true);
+    setIsPhoneLength(true);
+
     axios
-      .post(`http://localhost:4000/sms`, {
+      .post("http://localhost:4000/checkDuplicatedPhone", {
         phone,
-        authCode,
       })
       .then((res) => {
-        if (res.status === 200) {
-          setIsSent(true);
-          setTimer(180);
-          setSentAuthCode(authCode);
-        }
         console.log(res);
-      })
-      .catch((err) => console.log(err));
-    alert("인증 번호가 전송되었습니다.");
+        if (res.data === true) {
+          setIsDuplicatedPhone(true);
+        } else {
+          setIsDuplicatedPhone(false);
+          const authCode = generateRandomCode(4);
+          axios
+            .post(`http://localhost:4000/sms`, {
+              phone,
+              authCode,
+            })
+            .then((res) => {
+              if (res.status === 200) {
+                setIsSent(true);
+                setTimer(180);
+                setSentAuthCode(authCode);
+              }
+              console.log(res);
+            })
+            .catch((err) => console.log(err));
+          alert("인증 번호가 전송되었습니다.");
+        }
+      });
   };
 
   const handleVerifyPhoneAuthenticationNumber = (event) => {
@@ -424,7 +479,12 @@ const SignUp = () => {
       <S.Container>
         <S.Title>회원가입</S.Title>
         <S.Content>
-          <S.Label htmlFor='KorLastName'>이름(한글)</S.Label>
+          <S.LabelGroup>
+            <S.Label htmlFor='KorLastName'>이름(한글)</S.Label>
+            {!isKorean && (
+              <S.Msg style={{ color: "red" }}>한글만 입력 가능합니다.</S.Msg>
+            )}
+          </S.LabelGroup>
           <S.LastNameInput
             onChange={handleKorLastNameChange}
             id='KorLastName'
@@ -442,12 +502,14 @@ const SignUp = () => {
             ref={korFirstNameRef}
           />
           <S.LabelGroup>
-            <S.Label htmlFor='EnglishLastName'>이름(영문)</S.Label>
-            <S.Msg>공백 없이 입력</S.Msg>
+            <S.Label htmlFor='EngLastName'>이름(영문)</S.Label>
+            {!isEnglish && (
+              <S.Msg style={{ color: "red" }}>영문만 입력 가능합니다.</S.Msg>
+            )}
           </S.LabelGroup>
           <S.LastNameInput
             onChange={handleEngLastNameChange}
-            id='EnglishLastName'
+            id='EngLastName'
             type='text'
             placeholder='last name'
             value={engLastName}
@@ -455,7 +517,7 @@ const SignUp = () => {
           />
           <S.FirstNameInput
             onChange={handleEngFirstNameChange}
-            id='EnglishFirstName'
+            id='EngFirstName'
             type='text'
             placeholder='first name'
             value={engFirstName}
@@ -513,7 +575,16 @@ const SignUp = () => {
           />
           <S.LabelGroup>
             <S.Label htmlFor='phone'>핸드폰</S.Label>
-            {isSent && !authCodeVerification && (
+            {!isNumber && <S.ErrorMsg>숫자만 입력 가능합니다.</S.ErrorMsg>}
+            {!isPhoneLength && (
+              <S.ErrorMsg>
+                핸드폰 번호는 '-'제외 11자리를 입력해야 합니다.
+              </S.ErrorMsg>
+            )}
+            {isDuplicatedPhone && (
+              <S.ErrorMsg>이미 가입된 번호입니다.</S.ErrorMsg>
+            )}
+            {isSent && !authCodeVerification && !isDuplicatedPhone && (
               <S.ResetMsg onClick={handlephoneInputResetClick}>
                 핸드폰 번호 재입력
               </S.ResetMsg>
@@ -608,7 +679,14 @@ const SignUp = () => {
               </S.Option>
             ))}
           </S.Select>
-          <S.Label>선호 포지션</S.Label>
+          <S.LabelGroup>
+            <S.Label>선호 포지션</S.Label>
+            {isDuplication && (
+              <S.Msg style={{ color: "red" }}>
+                선호 포지션은 중복 선택할 수 없습니다.
+              </S.Msg>
+            )}
+          </S.LabelGroup>
           <S.Select
             onChange={handlePreferPositionFirstChange}
             ref={positionFirstRef}
@@ -670,4 +748,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

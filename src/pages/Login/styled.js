@@ -18,6 +18,12 @@ export const Title = styled.span`
 
 export const Content = styled.div``;
 
+export const LabelGroup = styled.label`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 export const Label = styled.label`
   display: block;
   margin: 10px 0;
@@ -25,7 +31,13 @@ export const Label = styled.label`
   font-weight: 600;
 `;
 
-export const CellPhoneInput = styled.input`
+export const ErrorMsg = styled.span`
+  color: red;
+  font-size: 0.8em;
+  margin-right: 5px;
+`;
+
+export const PhoneInput = styled.input`
   width: 400px;
   height: 25px;
   padding: 10px;
@@ -50,6 +62,15 @@ export const LoginBtn = styled.button`
   border-radius: 30px;
   border: none;
   margin-top: 10px;
+
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: 1;
+  }
 `;
 
 export const LinkGroup = styled.div`

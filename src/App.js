@@ -4,17 +4,17 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 // We import all the components we need in our app
-import Login from "./pages/Login/Login";
+import LoginPage from "./pages/Login/LoginPage";
 import Main from "./pages/Main";
-import SignUp from "./pages/SignUp/SignUp";
+import SignUpPage from "./pages/SignUp/SignUpPage";
 
 const App = () => {
   return (
     <div>
       <Routes>
         <Route exact path='/' element={<Main />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUpPage />} />
+        <Route path='/login' element={<LoginPage />} />
       </Routes>
     </div>
   );

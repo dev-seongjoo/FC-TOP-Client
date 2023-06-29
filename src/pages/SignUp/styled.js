@@ -53,9 +53,16 @@ export const Msg = styled.span`
   margin-right: 5px;
 `;
 
+export const ErrorMsg = styled.span`
+  color: red;
+  font-size: 0.8em;
+  margin-right: 5px;
+`;
+
 export const ResetMsg = styled.span`
   color: rgba(0, 0, 0, 0.6);
   font-size: 0.8em;
+  margin-left: -20px;
   margin-right: 5px;
 
   &:hover {

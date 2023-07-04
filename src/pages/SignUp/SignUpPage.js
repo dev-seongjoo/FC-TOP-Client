@@ -12,6 +12,11 @@ const SignUpPage = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [id, setId] = useState("");
+  const [isIdWarning, setIsIdWarning] = useState(false);
+  const [isIdPossible, setIsIdPossible] = useState(false);
+  const [isIdImpossible, setIsIdImpossible] = useState(false);
+  const [isIdDuplication, setIsIdDuplication] = useState(false);
   const [korLastName, setKorLastName] = useState("");
   const [korFirstName, setKorFirstName] = useState("");
   const [isKorean, setIsKorean] = useState(true);
@@ -41,6 +46,7 @@ const SignUpPage = () => {
   const [isSent, setIsSent] = useState(false);
   const [timer, setTimer] = useState(180);
 
+  const IdRef = useRef(null);
   const korLastNameRef = useRef(null);
   const korFirstNameRef = useRef(null);
   const engLastNameRef = useRef(null);
@@ -65,11 +71,12 @@ const SignUpPage = () => {
   };
 
   const option = {
+    id,
+    password,
     korLastName,
     korFirstName,
     engLastName,
     engFirstName,
-    password,
     phone,
     postCode,
     address,
@@ -84,6 +91,31 @@ const SignUpPage = () => {
   const koreanRegex = /^[ㄱ-힣]*$/;
   const englishRegex = /^[a-zA-Z]*$/;
   const numberRegex = /^[0-9]*$/;
+
+  const handleIdChange = (event) => {
+    const inputValue = event.target.value.trim();
+    if (englishRegex.test(inputValue)) {
+      setId(inputValue.toLowerCase());
+      setIsIdWarning(false);
+    } else if (numberRegex.test(inputValue)) {
+      setId(inputValue);
+      setIsIdWarning(false);
+    } else {
+      setIsIdWarning(true);
+      setIsIdImpossible(false);
+      setIsIdPossible(false);
+    }
+  };
+
+  const handlePasswordChange = (event) => {
+    const inputValue = event.target.value.trim();
+    setPassword(inputValue);
+  };
+
+  const handlePasswordCheckChange = (event) => {
+    const inputValue = event.target.value.trim();
+    setPasswordCheck(inputValue);
+  };
 
   const handleKorLastNameChange = (event) => {
     const inputValue = event.target.value.trim();
@@ -123,16 +155,6 @@ const SignUpPage = () => {
     } else {
       setIsEnglish(false);
     }
-  };
-
-  const handlePasswordChange = (event) => {
-    const inputValue = event.target.value.trim();
-    setPassword(inputValue);
-  };
-
-  const handlePasswordCheckChange = (event) => {
-    const inputValue = event.target.value.trim();
-    setPasswordCheck(inputValue);
   };
 
   const handlePhoneChange = (event) => {
@@ -226,27 +248,15 @@ const SignUpPage = () => {
   const handleSignUp = (event) => {
     event.preventDefault();
 
-    if (korLastName === "") {
-      alert("성(한글)을 입력해주세요.");
-      korLastNameRef.current.focus();
+    if (id === "") {
+      alert("아이디를 입력해주세요.");
+      IdRef.current.focus();
       return;
     }
 
-    if (korFirstName === "") {
-      alert("이름(한글)을 입력해주세요.");
-      korFirstNameRef.current.focus();
-      return;
-    }
-
-    if (engLastName === "") {
-      alert("성(영문)을 입력해주세요.");
-      engLastNameRef.current.focus();
-      return;
-    }
-
-    if (engFirstName === "") {
-      alert("성(한글)을 입력해주세요.");
-      engFirstNameRef.current.focus();
+    if (isIdDuplication) {
+      alert("중복되는 ID입니다.");
+      IdRef.current.focus();
       return;
     }
 
@@ -271,6 +281,30 @@ const SignUpPage = () => {
     if (password !== passwordCheck) {
       alert("비밀번호가 일치하지 않습니다.");
       passwordCheckRef.current.focus();
+      return;
+    }
+
+    if (korLastName === "") {
+      alert("성(한글)을 입력해주세요.");
+      korLastNameRef.current.focus();
+      return;
+    }
+
+    if (korFirstName === "") {
+      alert("이름(한글)을 입력해주세요.");
+      korFirstNameRef.current.focus();
+      return;
+    }
+
+    if (engLastName === "") {
+      alert("성(영문)을 입력해주세요.");
+      engLastNameRef.current.focus();
+      return;
+    }
+
+    if (engFirstName === "") {
+      alert("성(한글)을 입력해주세요.");
+      engFirstNameRef.current.focus();
       return;
     }
 
@@ -337,11 +371,35 @@ const SignUpPage = () => {
 
     axios
       .post("http://localhost:4000/signUp", option)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        console.log(res);
+        alert("회원가입이 완료되었습니다.");
+        navigate("/");
+      })
+      .catch((err) => console.error(err));
+  };
 
-    alert("회원가입이 완료되었습니다.");
-    navigate("/");
+  const handleCheckIdDuplication = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:4000/checkIdDuplication", {
+        id,
+      })
+      .then((res) => {
+        if (res.data === true) {
+          setIsIdPossible(false);
+          setIsIdImpossible(true);
+          setIsIdDuplication(true);
+          setIsIdWarning(false);
+          IdRef.current.focus();
+        } else {
+          setIsIdPossible(true);
+          setIsIdImpossible(false);
+          setIsIdDuplication(false);
+          setIsIdWarning(false);
+          passwordRef.current.focus();
+        }
+      });
   };
 
   const handlephoneInputResetClick = (event) => {
@@ -365,7 +423,7 @@ const SignUpPage = () => {
     setIsPhoneLength(true);
 
     axios
-      .post("http://localhost:4000/checkDuplicatedPhone", {
+      .post("http://localhost:4000/checkPhoneDuplication", {
         phone,
       })
       .then((res) => {
@@ -388,10 +446,11 @@ const SignUpPage = () => {
               }
               console.log(res);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.error(err));
           alert("인증 번호가 전송되었습니다.");
         }
-      });
+      })
+      .catch((err) => console.error(err));
   };
 
   const handleVerifyPhoneAuthenticationNumber = (event) => {
@@ -480,49 +539,29 @@ const SignUpPage = () => {
         <S.Title>회원가입</S.Title>
         <S.Content>
           <S.LabelGroup>
-            <S.Label htmlFor='KorLastName'>이름(한글)</S.Label>
-            {!isKorean && (
-              <S.Msg style={{ color: "red" }}>한글만 입력 가능합니다.</S.Msg>
+            <S.Label htmlFor='Id'>아이디</S.Label>
+            {isIdWarning && (
+              <S.ErrorMsg>영문 소문자 및 숫자만 입력 가능합니다.</S.ErrorMsg>
             )}
-          </S.LabelGroup>
-          <S.LastNameInput
-            onChange={handleKorLastNameChange}
-            id='KorLastName'
-            type='text'
-            placeholder='성'
-            value={korLastName}
-            ref={korLastNameRef}
-          />
-          <S.FirstNameInput
-            onChange={handleKorFirstNameChange}
-            id='KorFirstName'
-            type='text'
-            placeholder='이름'
-            value={korFirstName}
-            ref={korFirstNameRef}
-          />
-          <S.LabelGroup>
-            <S.Label htmlFor='EngLastName'>이름(영문)</S.Label>
-            {!isEnglish && (
-              <S.Msg style={{ color: "red" }}>영문만 입력 가능합니다.</S.Msg>
+            {isIdPossible && (
+              <S.Msg style={{ color: "blue" }}>사용 가능한 ID입니다.</S.Msg>
             )}
+            {isIdImpossible && <S.ErrorMsg>중복되는 ID입니다.</S.ErrorMsg>}
           </S.LabelGroup>
-          <S.LastNameInput
-            onChange={handleEngLastNameChange}
-            id='EngLastName'
-            type='text'
-            placeholder='last name'
-            value={engLastName}
-            ref={engLastNameRef}
-          />
-          <S.FirstNameInput
-            onChange={handleEngFirstNameChange}
-            id='EngFirstName'
-            type='text'
-            placeholder='first name'
-            value={engFirstName}
-            ref={engFirstNameRef}
-          />
+          <S.Id>
+            <S.IdInput
+              onChange={handleIdChange}
+              id='Id'
+              type='text'
+              placeholder='아이디 입력'
+              value={id}
+              ref={IdRef}
+            />
+            <S.IdCheckBtn onClick={handleCheckIdDuplication}>
+              아이디 중복 확인
+            </S.IdCheckBtn>
+          </S.Id>
+
           <S.LabelGroup>
             <S.Label htmlFor='Password'>비밀번호</S.Label>
             <S.Msg>
@@ -573,6 +612,52 @@ const SignUpPage = () => {
             value={passwordCheck}
             ref={passwordCheckRef}
           />
+
+          <S.LabelGroup>
+            <S.Label htmlFor='KorLastName'>이름(한글)</S.Label>
+            {!isKorean && (
+              <S.Msg style={{ color: "red" }}>한글만 입력 가능합니다.</S.Msg>
+            )}
+          </S.LabelGroup>
+          <S.LastNameInput
+            onChange={handleKorLastNameChange}
+            id='KorLastName'
+            type='text'
+            placeholder='성'
+            value={korLastName}
+            ref={korLastNameRef}
+          />
+          <S.FirstNameInput
+            onChange={handleKorFirstNameChange}
+            id='KorFirstName'
+            type='text'
+            placeholder='이름'
+            value={korFirstName}
+            ref={korFirstNameRef}
+          />
+          <S.LabelGroup>
+            <S.Label htmlFor='EngLastName'>이름(영문)</S.Label>
+            {!isEnglish && (
+              <S.Msg style={{ color: "red" }}>영문만 입력 가능합니다.</S.Msg>
+            )}
+          </S.LabelGroup>
+          <S.LastNameInput
+            onChange={handleEngLastNameChange}
+            id='EngLastName'
+            type='text'
+            placeholder='last name'
+            value={engLastName}
+            ref={engLastNameRef}
+          />
+          <S.FirstNameInput
+            onChange={handleEngFirstNameChange}
+            id='EngFirstName'
+            type='text'
+            placeholder='first name'
+            value={engFirstName}
+            ref={engFirstNameRef}
+          />
+
           <S.LabelGroup>
             <S.Label htmlFor='phone'>핸드폰</S.Label>
             {!isNumber && <S.ErrorMsg>숫자만 입력 가능합니다.</S.ErrorMsg>}

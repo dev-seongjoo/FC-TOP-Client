@@ -24,6 +24,36 @@ export const Label = styled.label`
   font-weight: 600;
 `;
 
+export const Id = styled.div`
+  display: flex;
+  margin-bottom: 3px;
+`;
+
+export const IdInput = styled.input`
+  width: 250px;
+  height: 25px;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin-right: 5px;
+`;
+
+export const IdCheckBtn = styled.button`
+  width: 145px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
+
+  &:active {
+    background-color: transparent;
+  }
+`;
+
 export const LastNameInput = styled.input`
   width: 120px;
   height: 25px;

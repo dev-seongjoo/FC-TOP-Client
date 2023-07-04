@@ -1,28 +1,34 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import * as S from "./styled";
 
 import axios from "axios";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  const [phone, setPhone] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
-  const [isNumber, setIsNumber] = useState(true);
+  const [isIdWarning, setIsIdWarning] = useState(false);
+  const { setIsLoggedIn } = useContext(AuthContext);
 
-  const phoneRef = useRef(null);
+  const idRef = useRef(null);
   const passwordRef = useRef(null);
 
+  const englishRegex = /^[a-zA-Z]*$/;
   const numberRegex = /^[0-9]*$/;
 
-  const handlePhoneChange = (event) => {
+  const handleIdChange = (event) => {
     const inputValue = event.target.value.trim();
-    if (numberRegex.test(inputValue)) {
-      setIsNumber(true);
-      setPhone(inputValue);
+    if (englishRegex.test(inputValue)) {
+      setId(inputValue.toLowerCase());
+      setIsIdWarning(false);
+    } else if (numberRegex.test(inputValue)) {
+      setId(inputValue);
+      setIsIdWarning(false);
     } else {
-      setIsNumber(false);
+      setIsIdWarning(true);
     }
   };
 
@@ -34,16 +40,9 @@ const LoginPage = () => {
   const handleLogin = (event) => {
     event.preventDefault();
 
-    if (phone === "") {
-      alert("핸드폰 번호를 입력해주세요.");
-      phoneRef.current.focus();
-      return;
-    }
-
-    if (phone.length !== 11) {
-      setIsNumber(true);
-      alert("핸드폰 번호는 '-'제외 11자리를 입력해야 합니다.");
-      phoneRef.current.focus();
+    if (id === "") {
+      alert("아이디를 입력해주세요.");
+      idRef.current.focus();
       return;
     }
 
@@ -53,18 +52,18 @@ const LoginPage = () => {
       return;
     }
 
-    setIsNumber(true);
-
     axios
-      .post("http://localhost:4000/login", { phone, password })
+      .post("http://localhost:4000/login", { id, password })
       .then((res) => {
-        console.log(res);
+        localStorage.setItem("accessToken", res.data.accessToken);
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + localStorage.getItem("accessToken");
+        setIsLoggedIn(true);
         navigate("/");
       })
       .catch((err) => {
-        console.log(err);
-        alert("핸드폰 번호 또는 비밀번호가 옳지 않습니다.");
-        return;
+        console.error(err);
+        alert(err.response.data);
       });
   };
 
@@ -74,16 +73,18 @@ const LoginPage = () => {
         <S.Title>로그인</S.Title>
         <S.Content>
           <S.LabelGroup>
-            <S.Label htmlFor='phone'>핸드폰</S.Label>
-            {!isNumber && <S.ErrorMsg>숫자만 입력 가능합니다.</S.ErrorMsg>}
+            <S.Label htmlFor='id'>아이디</S.Label>
+            {isIdWarning && (
+              <S.ErrorMsg>영문 소문자 및 숫자만 입력 가능합니다.</S.ErrorMsg>
+            )}
           </S.LabelGroup>
-          <S.PhoneInput
+          <S.IdInput
             id='phone'
             type='text'
-            value={phone}
-            ref={phoneRef}
-            placeholder="핸드폰 번호 입력 ('-' 제외 11자리 입력)"
-            onChange={handlePhoneChange}
+            value={id}
+            ref={idRef}
+            placeholder='아이디 입력'
+            onChange={handleIdChange}
           />
           <S.Label htmlFor='password'>비밀번호</S.Label>
           <S.PasswordInput

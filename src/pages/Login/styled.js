@@ -37,7 +37,7 @@ export const ErrorMsg = styled.span`
   margin-right: 5px;
 `;
 
-export const PhoneInput = styled.input`
+export const IdInput = styled.input`
   width: 400px;
   height: 25px;
   padding: 10px;

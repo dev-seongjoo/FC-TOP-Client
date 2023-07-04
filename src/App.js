@@ -1,21 +1,21 @@
 import React from "react";
-
-// We use Route in order to define the different routes of our application
 import { Route, Routes } from "react-router-dom";
 
-// We import all the components we need in our app
-import LoginPage from "./pages/Login/LoginPage";
-import Main from "./pages/Main";
+import HomePage from "./pages/Home/HomePage";
 import SignUpPage from "./pages/SignUp/SignUpPage";
+import LoginPage from "./pages/Login/LoginPage";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const App = () => {
   return (
     <div>
-      <Routes>
-        <Route exact path='/' element={<Main />} />
-        <Route path='/signup' element={<SignUpPage />} />
-        <Route path='/login' element={<LoginPage />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route exact path='/' element={<HomePage />} />
+          <Route path='/signup' element={<SignUpPage />} />
+          <Route path='/login' element={<LoginPage />} />
+        </Routes>
+      </AuthProvider>
     </div>
   );
 };

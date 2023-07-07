@@ -104,18 +104,16 @@ const All = () => {
       <HorizontalLine />
       <Container>
         {noticeList.map((notice) => (
-          <>
-            <NoticeLink to={`/notice/${notice.id}`}>
-              {notice.title}
-              <NoticeMeta>
-                <NoticeDate>{notice.date}</NoticeDate>
-                <Seperation>|</Seperation>
-                <NoticeAuthor>{notice.author}</NoticeAuthor>
-                <Seperation>|</Seperation>
-                <NoticeViews>{notice.views}</NoticeViews>
-              </NoticeMeta>
-            </NoticeLink>
-          </>
+          <NoticeLink key={notice.id} to={`/notice/${notice.id}`}>
+            {notice.title}
+            <NoticeMeta>
+              <NoticeDate>{notice.date}</NoticeDate>
+              <Seperation>|</Seperation>
+              <NoticeAuthor>{notice.author}</NoticeAuthor>
+              <Seperation>|</Seperation>
+              <NoticeViews>{notice.views}</NoticeViews>
+            </NoticeMeta>
+          </NoticeLink>
         ))}
         <BtnWrapper>
           <ExpandBtn>더보기</ExpandBtn>

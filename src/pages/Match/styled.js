@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const MyPageNav = styled.div`
+export const MatchPageNav = styled.div`
   height: 50px;
   display: flex;
   justify-content: center;

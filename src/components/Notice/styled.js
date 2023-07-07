@@ -15,7 +15,7 @@ export const HorizontalLine = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 900px;
+  width: 1200px;
   margin: 0 auto;
 `;
 

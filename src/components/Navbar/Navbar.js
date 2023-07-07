@@ -20,10 +20,6 @@ const Navbar = () => {
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
-  // if (isLoggedIn === null) {
-  //   return null;
-  // }
-
   const handleLogout = () => {
     navigate("/");
     localStorage.removeItem("accessToken");
@@ -43,7 +39,7 @@ const Navbar = () => {
           </Logo>
           <MenuList>
             <MenuLink to='/notice'>공지사항</MenuLink>
-            <MenuLink>경기</MenuLink>
+            <MenuLink to='/match'>경기</MenuLink>
             <MenuLink>선수단</MenuLink>
           </MenuList>
         </NavLeft>

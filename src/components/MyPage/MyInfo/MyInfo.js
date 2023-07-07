@@ -20,7 +20,7 @@ import {
   AttendanceDetailKey,
 } from "./styled";
 
-const Info = ({ name }) => {
+const MyInfo = ({ name }) => {
   const attendance = {
     A: 18,
     UL: 2,
@@ -93,4 +93,4 @@ const Info = ({ name }) => {
   );
 };
 
-export default Info;
+export default MyInfo;

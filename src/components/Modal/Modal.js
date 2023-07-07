@@ -1,4 +1,3 @@
-import react from "react";
 import * as S from "./styled";
 
 const Modal = ({ isOpen, onClose, children }) => {

@@ -7,6 +7,7 @@ export const MainNav = styled.div`
   align-items: center;
   padding: 0 30px;
   background-color: #c70101;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
 `;
 
 export const NavLeft = styled.div`

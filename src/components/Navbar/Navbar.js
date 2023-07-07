@@ -20,9 +20,9 @@ const Navbar = () => {
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
 
-  if (isLoggedIn === null) {
-    return null;
-  }
+  // if (isLoggedIn === null) {
+  //   return null;
+  // }
 
   const handleLogout = () => {
     navigate("/");
@@ -42,11 +42,9 @@ const Navbar = () => {
             <LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
           </Logo>
           <MenuList>
-            <MenuLink>공지사항</MenuLink>
+            <MenuLink to='/notice'>공지사항</MenuLink>
+            <MenuLink>경기</MenuLink>
             <MenuLink>선수단</MenuLink>
-            <MenuLink>경기 일정</MenuLink>
-            {/* <MenuLink>기록</MenuLink>
-            <MenuLink>출석</MenuLink> */}
           </MenuList>
         </NavLeft>
         <NavRight>

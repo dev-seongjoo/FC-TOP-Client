@@ -1,7 +1,7 @@
 import React from "react";
 
-const InfoSetting = () => {
+const Setting = () => {
   return <h1>설정</h1>;
 };
 
-export default InfoSetting;
+export default Setting;

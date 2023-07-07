@@ -12,8 +12,7 @@ export const TitleRow = styled.div`
   align-items: center;
 `;
 
-export const Title = styled.h1`
-  display: block;
+export const Title = styled.div`
   margin: 100px 0px;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 3rem;

@@ -25,18 +25,19 @@ const Info = ({ name }) => {
     A: 18,
     UL: 2,
     UA: 0,
-    OL: 1,
+    AL: 1,
   };
 
   const score =
     attendance.A * 3 +
     attendance.UL * -1 +
     attendance.UA * -2 +
-    attendance.OL * 0;
+    attendance.AL * 0;
 
   return (
     <Container>
-      <Title>{name}님의 TOP</Title>
+      <Title>{name}님과 TOP가 함께한 시간</Title>
+      <Title>365일</Title>
       <CardRow>
         <CardGroup>
           <TitleRow>
@@ -64,7 +65,7 @@ const Info = ({ name }) => {
                     </AttendanceDetail>
                     <AttendanceDetail>
                       <AttendanceDetailKey>결석:</AttendanceDetailKey>
-                      {`${attendance.OL}회`}
+                      {`${attendance.AL}회`}
                     </AttendanceDetail>
                   </AttendanceDetailGroup>
                 </AttendanceContent>

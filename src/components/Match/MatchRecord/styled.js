@@ -2,62 +2,62 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const CategoryNav = styled.div`
-  height: 200px;
+  height: 150px;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   background-color: #f5f5f5;
 `;
 
-export const CategoryBtnGroup = styled.div`
+export const CategoryGroup = styled.div`
   display: flex;
 `;
 
-export const GoalRankBtn = styled.button`
+export const GoalCategory = styled(Link)`
   width: 120px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 0.9rem;
   font-weight: 700;
+  text-decoration: none;
   border: none;
   border-radius: 5px 0 0 5px;
-  color: black;
-  background-color: white;
-
-  &:hover {
-    cursor: pointer;
-  }
+  color: ${(props) => (props.selected ? "white" : "black")};
+  background-color: ${(props) => (props.selected ? "#C70101" : "white")};
 `;
 
-export const AssistRankBtn = styled.button`
+export const AssisCategory = styled(Link)`
   width: 120px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 0.9rem;
   font-weight: 700;
+  text-decoration: none;
   border: none;
-
-  color: black;
-  background-color: white;
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
-  &:hover {
-    cursor: pointer;
-  }
+  color: ${(props) => (props.selected ? "white" : "black")};
+  background-color: ${(props) => (props.selected ? "#C70101" : "white")};
 `;
 
-export const ParticipationRankBtn = styled(Link)`
+export const ParticipationCategory = styled(Link)`
   width: 120px;
   height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
   border: none;
   border-radius: 0 5px 5px 0;
-  color: black;
-  background-color: white;
-  &:hover {
-    cursor: pointer;
-  }
+  color: ${(props) => (props.selected ? "white" : "black")};
+  background-color: ${(props) => (props.selected ? "#C70101" : "white")};
 `;
 
 export const Title = styled.div`

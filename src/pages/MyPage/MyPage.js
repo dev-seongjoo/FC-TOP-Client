@@ -1,14 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { MyPageNav, NavList } from "./styled";
 
 import { AuthContext } from "../../contexts/AuthContext";
 
 import Navbar from "../../components/Navbar/Navbar";
-import Info from "../../components/MyPage/MyInfo/MyInfo";
-import Attendance from "../../components/MyPage/MyAttendance/MyAttendance";
-import Record from "../../components/MyPage/MyRecord/MyRecord";
-import Setting from "../../components/MyPage/Setting/Setting";
 
 const MyPage = () => {
   const location = useLocation();
@@ -29,21 +25,6 @@ const MyPage = () => {
     }
   }, [location.pathname, navigate]);
 
-  const renderComponent = () => {
-    switch (location.pathname) {
-      case "/mypage/myinfo":
-        return <Info />;
-      case "/mypage/myattendance":
-        return <Attendance />;
-      case "/mypage/myrecord":
-        return <Record />;
-      case "/mypage/setting":
-        return <Setting />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       <Navbar />
@@ -58,7 +39,7 @@ const MyPage = () => {
           </NavList>
         ))}
       </MyPageNav>
-      {renderComponent()}
+      <Outlet />
     </>
   );
 };

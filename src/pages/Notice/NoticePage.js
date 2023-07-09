@@ -1,12 +1,8 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { NavList, NoticePageNav } from "./styled";
 
 import Navbar from "../../components/Navbar/Navbar";
-import All from "../../components/Notice/All";
-import Team from "../../components/Notice/Team";
-import Coach from "../../components/Notice/Coach";
-import Account from "../../components/Notice/Account";
 
 const NoticePage = () => {
   const location = useLocation();
@@ -25,21 +21,6 @@ const NoticePage = () => {
     }
   }, [location.pathname, navigate]);
 
-  const renderComponent = () => {
-    switch (location.pathname) {
-      case "/notice/all":
-        return <All />;
-      case "/notice/team":
-        return <Team />;
-      case "/notice/coach":
-        return <Coach />;
-      case "/notice/account":
-        return <Account />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       <Navbar />
@@ -54,7 +35,7 @@ const NoticePage = () => {
           </NavList>
         ))}
       </NoticePageNav>
-      {renderComponent()}
+      <Outlet />
     </>
   );
 };

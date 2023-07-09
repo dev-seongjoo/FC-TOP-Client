@@ -1,10 +1,7 @@
 import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { MatchPageNav, NavList } from "./styled";
-
-import Schedule from "../../components/Match/Schedule/Schedule";
-import MatchRecord from "../../components/Match/MatchRecord/MatchRecord";
 
 const MatchPage = () => {
   const location = useLocation();
@@ -21,17 +18,6 @@ const MatchPage = () => {
     }
   }, [location.pathname, navigate]);
 
-  const renderComponent = () => {
-    switch (location.pathname) {
-      case "/match/schedule":
-        return <Schedule />;
-      case "/match/matchrecord":
-        return <MatchRecord />;
-      default:
-        return null;
-    }
-  };
-
   return (
     <>
       <Navbar />
@@ -40,13 +26,13 @@ const MatchPage = () => {
           <NavList
             key={list.path}
             to={list.path}
-            selected={location.pathname === list.path}
+            selected={location.pathname.startsWith(list.path)}
           >
             {list.label}
           </NavList>
         ))}
       </MatchPageNav>
-      {renderComponent()}
+      <Outlet />
     </>
   );
 };

@@ -20,8 +20,12 @@ import Setting from "./components/MyPage/Setting/Setting";
 
 import SignUpPage from "./pages/SignUp/SignUpPage";
 import LoginPage from "./pages/Login/LoginPage";
+
 import Schedule from "./components/Match/Schedule/Schedule";
 import MatchRecord from "./components/Match/MatchRecord/MatchRecord";
+import Goal from "./components/Match/MatchRecord/Goal/Goal";
+import Assist from "./components/Match/MatchRecord/Assist/Assist";
+import Participation from "./components/Match/MatchRecord/Participation/Participation";
 
 const App = () => {
   return (
@@ -29,20 +33,23 @@ const App = () => {
       <AuthProvider>
         <Routes>
           <Route exact path='/' element={<HomePage />} />
-          <Route path='/notice' element={<NoticePage />}>
+          <Route path='/notice/*' element={<NoticePage />}>
             <Route path='all' element={<All />} />
             <Route path='team' element={<Team />} />
             <Route path='coach' element={<Coach />} />
             <Route path='account' element={<Account />} />
           </Route>
-          <Route path='/match' element={<MatchPage />}>
+          <Route path='/match/*' element={<MatchPage />}>
             <Route path='schedule' element={<Schedule />} />
-            <Route path='matchrecord' element={<MatchRecord />} />
-            <Route path='account' element={<Account />} />
+            <Route path='matchrecord/*' element={<MatchRecord />}>
+              <Route path='goal' element={<Goal />} />
+              <Route path='assist' element={<Assist />} />
+              <Route path='participation' element={<Participation />}></Route>
+            </Route>
           </Route>
           <Route path='/signup' element={<SignUpPage />} />
           <Route path='/login' element={<LoginPage />} />
-          <Route path='/mypage' element={<MyPage />}>
+          <Route path='/mypage/*' element={<MyPage />}>
             <Route path='myinfo' element={<MyInfo />} />
             <Route path='myattendance' element={<MyAttendance />} />
             <Route path='myrecord' element={<MyRecord />} />

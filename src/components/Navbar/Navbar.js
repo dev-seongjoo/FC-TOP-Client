@@ -40,7 +40,7 @@ const Navbar = () => {
           <MenuList>
             <MenuLink to='/notice'>공지사항</MenuLink>
             <MenuLink to='/match'>경기</MenuLink>
-            <MenuLink>선수단</MenuLink>
+            <MenuLink to='/player'>선수단</MenuLink>
           </MenuList>
         </NavLeft>
         <NavRight>

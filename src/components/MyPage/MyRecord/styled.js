@@ -23,7 +23,7 @@ export const Select = styled.select`
 
 export const Option = styled.option``;
 
-export const Table = styled.table`
+export const MainTable = styled.table`
   width: 100%;
   border-collapse: collapse;
 `;
@@ -83,7 +83,7 @@ export const AttendanceStatusTh = styled.th`
   vertical-align: middle;
 `;
 
-export const TbodydTr = styled.tr`
+export const TbodyTr = styled.tr`
   height: 80px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
@@ -112,6 +112,12 @@ export const VotingTd = styled.td`
   vertical-align: middle;
 `;
 
+export const ExpandBtn = styled.span`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 export const AttendanceLimitTd = styled.td`
   width: 16.66%;
   font-size: 0.9rem;
@@ -130,6 +136,135 @@ export const AttendanceTimeTd = styled.td`
 
 export const AttendanceStatusTd = styled.td`
   width: 16.66%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const SubTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
+export const SubTheadTr = styled.tr`
+  height: 40px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #f5f5f5;
+`;
+
+export const QuaterTh = styled.th`
+  width: 20%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const PositionTh = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const ParticipationTimeTh = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const PersonalGoalTh = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const PersonalAssistTh = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const LpTh = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const OgTh = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const SubTbodyTr = styled.tr`
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+`;
+
+export const QuaterTd = styled.td`
+  width: 20%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const PositionTd = styled.td`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const ParticipationTimeTd = styled.td`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const PersonalGoalTd = styled.td`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const PersonalAssistTd = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const LpTd = styled.th`
+  width: 10%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const OgTd = styled.th`
+  width: 10%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;

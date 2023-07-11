@@ -157,9 +157,7 @@ const Participation = () => {
             <TheadTr>
               <NameTh>이름</NameTh>
               <PositionTh>포지션</PositionTh>
-              <MatchNumTh>출전</MatchNumTh>
-              <SubInTh>교체 IN</SubInTh>
-              <SubOutTh>교체 OUT</SubOutTh>
+              <MatchNumTh>경기</MatchNumTh>
               <GoalTh>득점</GoalTh>
               <AssistTh>도움</AssistTh>
               <LpTh>실점</LpTh>
@@ -176,13 +174,11 @@ const Participation = () => {
                   </ProfileGroup>
                 </NameTd>
                 <PositionTd>{data.position}</PositionTd>
-                <MatchNumTd>{data.matchNum}</MatchNumTd>
-                <SubInTd>{data.subIn}</SubInTd>
-                <SubOutTd>{data.subOut}</SubOutTd>
-                <GoalTd>{data.goal}</GoalTd>
-                <AssistTd>{data.assist}</AssistTd>
-                <LpTd>{data.lp}</LpTd>
-                <OgTd>{data.og}</OgTd>
+                <MatchNumTd>{data.matchNum}경기</MatchNumTd>
+                <GoalTd>{data.goal}득점</GoalTd>
+                <AssistTd>{data.assist}도움</AssistTd>
+                <LpTd>{data.lp}실점</LpTd>
+                <OgTd>{data.og}자책</OgTd>
               </TbodydTr>
             ))}
           </tbody>

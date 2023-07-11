@@ -1,10 +1,8 @@
-import styled from "styled-components";
 import "../../../App.css";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export const Field = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-`;
+import logo from "../../../assets/fc-top.png";
 
 export const Title = styled.div`
   max-width: 1200px;
@@ -24,26 +22,23 @@ export const Container = styled.div`
 
   @media screen and (max-width: 1200px) {
     grid-template-columns: repeat(3, 1fr);
-     
+  }
 
   @media screen and (max-width: 900px) {
-    grid-template-columns: repeat(2, 1fr); 
-    
+    grid-template-columns: repeat(2, 1fr);
   }
   @media screen and (max-width: 600px) {
-    grid-template-columns: repeat(1, 1fr); 
-    
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
-export const CardContainer = styled.div`
+export const CardContainer = styled(Link)`
   position: relative;
   width: 100%;
   height: 360px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   perspective: 1000;
-  cursor: pointer;
   overflow: hidden;
 `;
 
@@ -65,19 +60,7 @@ export const CardFront = styled.div`
   width: 100%;
   height: 100%;
   padding: 30px;
-  backface-visibility: hidden;
-`;
-
-export const CardBack = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  transform: rotateY(180deg);
-  color: white;
-  background-image: url("../../../assets/fc-top.png");
-  ${"" /* background-color: #c70101; */}
+  color: black;
   backface-visibility: hidden;
 `;
 
@@ -113,5 +96,54 @@ export const ProfileImgContainer = styled.div`
 `;
 
 export const ProfileImg = styled.img`
-  width: 180px;
+  width: 170px;
+`;
+
+export const CardBack = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* padding: 15px; */
+  transform: rotateY(180deg);
+  color: white;
+  background-image: url(${logo});
+  background-size: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+`;
+
+export const Opacity = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.9);
+`;
+
+export const CardBackContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 3px solid white;
+  border-radius: 15px;
+  padding: 15px;
+`;
+
+export const BackProfileInfo = styled.div`
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+
+export const PersonalMatchRecord = styled(Link)`
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 5px solid black;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 700;
+  background-color: transparent;
+  text-decoration: none;
 `;

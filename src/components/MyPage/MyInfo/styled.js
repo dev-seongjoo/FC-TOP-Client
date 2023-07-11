@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   display: flex;
@@ -6,18 +7,12 @@ export const Container = styled.div`
   align-items: center;
 `;
 
-export const TitleRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
 export const Title = styled.div`
-  margin: 100px 0px;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 3rem;
   font-weight: 500;
   text-align: center;
+  margin: 100px 0;
 `;
 
 export const CardRow = styled.div`
@@ -25,25 +20,29 @@ export const CardRow = styled.div`
 `;
 
 export const CardGroup = styled.div`
-  display; flex;
+  display: flex;
   flex-direction: column;
-  margin: 50px 20px;
+  margin: 0 20px;
+`;
+
+export const TitleRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 5px;
+  margin-bottom: 30px;
 `;
 
 export const CardTitle = styled.div`
   font-family: "Nanum Gothic", sans-serif;
   font-size: 1.5rem;
   font-weight: 700;
-  margin-left: 5px;
-  margin-bottom: 20px;
 `;
 
-export const CardSearch = styled.span`
-  margin-right: 5px;
-
-  &:hover {
-    cursor: pointer;
-  }
+export const CardSearch = styled(Link)`
+  color: black;
+  font-weight: 700;
+  text-decoration: none;
 `;
 
 export const Card = styled.div`
@@ -53,10 +52,10 @@ export const Card = styled.div`
   border-radius: 10px;
 `;
 
-export const Attendance = styled.div`
+export const Info = styled.div`
   display: flex;
   flex-direction: column;
-  justify-contents: center;
+  justify-content: center;
   align-items: center;
 `;
 
@@ -67,51 +66,58 @@ export const Year = styled.div`
   margin-bottom: 50px;
 `;
 
-export const AttendanceGroup = styled.div`
+export const InfoGroup = styled.div`
   width: 400px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
 `;
 
-export const AttendanceContent = styled.div`
+export const InfoContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 `;
 
-export const AttendanceTitle = styled.div`
+export const InfoTitle = styled.div`
   margin-bottom: 20px;
   font-size: 1.5rem;
   font-weight: 700;
 `;
 
-export const AttendanceDetailGroup = styled.div`
+export const InfoDetailGroup = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 `;
 
-export const AttendanceDetail = styled.div`
+export const InfoDetail = styled.div`
   margin-bottom: 12px;
   font-size: 1.2rem;
 `;
 
-export const AttendanceDetailKey = styled.span`
+export const InfoDetailKey = styled.span`
   margin-right: 5px;
   font-weight: 700;
 `;
 
-export const AttendanceScore = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const AttendanceScoreDetail = styled.div`
+export const InfoBigChar = styled.div`
   margin-top: 30px;
   font-size: 3rem;
   font-weight: 700;
+`;
+
+export const MatchRecordGroup = styled.div`
+  width: 400px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+`;
+
+export const MatchRecordGoal = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;

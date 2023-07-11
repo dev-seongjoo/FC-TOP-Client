@@ -19,20 +19,7 @@ import {
   InfoBigChar,
 } from "./styled";
 
-const MyInfo = ({ name }) => {
-  const attendance = {
-    A: 18,
-    UL: 2,
-    UA: 0,
-    AL: 1,
-  };
-
-  const score =
-    attendance.A * 3 +
-    attendance.UL * -1 +
-    attendance.UA * -2 +
-    attendance.AL * 0;
-
+const MyInfo = () => {
   return (
     <Container>
       <Title>김성주님의 TOP</Title>
@@ -51,25 +38,25 @@ const MyInfo = ({ name }) => {
                   <InfoDetailGroup>
                     <InfoDetail>
                       <InfoDetailKey>참석:</InfoDetailKey>
-                      {`${attendance.A}회`}
+                      18회
                     </InfoDetail>
                     <InfoDetail>
                       <InfoDetailKey>무단지각:</InfoDetailKey>
-                      {`${attendance.UL}회`}
+                      2회
                     </InfoDetail>
                     <InfoDetail>
                       <InfoDetailKey>무단결석:</InfoDetailKey>
-                      {`${attendance.UA}회`}
+                      0회
                     </InfoDetail>
                     <InfoDetail>
                       <InfoDetailKey>결석:</InfoDetailKey>
-                      {`${attendance.AL}회`}
+                      0회
                     </InfoDetail>
                   </InfoDetailGroup>
                 </InfoContent>
                 <InfoContent>
                   <InfoTitle>출석 점수</InfoTitle>
-                  <InfoBigChar>{score}점</InfoBigChar>
+                  <InfoBigChar>52점</InfoBigChar>
                 </InfoContent>
               </InfoGroup>
             </Info>

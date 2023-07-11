@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 `;
 
 export const Title = styled.div`
@@ -17,13 +16,10 @@ export const Title = styled.div`
 
 export const CardRow = styled.div`
   display: flex;
+  justify-content: space-around;
 `;
 
-export const CardGroup = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 20px;
-`;
+export const CardGroup = styled.div``;
 
 export const TitleRow = styled.div`
   display: flex;
@@ -46,8 +42,8 @@ export const CardSearch = styled(Link)`
 `;
 
 export const Card = styled.div`
-  width: 600px;
-  height: 400px;
+  width: 525px;
+  height: 350px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
 `;

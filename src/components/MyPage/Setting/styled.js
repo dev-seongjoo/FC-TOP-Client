@@ -10,7 +10,7 @@ export const Title = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
+  max-width: 600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ export const Container = styled.div`
 `;
 
 export const SettingLinkGroup = styled(Link)`
-  width: 600px;
+  width: 100%;
   height: 50px;
   padding-bottom: 10px;
   margin-top: 50px;
@@ -32,12 +32,12 @@ export const SettingLinkGroup = styled(Link)`
 
 export const SettingLink = styled.span`
   color: black;
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 700;
 `;
 
 export const ArrowForwardBtn = styled.span`
   color: black;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
 `;

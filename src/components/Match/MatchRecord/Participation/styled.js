@@ -106,7 +106,7 @@ export const OgTh = styled.th`
   vertical-align: middle;
 `;
 
-export const TbodydTr = styled.tr`
+export const TbodyTr = styled.tr`
   height: 80px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;

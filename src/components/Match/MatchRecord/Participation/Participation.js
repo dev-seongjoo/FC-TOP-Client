@@ -19,12 +19,8 @@ import {
   ProfileImg,
   ProfileName,
   Select,
-  SubInTd,
-  SubInTh,
-  SubOutTd,
-  SubOutTh,
   Table,
-  TbodydTr,
+  TbodyTr,
   TheadTr,
   Title,
 } from "./styled";
@@ -166,7 +162,7 @@ const Participation = () => {
           </thead>
           <tbody>
             {dummyData.map((data) => (
-              <TbodydTr>
+              <TbodyTr>
                 <NameTd>
                   <ProfileGroup>
                     <ProfileImg src={ProfileBasicImg} />
@@ -179,7 +175,7 @@ const Participation = () => {
                 <AssistTd>{data.assist}도움</AssistTd>
                 <LpTd>{data.lp}실점</LpTd>
                 <OgTd>{data.og}자책</OgTd>
-              </TbodydTr>
+              </TbodyTr>
             ))}
           </tbody>
         </Table>

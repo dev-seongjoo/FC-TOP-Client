@@ -4,7 +4,7 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 import "./App.css";
 
-import HomePage from "./pages/Home/HomePage";
+import MainPage from "./pages/Main/Main";
 
 import NoticePage from "./pages/Notice/NoticePage";
 import All from "./components/Notice/All";
@@ -37,10 +37,10 @@ import LoginPage from "./pages/Login/LoginPage";
 
 const App = () => {
   return (
-    <div>
+    <div className='Container'>
       <AuthProvider>
         <Routes>
-          <Route exact path='/' element={<HomePage />} />
+          <Route exact path='/' element={<MainPage />} />
           <Route path='/notice/*' element={<NoticePage />}>
             <Route path='all' element={<All />} />
             <Route path='team' element={<Team />} />

@@ -8,10 +8,10 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   font-family: "Noto Sans Display", sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
   text-align: center;
-  margin: 100px 0;
+  margin: 60px 0;
 `;
 
 export const CardRow = styled.div`
@@ -100,7 +100,7 @@ export const InfoDetailKey = styled.span`
 
 export const InfoBigChar = styled.div`
   margin-top: 30px;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: 700;
 `;
 

@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const TitleRow = styled.div`
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;

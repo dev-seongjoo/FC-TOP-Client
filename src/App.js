@@ -37,7 +37,7 @@ import LoginPage from "./pages/Login/LoginPage";
 
 const App = () => {
   return (
-    <div className='Container'>
+    <div>
       <AuthProvider>
         <Routes>
           <Route exact path='/' element={<MainPage />} />

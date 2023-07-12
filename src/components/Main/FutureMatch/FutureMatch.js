@@ -5,10 +5,13 @@ import {
   HomeTeam,
   Location,
   ScoreGroup,
-  SearchBtn,
+  SearachBtnGroup,
+  SearchBtnLeft,
+  SearchBtnRight,
   Title,
   TitleRow,
   Versus,
+  VotingBtn,
 } from "./styled";
 
 const FutureMatch = () => {
@@ -16,9 +19,14 @@ const FutureMatch = () => {
     <Container>
       <TitleRow>
         <Title>다음 경기 일정</Title>
-        <SearchBtn className='material-symbols-outlined'>
-          arrow_circle_right
-        </SearchBtn>
+        <SearachBtnGroup>
+          <SearchBtnLeft className='material-symbols-outlined'>
+            arrow_circle_left
+          </SearchBtnLeft>
+          <SearchBtnRight className='material-symbols-outlined'>
+            arrow_circle_right
+          </SearchBtnRight>
+        </SearachBtnGroup>
       </TitleRow>
       <Date>2023.07.15(토) 07:00</Date>
       <Location>운정체육공원</Location>
@@ -26,6 +34,7 @@ const FutureMatch = () => {
         <HomeTeam>FC TOP</HomeTeam>
         <Versus>VS</Versus>
         <AwayTeam>R.egend FC</AwayTeam>
+        <VotingBtn>투표</VotingBtn>
       </ScoreGroup>
     </Container>
   );

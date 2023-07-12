@@ -23,7 +23,7 @@ export const Logo = styled.div`
 export const LogoImg = styled.img`
   height: 60px;
 
-  &: hover {
+  &:hover {
     cursor: pointer;
   }
 `;

@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.Container {
-  background-color: #f5f5f5;
-}
-
 @font-face {
   font-family: "K-league";
   src: url("./fonts/K-league.woff");

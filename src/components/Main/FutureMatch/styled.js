@@ -11,6 +11,7 @@ export const Container = styled.div`
 `;
 
 export const TitleRow = styled.div`
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -23,7 +24,14 @@ export const Title = styled.div`
   font-weight: 700;
 `;
 
-export const SearchBtn = styled(Link)`
+export const SearachBtnGroup = styled.div``;
+
+export const SearchBtnLeft = styled(Link)`
+  color: white;
+  text-decoration: none;
+  margin-right: 5px;
+`;
+export const SearchBtnRight = styled(Link)`
   color: white;
   text-decoration: none;
 `;
@@ -35,7 +43,7 @@ export const Date = styled.div`
 `;
 
 export const Location = styled.div`
-  margin-bottom: 70px;
+  margin-bottom: 50px;
   color: white;
   text-align: center;
 `;
@@ -59,7 +67,7 @@ export const Versus = styled.div`
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.2rem;
   font-weight: 900;
-  margin: 30px 0;
+  margin: 10px 0;
 `;
 
 export const AwayTeam = styled.div`
@@ -68,4 +76,19 @@ export const AwayTeam = styled.div`
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
+`;
+
+export const VotingBtn = styled(Link)`
+  width: 200px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  color: black;
+  background-color: white;
+  border-radius: 10px;
+  font-size: 2rem;
+  font-weight: 700;
+  text-decoration: none;
 `;

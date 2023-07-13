@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   width: 300px;
   height: 500px;
-  padding: 40px;
+  padding: 40px 30px;
   border-radius: 30px;
   background-color: black;
   opacity: 0.7;
@@ -26,6 +26,7 @@ export const Title = styled.div`
 
 export const SearchBtn = styled(Link)`
   color: white;
+  font-size: 0.8rem;
   text-decoration: none;
 `;
 
@@ -51,7 +52,7 @@ export const HomeTeamGroup = styled.div`
 
 export const HomeTeam = styled.div`
   margin-bottom: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
   font-size: 3rem;
   font-weight: 700;
   text-align: center;
@@ -64,7 +65,7 @@ export const HomeScore = styled.div`
 `;
 
 export const Versus = styled.div`
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.3);
   font-size: 1.2rem;
   font-weight: 900;
   margin: 20px 0;
@@ -78,14 +79,14 @@ export const AwayTeamGroup = styled.div`
 `;
 
 export const AwayScore = styled.div`
-  color: white;
+  color: rgba(255, 255, 255, 0.7);
   font-size: 2.5rem;
   font-weight: 700;
 `;
 
 export const AwayTeam = styled.div`
   margin-top: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 3rem;
   font-weight: 700;
   text-align: center;

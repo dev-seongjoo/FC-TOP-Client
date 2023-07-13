@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   width: 300px;
   height: 500px;
-  padding: 40px;
+  padding: 40px 30px;
   border-radius: 30px;
   background-color: black;
   opacity: 0.7;

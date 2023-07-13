@@ -12,19 +12,20 @@ import Team from "./components/Notice/Team";
 import Coach from "./components/Notice/Coach";
 import Account from "./components/Notice/Account";
 
-import MatchPage from "./pages/Match/MatchPage";
-import Schedule from "./components/Match/Schedule/Schedule";
-import MatchRecord from "./components/Match/MatchRecord/MatchRecord";
-import Goal from "./components/Match/MatchRecord/Goal/Goal";
-import Assist from "./components/Match/MatchRecord/Assist/Assist";
-import Participation from "./components/Match/MatchRecord/Participation/Participation";
-
 import PlayerPage from "./pages/Player/PlayerPage";
 import PlayerAll from "./components/Player/PlayerAll/PlayerAll";
 import Fw from "./components/Player/Fw/Fw";
 import Mf from "./components/Player/Mf/Mf";
 import Df from "./components/Player/Df/Df";
 import Gk from "./components/Player/Gk/Gk";
+
+import SchedulePage from "./pages/Schedule/SchedulePage";
+
+import RecordPage from "./pages/Record/RecordPage";
+import Attendance from "./components/Record/Attendance/Attendance";
+import Goal from "./components/Record/Goal/Goal";
+import Assist from "./components/Record/Assist/Assist";
+import Participation from "./components/Record/Participation/Participation";
 
 import MyPage from "./pages/MyPage/MyPage";
 import MyInfo from "./components/MyPage/MyInfo/MyInfo";
@@ -47,14 +48,14 @@ const App = () => {
             <Route path='coach' element={<Coach />} />
             <Route path='account' element={<Account />} />
           </Route>
-          <Route path='/match/*' element={<MatchPage />}>
-            <Route path='schedule' element={<Schedule />} />
-            <Route path='matchrecord/*' element={<MatchRecord />}>
-              <Route path='goal' element={<Goal />} />
-              <Route path='assist' element={<Assist />} />
-              <Route path='participation' element={<Participation />}></Route>
-            </Route>
+          <Route path='/schedule' element={<SchedulePage />} />
+          <Route path='/record/*' element={<RecordPage />}>
+            <Route path='attendance' element={<Attendance />} />
+            <Route path='goal' element={<Goal />} />
+            <Route path='assist' element={<Assist />} />
+            <Route path='participation' element={<Participation />} />
           </Route>
+
           <Route path='/player/*' element={<PlayerPage />}>
             <Route path='all' element={<PlayerAll />} />
             <Route path='fw' element={<Fw />} />

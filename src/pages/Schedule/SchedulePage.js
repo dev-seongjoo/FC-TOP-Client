@@ -1,3 +1,4 @@
+import Navbar from "../../components/Navbar/Navbar";
 import {
   AwayTeam,
   BtnGroup,
@@ -20,10 +21,11 @@ import {
   Versus,
   VersusGroup,
   VideoBtn,
+  VoteBtn,
   Year,
 } from "./styled";
 
-const Schedule = () => {
+const SchedulePage = () => {
   const Matches = [
     {
       id: 1,
@@ -73,6 +75,7 @@ const Schedule = () => {
       date: "2023.07.17",
       location: "운정체육공원",
       opponent: "GG",
+      notYet: true,
     },
     {
       id: 8,
@@ -80,6 +83,7 @@ const Schedule = () => {
       date: "2023.07.18",
       location: "금촌체육공원",
       opponent: "HHHHHHHHHH",
+      notYet: true,
     },
     {
       id: 9,
@@ -87,6 +91,7 @@ const Schedule = () => {
       date: "2023.07.19",
       location: "교하체육공원",
       opponent: "IIIIII",
+      notYet: true,
     },
     {
       id: 10,
@@ -94,12 +99,14 @@ const Schedule = () => {
       date: "2023.07.20",
       location: "운정건강공원",
       opponent: "JJJJ",
+      notYet: true,
     },
   ];
 
   return (
     <>
-      <Title>경기 일정</Title>
+      <Navbar />
+      <Title>일정/결과</Title>
       <HorizontalLine />
       <Container>
         <DateContainer>
@@ -138,10 +145,14 @@ const Schedule = () => {
               </VersusGroup>
               <AwayTeam>{match.opponent}</AwayTeam>
             </TeamGroup>
-            <BtnGroup>
-              <VideoBtn>경기 영상</VideoBtn>
-              <RecordBtn>경기 기록</RecordBtn>
-            </BtnGroup>
+            {match.notYet ? (
+              <VoteBtn>투표</VoteBtn>
+            ) : (
+              <BtnGroup>
+                <RecordBtn>경기 기록</RecordBtn>
+                <VideoBtn>경기 영상</VideoBtn>
+              </BtnGroup>
+            )}
           </MatchBox>
         ))}
       </Container>
@@ -149,4 +160,4 @@ const Schedule = () => {
   );
 };
 
-export default Schedule;
+export default SchedulePage;

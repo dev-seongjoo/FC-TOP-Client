@@ -13,7 +13,7 @@ const MyPage = () => {
   const name = user ? user.KOR_LAST_NM + user.KOR_FIRST_NM : "Loading...";
 
   const navLists = [
-    { path: "/mypage/myinfo", label: `${name}님의 TOP` },
+    { path: "/mypage/myinfo", label: `나의 TOP` },
     { path: "/mypage/myattendance", label: "출석" },
     { path: "/mypage/myrecord", label: "경기 기록" },
     { path: "/mypage/setting", label: "설정" },

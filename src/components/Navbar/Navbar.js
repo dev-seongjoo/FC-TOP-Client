@@ -39,8 +39,9 @@ const Navbar = () => {
           </Logo>
           <MenuList>
             <MenuLink to='/notice'>공지사항</MenuLink>
-            <MenuLink to='/match'>경기</MenuLink>
             <MenuLink to='/player'>선수단</MenuLink>
+            <MenuLink to='/schedule'>일정/결과</MenuLink>
+            <MenuLink to='/record'>기록/순위</MenuLink>
           </MenuList>
         </NavLeft>
         <NavRight>
@@ -52,6 +53,7 @@ const Navbar = () => {
             </Auth>
           ) : (
             <Auth>
+              <AuthLink to='/mypage'>실시간 출석</AuthLink>
               <AuthLink to='/mypage'>마이페이지</AuthLink>
               <AuthLink onClick={handleLogout}>로그아웃</AuthLink>
             </Auth>

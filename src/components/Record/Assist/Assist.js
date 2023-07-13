@@ -23,105 +23,105 @@ import {
   PositionTh,
 } from "./styled";
 
-import ProfileBasicImg from "../../../../assets/basic-profile.jpg";
+import ProfileBasicImg from "../../../assets/basic-profile.jpg";
 
-const Goal = () => {
+const Assist = () => {
   const dummyData = [
     {
       rank: 1,
       name: "김성주",
       position: "ST",
-      goal: 5,
+      assist: 5,
       match: 5,
-      goalPerMatch: 1,
+      assistPerMatch: 1,
       img: ProfileBasicImg,
     },
     {
       rank: 2,
       name: "박지성",
       position: "CDM",
-      goal: 4,
+      assist: 4,
       match: 6,
-      goalPerMatch: 0.67,
+      assistPerMatch: 0.67,
       img: ProfileBasicImg,
     },
     {
       rank: 3,
       name: "황의조",
       position: "LW",
-      goal: 4,
+      assist: 4,
       match: 7,
-      goalPerMatch: 0.57,
+      assistPerMatch: 0.57,
       img: ProfileBasicImg,
     },
     {
       rank: 4,
       name: "손흥민",
       position: "RW",
-      goal: 3,
+      assist: 3,
       match: 5,
-      goalPerMatch: 0.6,
+      assistPerMatch: 0.6,
       img: ProfileBasicImg,
     },
     {
       rank: 5,
       name: "이승우",
       position: "LM",
-      goal: 3,
+      assist: 3,
       match: 6,
-      goalPerMatch: 0.5,
+      assistPerMatch: 0.5,
       img: ProfileBasicImg,
     },
     {
       rank: 6,
       name: "이강인",
       position: "RM",
-      goal: 2,
+      assist: 2,
       match: 5,
-      goalPerMatch: 0.4,
+      assistPerMatch: 0.4,
       img: ProfileBasicImg,
     },
     {
       rank: 7,
       name: "조현우",
       position: "GK",
-      goal: 2,
+      assist: 2,
       match: 6,
-      goalPerMatch: 0.33,
+      assistPerMatch: 0.33,
       img: ProfileBasicImg,
     },
     {
       rank: 8,
       name: "기성용",
       position: "CAM",
-      goal: 1,
+      assist: 1,
       match: 5,
-      goalPerMatch: 0.2,
+      assistPerMatch: 0.2,
       img: ProfileBasicImg,
     },
     {
       rank: 9,
       name: "김영권",
       position: "CB",
-      goal: 1,
+      assist: 1,
       match: 7,
-      goalPerMatch: 0.14,
+      assistPerMatch: 0.14,
       img: ProfileBasicImg,
     },
     {
       rank: 10,
       name: "구자철",
       position: "RB",
-      goal: 0,
+      assist: 0,
       match: 6,
-      goalPerMatch: 0,
+      assistPerMatch: 0,
       img: ProfileBasicImg,
     },
   ];
 
   return (
     <>
-      <Title>득점순위</Title>
+      <Title>도움순위</Title>
       <Container>
         <Select>
           <Option>2023</Option>
@@ -148,10 +148,10 @@ const Goal = () => {
                   </ProfileGroup>
                 </NameTd>
                 <PositionTd>{data.position}</PositionTd>
-                <ScoreTd>{data.goal}골</ScoreTd>
+                <ScoreTd>{data.assist}도움</ScoreTd>
                 <MatchTd>{data.match}경기</MatchTd>
                 <ScorePerMatchTd>
-                  경기당 {data.goalPerMatch} 득점
+                  경기당 {data.assistPerMatch} 도움
                 </ScorePerMatchTd>
               </TbodydTr>
             ))}
@@ -162,4 +162,4 @@ const Goal = () => {
   );
 };
 
-export default Goal;
+export default Assist;

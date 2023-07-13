@@ -18,10 +18,8 @@ const PastMatch = () => {
   return (
     <Container>
       <TitleRow>
-        <Title>지난 경기 결과</Title>
-        <SearchBtn className='material-symbols-outlined'>
-          arrow_circle_right
-        </SearchBtn>
+        <Title>지난 경기</Title>
+        <SearchBtn>자세히 보기</SearchBtn>
       </TitleRow>
       <Date>2023.07.08(토)</Date>
       <ScoreGroup>

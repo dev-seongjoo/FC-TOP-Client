@@ -18,7 +18,7 @@ const FutureMatch = () => {
   return (
     <Container>
       <TitleRow>
-        <Title>다음 경기 일정</Title>
+        <Title>다음 경기</Title>
         <SearachBtnGroup>
           <SearchBtnLeft className='material-symbols-outlined'>
             arrow_circle_left

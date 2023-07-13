@@ -22,9 +22,9 @@ export const DateContainer = styled.div`
 `;
 
 export const Select = styled.select`
-  padding: 12px 12px;
+  padding: 10px;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1rem;
 `;
 
 export const Option = styled.option``;
@@ -159,7 +159,6 @@ export const VideoBtn = styled.button`
   background-color: #c70101;
   border: none;
   border-radius: 5px;
-  margin-bottom: 10px;
 
   &:hover {
     opacity: 0.7;
@@ -175,6 +174,7 @@ export const RecordBtn = styled.button`
   width: 150px;
   height: 50px;
   padding: 10px;
+  margin-bottom: 10px;
   color: rgba(0, 0, 0, 0.5);
   font-size: 1rem;
   font-weight: 700;
@@ -182,6 +182,25 @@ export const RecordBtn = styled.button`
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 
+  &:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+`;
+
+export const VoteBtn = styled.button`
+  width: 150px;
+  height: 50px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  background-color: black;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
   &:hover {
     opacity: 0.7;
     cursor: pointer;

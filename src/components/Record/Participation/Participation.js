@@ -25,7 +25,7 @@ import {
   Title,
 } from "./styled";
 
-import ProfileBasicImg from "../../../../assets/basic-profile.jpg";
+import ProfileBasicImg from "../../../assets/basic-profile.jpg";
 
 const Participation = () => {
   const dummyData = [

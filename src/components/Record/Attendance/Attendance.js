@@ -19,6 +19,12 @@ import {
   ProfileName,
   ProfileGroup,
   PositionTh,
+  AttendanceTh,
+  LatenessTh,
+  AbsenceTh,
+  AttendanceTd,
+  LatenessTd,
+  AbsenceTd,
 } from "./styled";
 
 import ProfileBasicImg from "../../../assets/basic-profile.jpg";
@@ -129,10 +135,10 @@ const Attendance = () => {
             <TheadTr>
               <RankTh>순위</RankTh>
               <NameTh>선수 이름</NameTh>
-              <PositionTh>참석</PositionTh>
-              <ScoreTh>무단지각</ScoreTh>
-              <MatchTh>무단불참</MatchTh>
-              <MatchTh>점수</MatchTh>
+              <AttendanceTh>참석</AttendanceTh>
+              <LatenessTh>무단지각</LatenessTh>
+              <AbsenceTh>무단불참</AbsenceTh>
+              <ScoreTh>점수</ScoreTh>
             </TheadTr>
           </thead>
           <tbody>
@@ -145,10 +151,10 @@ const Attendance = () => {
                     <ProfileName>{data.name}</ProfileName>
                   </ProfileGroup>
                 </NameTd>
-                <ScoreTd>{data.goal} 회</ScoreTd>
-                <MatchTd>{data.match} 회</MatchTd>
-                <MatchTd>{data.match} 회</MatchTd>
-                <ScorePerMatchTd>{data.goalPerMatch} 점</ScorePerMatchTd>
+                <AttendanceTd>{data.goal} 회</AttendanceTd>
+                <LatenessTd>{data.match} 회</LatenessTd>
+                <AbsenceTd>{data.match} 회</AbsenceTd>
+                <ScoreTd>{data.goalPerMatch} 점</ScoreTd>
               </TbodydTr>
             ))}
           </tbody>

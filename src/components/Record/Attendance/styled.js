@@ -51,7 +51,23 @@ export const NameTh = styled.th`
   vertical-align: middle;
 `;
 
-export const PositionTh = styled.th`
+export const AttendanceTh = styled.th`
+  width: 15.38%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const LatenessTh = styled.th`
+  width: 15.38%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const AbsenceTh = styled.th`
   width: 15.38%;
   font-size: 0.9rem;
   font-weight: 700;
@@ -60,22 +76,6 @@ export const PositionTh = styled.th`
 `;
 
 export const ScoreTh = styled.th`
-  width: 15.38%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const MatchTh = styled.th`
-  width: 15.38%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const ScorePerMatchTh = styled.th`
   width: 15.38%;
   font-size: 0.9rem;
   font-weight: 700;
@@ -104,7 +104,7 @@ export const NameTd = styled.td`
   vertical-align: middle;
 `;
 
-export const PositionTd = styled.td`
+export const AttendanceTd = styled.td`
   width: 15.38%;
   font-size: 0.9rem;
   font-weight: 700;
@@ -126,23 +126,23 @@ export const ProfileImg = styled.img`
 
 export const ProfileName = styled.span``;
 
+export const LatenessTd = styled.td`
+  width: 15.38%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
+export const AbsenceTd = styled.td`
+  width: 15.38%;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  vertical-align: middle;
+`;
+
 export const ScoreTd = styled.td`
-  width: 15.38%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const MatchTd = styled.td`
-  width: 15.38%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const ScorePerMatchTd = styled.td`
   width: 15.38%;
   font-size: 0.9rem;
   font-weight: 700;

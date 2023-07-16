@@ -16,7 +16,7 @@ const Rank = () => {
 
   useEffect(() => {
     if (location.pathname === "/record" || location.pathname === "/record/") {
-      navigate("/record/goal");
+      navigate("/record/attendance");
     }
   }, [location.pathname, navigate]);
 

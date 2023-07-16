@@ -53,7 +53,7 @@ const Navbar = () => {
             </Auth>
           ) : (
             <Auth>
-              <AuthLink to='/mypage'>실시간 출석</AuthLink>
+              <AuthLink>실시간 출석</AuthLink>
               <AuthLink to='/mypage'>마이페이지</AuthLink>
               <AuthLink onClick={handleLogout}>로그아웃</AuthLink>
             </Auth>

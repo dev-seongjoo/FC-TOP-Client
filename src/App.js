@@ -7,10 +7,6 @@ import "./App.css";
 import MainPage from "./pages/Main/Main";
 
 import NoticePage from "./pages/Notice/NoticePage";
-import All from "./components/Notice/All";
-import Team from "./components/Notice/Team";
-import Coach from "./components/Notice/Coach";
-import Account from "./components/Notice/Account";
 
 import PlayerPage from "./pages/Player/PlayerPage";
 import PlayerAll from "./components/Player/PlayerAll/PlayerAll";
@@ -42,12 +38,7 @@ const App = () => {
       <AuthProvider>
         <Routes>
           <Route exact path='/' element={<MainPage />} />
-          <Route path='/notice/*' element={<NoticePage />}>
-            <Route path='all' element={<All />} />
-            <Route path='team' element={<Team />} />
-            <Route path='coach' element={<Coach />} />
-            <Route path='account' element={<Account />} />
-          </Route>
+          <Route path='/notice' element={<NoticePage />} />
           <Route path='/schedule' element={<SchedulePage />} />
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

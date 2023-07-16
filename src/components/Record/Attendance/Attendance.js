@@ -9,7 +9,6 @@ import {
   NameTh,
   ScoreTh,
   MatchTh,
-  ScorePerMatchTh,
   TbodydTr,
   RankTd,
   NameTd,
@@ -19,7 +18,6 @@ import {
   ProfileImg,
   ProfileName,
   ProfileGroup,
-  PositionTd,
   PositionTh,
 } from "./styled";
 

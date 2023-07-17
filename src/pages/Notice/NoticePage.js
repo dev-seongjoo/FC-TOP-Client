@@ -8,8 +8,13 @@ import {
   NoticeLink,
   NoticeMeta,
   NoticeViews,
+  Option,
+  Select,
+  SelectAndBtnWrapper,
+  SelectOptionWrapper,
   Seperation,
   Title,
+  WritingBtn,
 } from "./styled";
 
 import Navbar from "../../components/Navbar/Navbar";
@@ -103,6 +108,21 @@ const NoticePage = () => {
     <>
       <Navbar />
       <Title>공지 사항</Title>
+      <SelectAndBtnWrapper>
+        <SelectOptionWrapper>
+          <Select>
+            <Option>년도 선택</Option>
+            <Option>2023</Option>
+          </Select>
+          <Select>
+            <Option>전체 공지</Option>
+            <Option>팀 공지</Option>
+            <Option>감독 공지</Option>
+            <Option>회계 공지</Option>
+          </Select>
+        </SelectOptionWrapper>
+        <WritingBtn>글쓰기</WritingBtn>
+      </SelectAndBtnWrapper>
       <HorizontalLine />
       <Container>
         {noticeList.map((notice) => (

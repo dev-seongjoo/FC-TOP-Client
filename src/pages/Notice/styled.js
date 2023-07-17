@@ -1,33 +1,43 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const NoticePageNav = styled.div`
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f5f5f5;
-`;
-
-export const NavList = styled(Link)`
-  color: black;
-  font-weight: 500;
-  text-decoration: none;
-  margin: 0 20px;
-  padding-bottom: 5px;
-  border-bottom: ${(props) => (props.selected ? "2px solid black" : "none")};
-
-  &:hover {
-    opacity: 0.3;
-    transition: 0.2s;
-  }
-`;
 export const Title = styled.div`
   margin: 60px 0px;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 3rem;
   font-weight: 500;
   text-align: center;
+`;
+
+export const SelectAndBtnWrapper = styled.div`
+  width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const SelectOptionWrapper = styled.div``;
+
+export const Select = styled.select`
+  padding: 5px;
+  border: none;
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
+`;
+
+export const Option = styled.option``;
+
+export const WritingBtn = styled(Link)`
+  width: 70px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  background-color: transparent;
+  border: 1px solid black;
+  text-decoration: none;
+  margin-bottom: 5px;
 `;
 
 export const HorizontalLine = styled.div`
@@ -38,6 +48,11 @@ export const HorizontalLine = styled.div`
 export const Container = styled.div`
   max-width: 1200px;
   margin: 0 auto;
+`;
+export const NoticeMeta = styled.div`
+  display: flex;
+  font-size: 0.8rem;
+  margin-top: 15px;
 `;
 
 export const NoticeLink = styled(Link)`
@@ -56,12 +71,6 @@ export const NoticeLink = styled(Link)`
     color: rgba(0, 0, 0, 0.6);
     background-color: rgba(255, 0, 0, 0.1);
   }
-`;
-
-export const NoticeMeta = styled.div`
-  display: flex;
-  font-size: 0.8rem;
-  margin-top: 15px;
 `;
 
 export const NoticeDate = styled.span`

@@ -6,7 +6,7 @@ import "./App.css";
 
 import MainPage from "./pages/Main/Main";
 
-import NoticePage from "./pages/Notice/NoticePage";
+// import NoticePage from "./pages/Notice/NoticePage";
 
 import PlayerPage from "./pages/Player/PlayerPage";
 import PlayerAll from "./components/Player/PlayerAll/PlayerAll";
@@ -31,15 +31,20 @@ import Setting from "./components/MyPage/Setting/Setting";
 
 import SignUpPage from "./pages/SignUp/SignUpPage";
 import LoginPage from "./pages/Login/LoginPage";
+import Navbar from "./components/Navbar/Navbar";
+import ScheduleRegister from "./components/Schedule/ScheduleRegister/ScheduleRegister";
 
 const App = () => {
   return (
     <div>
       <AuthProvider>
+        <Navbar />
         <Routes>
           <Route exact path='/' element={<MainPage />} />
-          <Route path='/notice' element={<NoticePage />} />
-          <Route path='/schedule' element={<SchedulePage />} />
+          {/* <Route path='/notice' element={<NoticePage />} /> */}
+          <Route path='/schedule/*' element={<SchedulePage />}>
+            <Route path='register' element={<ScheduleRegister />} />
+          </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />
             <Route path='goal' element={<Goal />} />

@@ -38,7 +38,7 @@ const Navbar = () => {
             <LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
           </Logo>
           <MenuList>
-            <MenuLink to='/notice'>공지사항</MenuLink>
+            {/* <MenuLink to='/notice'>공지사항</MenuLink> */}
             <MenuLink to='/player'>선수단</MenuLink>
             <MenuLink to='/schedule'>일정/결과</MenuLink>
             <MenuLink to='/record'>기록/순위</MenuLink>

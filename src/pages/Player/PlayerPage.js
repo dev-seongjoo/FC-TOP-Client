@@ -2,8 +2,6 @@ import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { NavList, PlayerPageNav } from "./styled";
 
-import Navbar from "../../components/Navbar/Navbar";
-
 const PlayerPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,7 +22,6 @@ const PlayerPage = () => {
 
   return (
     <>
-      <Navbar />
       <PlayerPageNav>
         {navLists.map((list) => (
           <NavList

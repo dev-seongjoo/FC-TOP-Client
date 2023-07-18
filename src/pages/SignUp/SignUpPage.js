@@ -826,8 +826,8 @@ const SignUpPage = () => {
           </S.Select>
         </S.Content>
         <S.SignUpBtn type='submit'>회원가입</S.SignUpBtn>
-        <S.StyledLink to='/'>홈으로 돌아가기</S.StyledLink>
-        <S.StyledLink to='/login'>이미 가입하셨나요?</S.StyledLink>
+        {/* <S.StyledLink to='/'>홈으로 돌아가기</S.StyledLink>
+        <S.StyledLink to='/login'>이미 가입하셨나요?</S.StyledLink> */}
       </S.Container>
     </form>
   );

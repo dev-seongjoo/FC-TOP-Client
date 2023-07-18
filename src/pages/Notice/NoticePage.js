@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   BtnWrapper,
   Container,
@@ -14,10 +15,8 @@ import {
   SelectOptionWrapper,
   Seperation,
   Title,
-  WritingBtn,
+  Btn,
 } from "./styled";
-
-import Navbar from "../../components/Navbar/Navbar";
 
 const NoticePage = () => {
   const noticeList = [
@@ -106,7 +105,6 @@ const NoticePage = () => {
 
   return (
     <>
-      <Navbar />
       <Title>공지 사항</Title>
       <SelectAndBtnWrapper>
         <SelectOptionWrapper>
@@ -121,7 +119,7 @@ const NoticePage = () => {
             <Option>회계 공지</Option>
           </Select>
         </SelectOptionWrapper>
-        <WritingBtn>글쓰기</WritingBtn>
+        <Btn>글쓰기</Btn>
       </SelectAndBtnWrapper>
       <HorizontalLine />
       <Container>

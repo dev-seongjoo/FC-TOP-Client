@@ -1,9 +1,8 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { NavList, RecordPageNav } from "./styled";
 import { useEffect } from "react";
-import Navbar from "../../components/Navbar/Navbar";
 
-const Rank = () => {
+const RecordPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,7 +21,6 @@ const Rank = () => {
 
   return (
     <>
-      <Navbar />
       <RecordPageNav>
         {navLists.map((list) => (
           <NavList
@@ -39,4 +37,4 @@ const Rank = () => {
   );
 };
 
-export default Rank;
+export default RecordPage;

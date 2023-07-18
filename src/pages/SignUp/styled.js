@@ -31,7 +31,7 @@ export const Id = styled.div`
 
 export const IdInput = styled.input`
   width: 250px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -56,7 +56,7 @@ export const IdCheckBtn = styled.button`
 
 export const LastNameInput = styled.input`
   width: 120px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -64,14 +64,15 @@ export const LastNameInput = styled.input`
 `;
 
 export const FirstNameInput = styled.input`
-  width: 255px;
-  height: 25px;
+  width: 278px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 `;
 
 export const LabelGroup = styled.label`
+  width: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,7 +103,7 @@ export const ResetMsg = styled.span`
 
 export const PasswordInput = styled.input`
   width: 400px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -115,7 +116,7 @@ export const Phone = styled.div`
 
 export const PhoneInput = styled.input`
   width: 250px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -161,7 +162,7 @@ export const PhoneAuthTimer = styled.div`
 
 export const PhoneAuthInput = styled.input`
   width: 250px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -197,7 +198,7 @@ export const PostCode = styled.div`
 export const PostCodeInput = styled.input`
   display: inline;
   width: 250px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -241,14 +242,14 @@ export const PostCodeSearchBtn = styled.button`
 export const Address = styled.input`
   display: block;
   width: 400px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
 `;
 
 export const Select = styled.select`
-  width: 139px;
+  width: 132px;
   padding: 13px 16px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;

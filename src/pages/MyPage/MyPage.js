@@ -1,16 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { MyPageNav, NavList } from "./styled";
-
-import { AuthContext } from "../../contexts/AuthContext";
-
-import Navbar from "../../components/Navbar/Navbar";
 
 const MyPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
-  const name = user ? user.KOR_LAST_NM + user.KOR_FIRST_NM : "Loading...";
 
   const navLists = [
     { path: "/mypage/myinfo", label: `나의 TOP` },
@@ -27,7 +21,6 @@ const MyPage = () => {
 
   return (
     <>
-      <Navbar />
       <MyPageNav>
         {navLists.map((list) => (
           <NavList

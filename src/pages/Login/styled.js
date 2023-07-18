@@ -39,7 +39,7 @@ export const ErrorMsg = styled.span`
 
 export const IdInput = styled.input`
   width: 400px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -48,7 +48,7 @@ export const IdInput = styled.input`
 
 export const PasswordInput = styled.input`
   width: 400px;
-  height: 25px;
+  height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;

@@ -16,6 +16,9 @@ import Df from "./components/Player/Df/Df";
 import Gk from "./components/Player/Gk/Gk";
 
 import SchedulePage from "./pages/Schedule/SchedulePage";
+import ScheduleList from "./components/Schedule/ScheduleList/ScheduleList";
+import ScheduleRegister from "./components/Schedule/ScheduleRegister/ScheduleRegister";
+import ScheduleDetail from "./components/Schedule/ScheduleDetail/ScheduleDetail";
 
 import RecordPage from "./pages/Record/RecordPage";
 import Attendance from "./components/Record/Attendance/Attendance";
@@ -32,7 +35,6 @@ import Setting from "./components/MyPage/Setting/Setting";
 import SignUpPage from "./pages/SignUp/SignUpPage";
 import LoginPage from "./pages/Login/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
-import ScheduleRegister from "./components/Schedule/ScheduleRegister/ScheduleRegister";
 
 const App = () => {
   return (
@@ -43,7 +45,9 @@ const App = () => {
           <Route exact path='/' element={<MainPage />} />
           {/* <Route path='/notice' element={<NoticePage />} /> */}
           <Route path='/schedule/*' element={<SchedulePage />}>
+            <Route index element={<ScheduleList />} />
             <Route path='register' element={<ScheduleRegister />} />
+            <Route path=':id' element={<ScheduleDetail />} />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

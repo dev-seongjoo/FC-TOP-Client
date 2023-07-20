@@ -48,6 +48,7 @@ const ScheduleRegister = () => {
 
   const [formData, setFormData] = useState({
     date: defaultTime,
+    duration: "3시간",
     checkLate: "30분 전",
     location: "교하체육공원(1)",
     customLocation: "",
@@ -103,8 +104,8 @@ const ScheduleRegister = () => {
       <S.Title>일정 등록</S.Title>
       <S.HorizontalLine />
       <S.Container>
-        <S.LabelInputWrapper>
-          <S.Label htmlFor='date'>일시</S.Label>
+        <S.LabelWrapper>
+          <S.Label htmlFor='date'>시작 일시</S.Label>
           <S.CustomDatePicker
             id='date'
             name='date'
@@ -118,8 +119,19 @@ const ScheduleRegister = () => {
             }
             selected={formData.date}
           />
-        </S.LabelInputWrapper>
-        <S.LabelInputWrapper>
+        </S.LabelWrapper>
+        <S.LabelWrapper>
+          <S.Label htmlFor='checkLate'>진행 시간</S.Label>
+          <S.Select
+            id='checkLate'
+            name='checkLate'
+            onChange={handleFormDataChange}
+          >
+            <S.Option>3시간</S.Option>
+            <S.Option>2시간</S.Option>
+          </S.Select>
+        </S.LabelWrapper>
+        <S.LabelWrapper>
           <S.Label htmlFor='checkLate'>지각 체크</S.Label>
           <S.Select
             id='checkLate'
@@ -130,8 +142,8 @@ const ScheduleRegister = () => {
             <S.Option>20분 전</S.Option>
             <S.Option>10분 전</S.Option>
           </S.Select>
-        </S.LabelInputWrapper>
-        <S.LabelInputWrapper>
+        </S.LabelWrapper>
+        <S.LabelWrapper>
           <S.Label htmlFor='location'>장소</S.Label>
           <S.Select
             id='location'
@@ -147,19 +159,21 @@ const ScheduleRegister = () => {
             <S.Option>직접 입력</S.Option>
           </S.Select>
           {customLocation && (
-            <S.Input
-              name='customLocation'
-              type='text'
-              placeholder={isFocused.customLocation ? "" : "직접 입력해주세요."}
-              onFocus={() => handleFocus("customLocation")}
-              onBlur={() => handleBlur("customLocation")}
-              onChange={handleFormDataChange}
-              style={{ marginTop: "10px" }}
-              ref={customLocationRef}
-            />
+            <>
+              <S.Input
+                name='customLocation'
+                type='text'
+                placeholder={isFocused.customLocation ? "" : "구장"}
+                onFocus={() => handleFocus("customLocation")}
+                onBlur={() => handleBlur("customLocation")}
+                onChange={handleFormDataChange}
+                style={{ marginTop: "10px" }}
+                ref={customLocationRef}
+              />
+            </>
           )}
-        </S.LabelInputWrapper>
-        <S.LabelInputWrapper>
+        </S.LabelWrapper>
+        <S.LabelWrapper>
           <S.Label htmlFor='opponent'>상대</S.Label>
           <S.Input
             id='opponent'
@@ -171,8 +185,8 @@ const ScheduleRegister = () => {
             onChange={handleFormDataChange}
             ref={opponentRef}
           />
-        </S.LabelInputWrapper>
-        <S.LabelInputWrapper>
+        </S.LabelWrapper>
+        <S.LabelWrapper>
           <S.Label htmlFor='notes'>기타 사항</S.Label>
           <S.TextArea
             rows={10}
@@ -183,7 +197,7 @@ const ScheduleRegister = () => {
             onBlur={() => handleBlur("notes")}
             onChange={handleFormDataChange}
           />
-        </S.LabelInputWrapper>
+        </S.LabelWrapper>
         <S.RegisterBtn onClick={handleRegister}>일정 등록</S.RegisterBtn>
       </S.Container>
     </form>

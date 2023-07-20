@@ -7,7 +7,7 @@ const ScheduleList = () => {
   const currentMonth = new Date().getMonth() + 1;
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const monthOptions = Array.from({ length: 12 }, (_, index) => index + 1);
-  const [scheduleData, setScheduleData] = useState([]);
+  const [schedules, setSchedules] = useState([]);
 
   // 선택된 월에 해당하는 데이터를 백엔드로부터 가져와서 상태로 저장
 
@@ -17,18 +17,18 @@ const ScheduleList = () => {
 
   const fetchData = async (month) => {
     try {
-      const response = await axios.get(
+      const schedules = await axios.get(
         `http://localhost:4000/schedule?month=${month}`
       );
 
-      if (response.data.length === 0) {
+      if (schedules.data.length === 0) {
         console.log("데이터가 존재하지 않습니다.");
         return;
       }
-      console.log(response.data);
-      setScheduleData(response.data);
+      console.log(schedules.data);
+      setSchedules(schedules.data);
     } catch (error) {
-      console.error("Error fetching schedule data:", error);
+      console.error("Error fetching schedules data:", error);
     }
   };
 
@@ -61,20 +61,20 @@ const ScheduleList = () => {
           </S.Select>
           <S.Month>월</S.Month>
         </S.DateContainer>
-        {scheduleData.map((data) => (
-          <S.MatchBox key={data.ID}>
+        {schedules.map((schedule) => (
+          <S.MatchBox key={schedule.ID} to={`/schedule/${schedule.ID}`}>
             <S.MatchCalendar>
               <S.MatchTime>
-                {new Date(data.DATE).toLocaleTimeString([], {
+                {new Date(schedule.DATE).toLocaleTimeString([], {
                   hour: "2-digit",
                   minute: "2-digit",
                   hour12: false,
                 })}
               </S.MatchTime>
               <S.MatchDate>
-                {new Date(data.DATE).toLocaleDateString()}
+                {new Date(schedule.DATE).toLocaleDateString()}
               </S.MatchDate>
-              <S.MatchPlace>{data.LOCATION}</S.MatchPlace>
+              <S.MatchPlace>{schedule.LOCATION}</S.MatchPlace>
             </S.MatchCalendar>
             <S.TeamGroup>
               <S.HomeTeam>FC TOP</S.HomeTeam>
@@ -82,9 +82,9 @@ const ScheduleList = () => {
                 <S.Versus>VS</S.Versus>
                 <S.Round>1R</S.Round>
               </S.VersusGroup>
-              <S.AwayTeam>{data.OPPONENT}</S.AwayTeam>
+              <S.AwayTeam>{schedule.OPPONENT}</S.AwayTeam>
             </S.TeamGroup>
-            {new Date(data.DATE) > currentTime ? (
+            {new Date(schedule.DATE) > currentTime ? (
               <S.VoteBtn>투표</S.VoteBtn>
             ) : (
               <S.BtnGroup>

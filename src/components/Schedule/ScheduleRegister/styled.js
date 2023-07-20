@@ -25,7 +25,7 @@ export const Container = styled.div`
   text-align: center;
 `;
 
-export const LabelInputWrapper = styled.div`
+export const LabelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -35,7 +35,7 @@ export const LabelInputWrapper = styled.div`
 export const Label = styled.label`
   font-size: 1.5rem;
   font-weight: 700;
-  margin: 0 20px 10px 0;
+  margin-bottom: 10px;
 `;
 
 export const CustomDatePicker = styled(DatePicker)`

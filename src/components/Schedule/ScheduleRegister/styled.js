@@ -16,13 +16,12 @@ export const HorizontalLine = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 `;
 
 export const LabelWrapper = styled.div`

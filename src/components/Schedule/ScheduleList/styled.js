@@ -36,6 +36,14 @@ export const HorizontalLine = styled.div`
   margin: 15px 0 50px 0;
 `;
 
+export const Container = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const DateContainer = styled.div`
   display: flex;
   align-items: center;
@@ -58,14 +66,6 @@ export const Year = styled.span`
 export const Month = styled.span`
   font-size: 2rem;
   font-weight: 700;
-`;
-
-export const Container = styled.div`
-  width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 `;
 
 export const MatchBox = styled(Link)`

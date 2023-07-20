@@ -94,23 +94,6 @@ const ScheduleList = () => {
             )}
           </S.MatchBox>
         ))}
-
-        {/* <S.MatchBox>
-          <S.MatchCalendar>
-            <S.MatchTime>07:00</S.MatchTime>
-            <S.MatchDate>2023.07.22</S.MatchDate>
-            <S.MatchPlace>교하체육공원(1)</S.MatchPlace>
-          </S.MatchCalendar>
-          <S.TeamGroup>
-            <S.HomeTeam>FC TOP</S.HomeTeam>
-            <S.VersusGroup>
-              <S.Versus>VS</S.Versus>
-              <S.Round>2R</S.Round>
-            </S.VersusGroup>
-            <S.AwayTeam>FC 킥스</S.AwayTeam>
-          </S.TeamGroup>
-          <S.VoteBtn>투표</S.VoteBtn>
-        </S.MatchBox> */}
       </S.Container>
     </>
   );

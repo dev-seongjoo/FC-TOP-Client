@@ -49,19 +49,26 @@ const ScheduleDetail = () => {
             <S.UpdateBtn to='/schedule/update'>수정</S.UpdateBtn>
             <S.DeleteBtn to='/schedule/delete'>삭제</S.DeleteBtn>
           </S.BtnWrapper>
+          <S.HorizontalLine />
           <S.Container>
-            <S.HorizontalLine />
             <S.LabelWrapper>
               <S.Label>일시</S.Label>
-              <S.InfoBox>{scheduleDate}</S.InfoBox>
+              <S.InfoBox>2023년 8월 5일 7시 - 10시</S.InfoBox>
+              {/* <S.InfoBox>{scheduleDate}</S.InfoBox> */}
+            </S.LabelWrapper>
+            <S.LabelWrapper>
+              <S.Label>지각 체크</S.Label>
+              <S.InfoBox>30분 전</S.InfoBox>
             </S.LabelWrapper>
             <S.LabelWrapper>
               <S.Label>장소</S.Label>
-              <S.InfoBox>{schedule.LOCATION}</S.InfoBox>
+              <S.InfoBox>교하체육공원(1)</S.InfoBox>
+              {/* <S.InfoBox>{schedule.LOCATION}</S.InfoBox> */}
             </S.LabelWrapper>
             <S.LabelWrapper>
               <S.Label>상대</S.Label>
-              <S.InfoBox>{schedule.OPPONENT}</S.InfoBox>
+              <S.InfoBox>FC AAA</S.InfoBox>
+              {/* <S.InfoBox>{schedule.OPPONENT}</S.InfoBox> */}
             </S.LabelWrapper>
           </S.Container>
         </>

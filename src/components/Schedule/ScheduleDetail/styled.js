@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
-  margin: 60px 0px;
+  margin-top: 50px;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 3rem;
   font-weight: 500;
@@ -12,12 +12,11 @@ export const Title = styled.div`
 export const HorizontalLine = styled.div`
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
-  margin: 15px 0 50px 0;
+  margin: 10px 0 50px 0;
 `;
 
 export const BtnWrapper = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+  margin-right: 10px;
   display: flex;
   justify-content: flex-end;
 `;
@@ -52,7 +51,7 @@ export const DeleteBtn = styled(Link)`
 `;
 
 export const Container = styled.div`
-  width: 1200px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -62,7 +61,6 @@ export const Container = styled.div`
 export const LabelWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   margin-bottom: 30px;
 `;
 

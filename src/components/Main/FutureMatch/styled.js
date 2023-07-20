@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 500px;
+  width: 600px;
   height: 500px;
   padding: 40px;
   border-left: 1px solid rgba(255, 255, 255, 0.3);

@@ -11,6 +11,6 @@ export const NoticeContainer = styled.div`
   height: 100%;
   margin: 0 auto;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
 `;

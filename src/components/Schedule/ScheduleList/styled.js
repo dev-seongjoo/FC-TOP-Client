@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
-  margin: 60px 0px;
+  margin-top: 50px;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 3rem;
   font-weight: 500;
@@ -26,13 +26,12 @@ export const UploadBtn = styled(Link)`
   font-size: 1rem;
   font-weight: 700;
   text-decoration: none;
-  padding: 5px;
 `;
 
 export const HorizontalLine = styled.div`
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
-  margin: 15px 0 50px 0;
+  margin: 10px 0 50px 0;
 `;
 
 export const Container = styled.div`

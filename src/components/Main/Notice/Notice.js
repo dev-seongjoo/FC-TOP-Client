@@ -5,13 +5,11 @@ import { Container, NoticeContainer } from "./styled";
 
 const Notice = () => {
   return (
-    <Container>
-      <NoticeContainer>
-        <PastMatch />
-        <FutureMatch />
-        <PersonalRank />
-      </NoticeContainer>
-    </Container>
+    <NoticeContainer>
+      <PastMatch />
+      <FutureMatch />
+      <PersonalRank />
+    </NoticeContainer>
   );
 };
 

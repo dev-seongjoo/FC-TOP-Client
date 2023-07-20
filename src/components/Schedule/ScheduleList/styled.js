@@ -10,8 +10,7 @@ export const Title = styled.div`
 `;
 
 export const UploadBtnWrapper = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+  margin-right: 10px;
   display: flex;
   justify-content: flex-end;
 `;
@@ -52,7 +51,7 @@ export const DateContainer = styled.div`
 `;
 
 export const Select = styled.select`
-  padding: 10px;
+  padding: 10px 3px;
   border: none;
   font-size: 1rem;
 `;
@@ -69,7 +68,7 @@ export const Month = styled.span`
 `;
 
 export const MatchBox = styled(Link)`
-  width: 1200px;
+  max-width: 1200px;
   height: 200px;
   padding: 0 30px;
   display: flex;

@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 export const Container = styled.div`
   width: 300px;
   height: 500px;
-  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 50px 20px 0 20px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
   background-color: black;
-  opacity: 0.7;
 `;
 
 export const TitleRow = styled.div`

@@ -1,18 +1,7 @@
 import React, { useContext } from "react";
 import logo from "../../assets/fc-top.png";
 import { AuthContext } from "../../contexts/AuthContext";
-import {
-  Logo,
-  LogoImg,
-  MainNav,
-  MenuList,
-  NavLeft,
-  NavRight,
-  MenuLink,
-  Auth,
-  Seperation,
-  AuthLink,
-} from "./styled";
+import * as S from "./styled";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
@@ -31,36 +20,34 @@ const Navbar = () => {
   };
 
   return (
-    <nav>
-      <MainNav>
-        <NavLeft>
-          <Logo>
-            <LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
-          </Logo>
-          <MenuList>
-            {/* <MenuLink to='/notice'>공지사항</MenuLink> */}
-            <MenuLink to='/player'>선수단</MenuLink>
-            <MenuLink to='/schedule'>일정/결과</MenuLink>
-            <MenuLink to='/record'>기록/순위</MenuLink>
-          </MenuList>
-        </NavLeft>
-        <NavRight>
-          {!isLoggedIn ? (
-            <Auth>
-              <AuthLink to='/signup'>회원가입</AuthLink>
-              <Seperation>/</Seperation>
-              <AuthLink to='/login'>로그인</AuthLink>
-            </Auth>
-          ) : (
-            <Auth>
-              <AuthLink>실시간 출석</AuthLink>
-              <AuthLink to='/mypage'>마이페이지</AuthLink>
-              <AuthLink onClick={handleLogout}>로그아웃</AuthLink>
-            </Auth>
-          )}
-        </NavRight>
-      </MainNav>
-    </nav>
+    <S.MainNav>
+      <S.NavLeft>
+        <S.Logo>
+          <S.LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
+        </S.Logo>
+        <S.MenuList>
+          {/* <MenuLink to='/notice'>공지사항</MenuLink> */}
+          <S.MenuLink to='/player'>선수단</S.MenuLink>
+          <S.MenuLink to='/schedule'>일정/결과</S.MenuLink>
+          <S.MenuLink to='/record'>기록/순위</S.MenuLink>
+        </S.MenuList>
+      </S.NavLeft>
+      <S.NavRight>
+        {!isLoggedIn ? (
+          <S.Auth>
+            <S.AuthLink to='/signup'>회원가입</S.AuthLink>
+            <S.Seperation>/</S.Seperation>
+            <S.AuthLink to='/login'>로그인</S.AuthLink>
+          </S.Auth>
+        ) : (
+          <S.Auth>
+            <S.AuthLink>실시간 출석</S.AuthLink>
+            <S.AuthLink to='/mypage'>마이페이지</S.AuthLink>
+            <S.AuthLink onClick={handleLogout}>로그아웃</S.AuthLink>
+          </S.Auth>
+        )}
+      </S.NavRight>
+    </S.MainNav>
   );
 };
 

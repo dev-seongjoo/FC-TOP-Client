@@ -143,11 +143,11 @@ export const SearchInput = styled.input`
 `;
 
 export const SearchBtn = styled.button`
-  width: 95px;
+  width: 90px;
   height: 50px;
   border: 3px solid black;
   background-color: transparent;
-  margin-left: 5px;
+  margin-left: 10px;
 
   &:hover {
     cursor: pointer;
@@ -178,6 +178,26 @@ export const TextArea = styled.textarea`
   font-size: 1rem;
   border: 3px solid black;
   padding: 10px;
+`;
+
+export const VoteBox = styled.button`
+  width: 300px;
+  height: 50px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+  border: 3px solid black;
+  background-color: transparent;
+  margin-bottom: ${(props) => (props.first ? "5px" : "0")};
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background-color: transparent;
+  }
 `;
 
 export const RegisterBtn = styled.button`

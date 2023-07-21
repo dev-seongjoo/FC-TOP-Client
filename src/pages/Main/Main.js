@@ -1,17 +1,16 @@
-import React from "react";
 import Slide from "../../components/Main/Slide/Slide";
 import Footer from "../../components/Main/Footer/Footer";
 import Notice from "../../components/Main/Notice/Notice";
-import { Container } from "./styled";
+import * as S from "./styled";
 
-const HomePage = () => {
+const MainPage = () => {
   return (
-    <Container>
+    <>
       <Slide />
       <Notice />
       <Footer />
-    </Container>
+    </>
   );
 };
 
-export default HomePage;
+export default MainPage;

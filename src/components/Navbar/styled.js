@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const MainNav = styled.div`
+  height: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

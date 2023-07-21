@@ -1,42 +1,26 @@
-import {
-  AwayScore,
-  AwayTeam,
-  AwayTeamGroup,
-  Container,
-  Date,
-  HomeScore,
-  HomeTeam,
-  HomeTeamGroup,
-  ScoreGroup,
-  SearchBtn,
-  Title,
-  TitleRow,
-  Versus,
-} from "./styled";
+import * as S from "./styled";
 
 const PastMatch = () => {
   return (
-    <Container>
-      <TitleRow>
-        <Title>지난 경기</Title>
-        <SearchBtn>자세히 보기</SearchBtn>
-      </TitleRow>
-      <Date>2023.07.08(토)</Date>
-      <ScoreGroup>
-        <HomeTeamGroup>
-          <HomeTeam>FC TOP</HomeTeam>
-          <HomeScore>2</HomeScore>
-        </HomeTeamGroup>
-        <Versus>VS</Versus>
-        <AwayTeamGroup>
-          <AwayScore>0</AwayScore>
-          <AwayTeam>R.egend FC</AwayTeam>
-        </AwayTeamGroup>
-      </ScoreGroup>
-    </Container>
+    <S.Container>
+      <S.TitleRow>
+        <S.Title>지난 경기</S.Title>
+        <S.SearchBtn>자세히 보기</S.SearchBtn>
+      </S.TitleRow>
+      <S.Date>2023.07.08(토)</S.Date>
+      <S.ScoreGroup>
+        <S.HomeTeamGroup>
+          <S.HomeTeam>FC TOP</S.HomeTeam>
+          <S.HomeScore>2</S.HomeScore>
+        </S.HomeTeamGroup>
+        <S.Versus>VS</S.Versus>
+        <S.AwayTeamGroup>
+          <S.AwayScore>0</S.AwayScore>
+          <S.AwayTeam>R.egend FC</S.AwayTeam>
+        </S.AwayTeamGroup>
+      </S.ScoreGroup>
+    </S.Container>
   );
 };
 
 export default PastMatch;
-
-<span class='material-symbols-outlined'>arrow_circle_right</span>;

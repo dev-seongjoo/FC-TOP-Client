@@ -6,7 +6,6 @@ export const Container = styled.div`
   max-width: 1200px;
   height: 600px;
   margin: 0 auto;
-  background-color: #f5f5f5;
   background-image: url(${slide1});
   background-size: cover;
 

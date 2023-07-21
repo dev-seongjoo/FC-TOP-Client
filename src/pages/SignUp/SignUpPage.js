@@ -382,7 +382,7 @@ const SignUpPage = () => {
   const handleCheckIdDuplication = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:4000/checkIdDuplication", {
+      .post("http://localhost:4000/checkId", {
         id,
       })
       .then((res) => {

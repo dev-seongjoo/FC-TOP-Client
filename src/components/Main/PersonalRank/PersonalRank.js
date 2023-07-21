@@ -1,78 +1,58 @@
-import {
-  BlackTr,
-  Container,
-  NameTd,
-  NameTh,
-  PointTd,
-  PointTh,
-  RankTd,
-  RankTh,
-  SearachBtnGroup,
-  SearchBtnLeft,
-  SearchBtnRight,
-  SubTitle,
-  Table,
-  Tbody,
-  TbodyTr,
-  Thead,
-  TheadTr,
-  Title,
-  TitleRow,
-} from "./styled";
+import * as S from "./styled";
 
 const PersonalRank = () => {
   return (
-    <Container>
-      <TitleRow>
-        <Title>개인 순위</Title>
-        <SearachBtnGroup>
-          <SearchBtnLeft className='material-symbols-outlined'>
+    <S.Container>
+      <S.TitleRow>
+        <S.Title>개인 순위</S.Title>
+        <S.SearachBtnGroup>
+          <S.SearchBtnLeft className='material-symbols-outlined'>
             arrow_circle_left
-          </SearchBtnLeft>
-          <SearchBtnRight className='material-symbols-outlined'>
+          </S.SearchBtnLeft>
+          <S.SearchBtnRight className='material-symbols-outlined'>
             arrow_circle_right
-          </SearchBtnRight>
-        </SearachBtnGroup>
-      </TitleRow>
-      <SubTitle>출석</SubTitle>
-      <Table>
-        <Thead>
-          <TheadTr>
-            <RankTh>순위</RankTh>
-            <NameTh>이름</NameTh>
-            <PointTh>점수</PointTh>
-          </TheadTr>
-        </Thead>
-        <Tbody>
-          <BlackTr />
-          <TbodyTr>
-            <RankTd>1위</RankTd>
-            <NameTd>김성주</NameTd>
-            <PointTd>99점</PointTd>
-          </TbodyTr>
-          <TbodyTr>
-            <RankTd>2위</RankTd>
-            <NameTd>이용혁</NameTd>
-            <PointTd>88점</PointTd>
-          </TbodyTr>
-          <TbodyTr>
-            <RankTd>3위</RankTd>
-            <NameTd>최병관</NameTd>
-            <PointTd>77점</PointTd>
-          </TbodyTr>
-          <TbodyTr>
-            <RankTd>4위</RankTd>
-            <NameTd>김준경</NameTd>
-            <PointTd>66점</PointTd>
-          </TbodyTr>
-          <TbodyTr>
-            <RankTd>5위</RankTd>
-            <NameTd>홍철의</NameTd>
-            <PointTd>55점</PointTd>
-          </TbodyTr>
-        </Tbody>
-      </Table>
-    </Container>
+          </S.SearchBtnRight>
+        </S.SearachBtnGroup>
+      </S.TitleRow>
+      <S.SubTitle>출석</S.SubTitle>
+      <S.Table>
+        <S.Thead>
+          <S.TheadTr>
+            <S.RankTh>순위</S.RankTh>
+            <S.NameTh>이름</S.NameTh>
+            <S.PointTh>점수</S.PointTh>
+          </S.TheadTr>
+        </S.Thead>
+        <S.Tbody>
+          <S.BlackTr />
+          <S.TbodyTr>
+            <S.RankTd>1위</S.RankTd>
+            <S.NameTd>김성주</S.NameTd>
+            <S.PointTd>99점</S.PointTd>
+          </S.TbodyTr>
+          <S.TbodyTr>
+            <S.RankTd>2위</S.RankTd>
+            <S.NameTd>이용혁</S.NameTd>
+            <S.PointTd>88점</S.PointTd>
+          </S.TbodyTr>
+          <S.TbodyTr>
+            <S.RankTd>3위</S.RankTd>
+            <S.NameTd>최병관</S.NameTd>
+            <S.PointTd>77점</S.PointTd>
+          </S.TbodyTr>
+          <S.TbodyTr>
+            <S.RankTd>4위</S.RankTd>
+            <S.NameTd>김준경</S.NameTd>
+            <S.PointTd>66점</S.PointTd>
+          </S.TbodyTr>
+          <S.TbodyTr>
+            <S.RankTd>5위</S.RankTd>
+            <S.NameTd>홍철의</S.NameTd>
+            <S.PointTd>55점</S.PointTd>
+          </S.TbodyTr>
+        </S.Tbody>
+      </S.Table>
+    </S.Container>
   );
 };
 

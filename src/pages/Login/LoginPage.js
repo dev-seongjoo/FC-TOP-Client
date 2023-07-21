@@ -56,7 +56,7 @@ const LoginPage = () => {
       .post("http://localhost:4000/login", { id, password })
       .then((res) => {
         localStorage.setItem("accessToken", res.data.accessToken);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        localStorage.setItem("player", JSON.stringify(res.data.player));
         axios.defaults.headers.common["Authorization"] =
           "Bearer " + localStorage.getItem("accessToken");
         setIsLoggedIn(true);

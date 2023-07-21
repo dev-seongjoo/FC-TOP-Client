@@ -64,7 +64,7 @@ export const LabelWrapper = styled.div`
   margin-bottom: 30px;
 `;
 
-export const Label = styled.div`
+export const Label = styled.label`
   font-size: 1.5rem;
   font-weight: 700;
   margin-bottom: 10px;
@@ -72,11 +72,53 @@ export const Label = styled.div`
 
 export const InfoBox = styled.div`
   width: 300px;
-  height: 50px;
+  min-height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
   font-weight: 700;
   border: 3px solid black;
+`;
+
+export const AddrWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10px;
+`;
+
+export const AddrLabel = styled.label`
+  font-size: 1.2rem;
+  font-weight: 700;
+`;
+
+export const CopyBtn = styled.button`
+  width: 70px;
+  font-weight: 700;
+  border: 2px solid black;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+`;
+
+export const RoadAddr = styled.div`
+  width: 300px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  font-weight: 400;
+`;
+
+export const LotAddr = styled.div`
+  width: 300px;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  font-weight: 400;
 `;

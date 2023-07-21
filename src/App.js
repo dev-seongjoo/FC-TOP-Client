@@ -35,6 +35,7 @@ import Setting from "./components/MyPage/Setting/Setting";
 import SignUpPage from "./pages/SignUp/SignUpPage";
 import LoginPage from "./pages/Login/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
+import ScheduleUpdate from "./components/Schedule/ScheduleUpdate/ScheduleUpdate";
 
 const App = () => {
   return (
@@ -48,6 +49,7 @@ const App = () => {
             <Route index element={<ScheduleList />} />
             <Route path='register' element={<ScheduleRegister />} />
             <Route path=':id' element={<ScheduleDetail />} />
+            <Route path='update/:id' element={<ScheduleUpdate />} />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

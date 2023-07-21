@@ -1,15 +1,15 @@
+import * as S from "./styled";
 import FutureMatch from "../FutureMatch/FutureMatch";
 import PastMatch from "../PastMatch/PastMatch";
 import PersonalRank from "../PersonalRank/PersonalRank";
-import { Container, NoticeContainer } from "./styled";
 
 const Notice = () => {
   return (
-    <NoticeContainer>
+    <S.Container>
       <PastMatch />
       <FutureMatch />
       <PersonalRank />
-    </NoticeContainer>
+    </S.Container>
   );
 };
 

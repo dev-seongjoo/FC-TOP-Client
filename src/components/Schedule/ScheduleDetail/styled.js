@@ -122,3 +122,16 @@ export const LotAddr = styled.div`
   font-size: 0.9rem;
   font-weight: 400;
 `;
+
+export const VoteWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const VoteResult = styled(Link)`
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: black;
+  text-decoration: none;
+`;

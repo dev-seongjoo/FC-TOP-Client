@@ -11,6 +11,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     navigate("/");
+    localStorage.removeItem("player");
     localStorage.removeItem("accessToken");
     setIsLoggedIn(false);
   };

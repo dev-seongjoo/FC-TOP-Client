@@ -11,31 +11,20 @@ const KakaoMap = ({
   onPositionUpdate,
   search,
 }) => {
-  const [latitude, longitude] = position.split(",").map(parseFloat);
-  const locationPosition = new kakao.maps.LatLng(latitude, longitude);
-
-  const searchDetailAddrFromCoords = (coords, callback) => {
-    // 주소-좌표 변환 객체를 생성합니다
-    var geocoder = new kakao.maps.services.Geocoder();
-    // 좌표로 법정동 상세 주소 정보를 요청합니다
-    geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
-  };
-
   useEffect(() => {
-    var mapContainer = document.getElementById("map"), // 지도를 표시할 div
-      mapOption = {
-        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-        level: 2, // 지도의 확대 레벨
-      };
+    const [latitude, longitude] = position.split(",").map(parseFloat);
+    const locationPosition = new kakao.maps.LatLng(latitude, longitude);
 
-    // 지도를 생성합니다
+    var mapContainer = document.getElementById("map");
+    var mapOption = {
+      center: new kakao.maps.LatLng(latitude, longitude),
+      level: 2,
+    };
     var map = new kakao.maps.Map(mapContainer, mapOption);
-
-    // 클릭한 위치를 표시할 마커입니다
     var marker = new kakao.maps.Marker();
 
     if (search) {
-      function placesSearchCB(data, status, pagination) {
+      function placesSearchCB(data, status) {
         if (status === kakao.maps.services.Status.OK) {
           // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
           // LatLngBounds 객체에 좌표를 추가합니다
@@ -68,6 +57,13 @@ const KakaoMap = ({
         marker.setMap(map);
       });
     } else if (onAddressUpdate) {
+      const searchDetailAddrFromCoords = (coords, callback) => {
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+        // 좌표로 법정동 상세 주소 정보를 요청합니다
+        geocoder.coord2Address(coords.getLng(), coords.getLat(), callback);
+      };
+
       searchDetailAddrFromCoords(locationPosition, (result, status) => {
         if (status === kakao.maps.services.Status.OK) {
           const roadAddr = !!result[0].road_address

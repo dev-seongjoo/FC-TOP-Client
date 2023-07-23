@@ -107,12 +107,6 @@ export const SaveLocationBtn = styled.button`
   }
 `;
 
-export const SearchWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-`;
-
 export const Select = styled.select`
   width: 300px;
   height: 50px;
@@ -127,9 +121,27 @@ export const Select = styled.select`
 
 export const Option = styled.option``;
 
-export const OtherLocation = styled.div`
+export const KakaoMapLink = styled.a`
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 10px;
+`;
+
+export const KakaoMapNotice = styled.div`
+  margin-top: 5px;
+`;
+
+export const CustomLocation = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+export const SearchWrapper = styled.div`
+  display: flex;
   align-items: center;
   margin-top: 10px;
 `;

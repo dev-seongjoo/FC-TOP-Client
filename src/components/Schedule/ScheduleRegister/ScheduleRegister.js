@@ -18,14 +18,17 @@ const ScheduleRegister = () => {
   const navigate = useNavigate();
 
   const opponentRef = useRef(null);
-  const searchLocationRef = useRef(null);
+  const customLocationRef = useRef(null);
+  const customLocationAddressRef = useRef(null);
 
-  const [customLocation, setCustomLocation] = useState(false);
-  const [searchLocation, setSearchLocation] = useState("");
+  const [isCustomLocation, setIsCustomLocation] = useState(false);
+  const [customLocation, setCustomLocation] = useState("");
+  const [customLocationAddress, setCustomLocationAddress] = useState(null);
   const [isFocused, setIsFocused] = useState({
     opponent: false,
     notes: false,
     customLocation: false,
+    customLocationAddress: false,
   });
   const [locationPosition, setLocationPosition] = useState(
     "37.761615734035495,126.74125327825291"
@@ -61,11 +64,13 @@ const ScheduleRegister = () => {
     }));
   };
 
-  const handleSearchLocationClick = (event) => {
-    event.preventDefault();
+  const handleCustomLocationChange = (event) => {
+    setCustomLocation(event.target.value);
+  };
 
-    setSearchLocation(searchLocationRef.current.value);
-    setFormData((prevData) => ({ ...prevData, location: "" }));
+  const handleSearchBtnClick = (event) => {
+    event.preventDefault();
+    setCustomLocationAddress(customLocationAddressRef.current.value);
   };
 
   const handleFormDataChange = async (event) => {
@@ -73,19 +78,22 @@ const ScheduleRegister = () => {
 
     if (name === "location") {
       if (value === "직접 입력") {
-        setCustomLocation(true);
+        setIsCustomLocation(true);
       } else {
-        setCustomLocation(false);
+        setIsCustomLocation(false);
+        setCustomLocation("");
+        setCustomLocationAddress("");
+
         // 사용자가 선택한 위치의 좌표를 조회합니다.
         const response = await axios.post(
           `http://localhost:4000/location/position`,
           { value }
         );
+
         const position = response.data;
 
         // 조회한 좌표를 상태로 설정합니다.
         setLocationPosition(position);
-        setFormData((prevData) => ({ ...prevData, locationPosition: "" }));
       }
     }
 
@@ -105,33 +113,51 @@ const ScheduleRegister = () => {
   const handleRegister = (event) => {
     event.preventDefault();
 
+    if (new Date(formData.date).getTime() < Date.now()) {
+      alert("날짜가 이미 지났습니다. 다른 날짜를 선택해주세요.");
+      return;
+    }
+
     if (formData.opponent === "") {
       alert("상대팀 명을 입력해주세요.");
       opponentRef.current.focus();
       return;
     }
 
-    // if (formData.location === "직접 입력") {
-    //   alert("장소를 직접 입력해주세요.");
-    //   searchLocationRef.current.focus();
-    //   return;
-    // }
+    if (formData.location === "직접 입력") {
+      if (customLocation === "") {
+        alert("장소를 직접 입력해주세요.");
+        customLocationRef.current.focus();
+        return;
+      }
+    }
 
     if (formData.locationPosition.length === 0) {
-      alert("지도에 모일 장소를 표시해주세요.");
+      alert("지도에 모일 위치를 표시해주세요.");
       return;
     }
 
     const adjustedDate = addHours(formData.date, -9);
-    const adjustedFormData = { ...formData, date: adjustedDate };
+
+    let adjustedFormData;
+    if (customLocation === "") {
+      adjustedFormData = {
+        ...formData,
+        date: adjustedDate,
+      };
+    } else {
+      adjustedFormData = {
+        ...formData,
+        date: adjustedDate,
+        location: customLocation,
+      };
+    }
 
     axios
       .post("http://localhost:4000/schedule/register", { adjustedFormData })
       .then((res) => {
         console.log(res.data);
       });
-
-    console.log(formData);
 
     navigate("/schedule");
   };
@@ -183,32 +209,57 @@ const ScheduleRegister = () => {
             <S.Option>씨엠지풋볼</S.Option>
             <S.Option>직접 입력</S.Option>
           </S.Select>
-          {customLocation && (
-            <S.OtherLocation>
-              <S.SearchInput
-                type='text'
-                placeholder={
-                  isFocused.customLocation ? "" : "장소를 검색해주세요."
-                }
-                onFocus={() => handleFocus("customLocation")}
-                onBlur={() => handleBlur("customLocation")}
-                ref={searchLocationRef}
-              />
-              <S.SearchBtn onClick={handleSearchLocationClick}>
-                검색
-              </S.SearchBtn>
-            </S.OtherLocation>
+          {isCustomLocation && (
+            <>
+              <S.KakaoMapLink
+                href='https://map.kakao.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                카카오맵 바로가기
+              </S.KakaoMapLink>
+              <S.KakaoMapNotice>
+                (위 링크에서 정확한 주소를 검색해주세요.)
+              </S.KakaoMapNotice>
+              <S.CustomLocation>
+                <S.Input
+                  name='customLocation'
+                  type='text'
+                  placeholder={
+                    isFocused.customLocation ? "" : "구장 명을 입력해 주세요."
+                  }
+                  onChange={handleCustomLocationChange}
+                  onFocus={() => handleFocus("customLocation")}
+                  onBlur={() => handleBlur("customLocation")}
+                  ref={customLocationRef}
+                />
+                <S.SearchWrapper>
+                  <S.SearchInput
+                    type='text'
+                    placeholder={
+                      isFocused.customLocationAddress
+                        ? ""
+                        : "주소를 입력해주세요."
+                    }
+                    onFocus={() => handleFocus("customLocationAddress")}
+                    onBlur={() => handleBlur("customLocationAddress")}
+                    ref={customLocationAddressRef}
+                  />
+                  <S.SearchBtn onClick={handleSearchBtnClick}>입력</S.SearchBtn>
+                </S.SearchWrapper>
+              </S.CustomLocation>
+            </>
           )}
           <KakaoMap
             position={locationPosition}
-            search={searchLocation}
+            search={customLocationAddress}
             width={"300px"}
             height={"300px"}
             margin={"10px 0 0 0"}
             onPositionUpdate={onPositionUpdate} // 마커 찍은 좌표 업데이트
           />
           {formData.locationPosition.length === 0 ? (
-            <S.MapNotice>지도에 모일 장소를 표시해주세요.</S.MapNotice>
+            <S.MapNotice>지도에 모일 위치를 표시해주세요.</S.MapNotice>
           ) : (
             ""
           )}

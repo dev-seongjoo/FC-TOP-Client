@@ -25,12 +25,19 @@ const ScheduleList = () => {
         console.log("데이터가 존재하지 않습니다.");
         return;
       }
-      console.log(schedules.data);
+
       setSchedules(schedules.data);
     } catch (error) {
       console.error("Error fetching schedules data:", error);
     }
   };
+
+  function getWeekNumber(d) {
+    d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+    let yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+    return Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  }
 
   const handleMonthSelect = (event) => {
     const month = event.target.value;
@@ -80,7 +87,7 @@ const ScheduleList = () => {
               <S.HomeTeam>FC TOP</S.HomeTeam>
               <S.VersusGroup>
                 <S.Versus>VS</S.Versus>
-                <S.Round>1R</S.Round>
+                <S.Round>{getWeekNumber(new Date(schedule.DATE))}R</S.Round>
               </S.VersusGroup>
               <S.AwayTeam>{schedule.OPPONENT}</S.AwayTeam>
             </S.TeamGroup>

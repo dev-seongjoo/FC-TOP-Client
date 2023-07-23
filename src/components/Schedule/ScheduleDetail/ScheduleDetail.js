@@ -3,7 +3,7 @@ import axios from "axios";
 import * as S from "./styled";
 import { useParams } from "react-router-dom";
 import KakaoMap from "../../KakaoMap/KakaoMap";
-import { VoteBox } from "../ScheduleUpdate/styled";
+import Vote from "../../Vote/Vote";
 
 const ScheduleDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,25 +32,15 @@ const ScheduleDetail = () => {
     }
   };
 
-  const date = new Date(schedule.DATE);
+  let date = new Date(schedule.DATE);
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // JavaScript의 월은 0부터 시작합니다.
   const day = date.getDate();
   const hour = date.getHours();
-
-  const checkLate = `${hour - 1}시 ${61 - schedule.CHECK_LATE}분 부터`;
   const duration = +schedule.DURATION;
+  date = `${year}년 ${month}월 ${day}일 ${hour}시 - ${hour + duration}시`;
 
-  const scheduleDate = schedule.DATE
-    ? `${year}년 ${month}월 ${day}일 ${hour}시 - ${hour + duration}시`
-    : "로딩 중...";
-
-  let notes;
-  if (schedule.NOTES === undefined) {
-    notes = "전달 내용이 없습니다.";
-  } else {
-    notes = schedule.NOTES;
-  }
+  const checkLate = `${hour - 1}시 ${60 - schedule.CHECK_LATE}분 이후`;
 
   const onAddressUpdate = (newAddress) => {
     setLocationAddress(newAddress);
@@ -63,10 +53,6 @@ const ScheduleDetail = () => {
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
-  };
-
-  const handleVoteClick = (event) => {
-    console.log(event.target.value);
   };
 
   return (
@@ -83,7 +69,7 @@ const ScheduleDetail = () => {
           <S.Container>
             <S.LabelWrapper>
               <S.Label>일시</S.Label>
-              <S.InfoBox>{scheduleDate}</S.InfoBox>
+              <S.InfoBox>{date}</S.InfoBox>
             </S.LabelWrapper>
             <S.LabelWrapper>
               <S.Label>지각 체크</S.Label>
@@ -99,47 +85,45 @@ const ScheduleDetail = () => {
                 height={"300px"}
                 margin={"10px 0 0 0"}
               />
-              <>
-                {locationAddress[0] === "" ? (
-                  ""
-                ) : (
-                  <>
-                    <S.AddrWrapper>
-                      <S.AddrLabel>도로명 주소</S.AddrLabel>
-                      <S.CopyBtn onClick={() => handleCopy(locationAddress[0])}>
-                        복사하기
-                      </S.CopyBtn>
-                    </S.AddrWrapper>
-                    <S.RoadAddr>{locationAddress[0]}</S.RoadAddr>
-                  </>
-                )}
-                <S.AddrWrapper>
-                  <S.AddrLabel>지번 주소</S.AddrLabel>
-                  <S.CopyBtn onClick={() => handleCopy(locationAddress[1])}>
-                    복사하기
-                  </S.CopyBtn>
-                </S.AddrWrapper>
-                <S.LotAddr>지번 주소: {locationAddress[1]}</S.LotAddr>
-              </>
+
+              {locationAddress[0] === "" ? (
+                ""
+              ) : (
+                <>
+                  <S.AddrWrapper>
+                    <S.AddrLabel>도로명 주소</S.AddrLabel>
+                    <S.CopyBtn onClick={() => handleCopy(locationAddress[0])}>
+                      복사하기
+                    </S.CopyBtn>
+                  </S.AddrWrapper>
+                  <S.RoadAddr>{locationAddress[0]}</S.RoadAddr>
+                </>
+              )}
+              <S.AddrWrapper>
+                <S.AddrLabel>지번 주소</S.AddrLabel>
+                <S.CopyBtn onClick={() => handleCopy(locationAddress[1])}>
+                  복사하기
+                </S.CopyBtn>
+              </S.AddrWrapper>
+              <S.LotAddr>{locationAddress[1]}</S.LotAddr>
             </S.LabelWrapper>
             <S.LabelWrapper>
               <S.Label>상대</S.Label>
               <S.InfoBox>{schedule.OPPONENT}</S.InfoBox>
             </S.LabelWrapper>
-            {schedule.notes && (
+            {schedule.NOTES && (
               <S.LabelWrapper>
                 <S.Label>기타 사항</S.Label>
-                <S.InfoBox>{notes}</S.InfoBox>
+                <S.InfoBox>{schedule.NOTES}</S.InfoBox>
               </S.LabelWrapper>
             )}
             <S.LabelWrapper>
-              <S.Label>투표</S.Label>
-              <VoteBox first value='attend' onClick={handleVoteClick}>
-                참석
-              </VoteBox>
-              <VoteBox value='absent' onClick={handleVoteClick}>
-                불참석
-              </VoteBox>
+              <S.VoteWrapper>
+                <S.Label>투표</S.Label>
+                <S.VoteResult>결과 보기</S.VoteResult>
+              </S.VoteWrapper>
+
+              <Vote />
             </S.LabelWrapper>
           </S.Container>
         </>

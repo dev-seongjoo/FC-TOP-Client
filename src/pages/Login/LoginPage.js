@@ -46,17 +46,17 @@ const LoginPage = () => {
       return;
     }
 
-    if (password === "") {
-      alert("비밀번호를 입력해주세요.");
-      passwordRef.current.focus();
-      return;
-    }
+    // if (password === "") {
+    //   alert("비밀번호를 입력해주세요.");
+    //   passwordRef.current.focus();
+    //   return;
+    // }
 
     axios
       .post("http://localhost:4000/login", { id, password })
       .then((res) => {
         localStorage.setItem("accessToken", res.data.accessToken);
-        localStorage.setItem("player", JSON.stringify(res.data.player));
+        localStorage.setItem("player", JSON.stringify(res.data.player.ID));
         axios.defaults.headers.common["Authorization"] =
           "Bearer " + localStorage.getItem("accessToken");
         setIsLoggedIn(true);

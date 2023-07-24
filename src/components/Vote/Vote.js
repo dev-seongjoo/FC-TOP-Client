@@ -5,26 +5,48 @@ import axios from "axios";
 
 const Vote = () => {
   const [vote, setVote] = useState(null);
+  const [countVote, setCountVote] = useState({
+    total: 0,
+    attendance: 0,
+    absence: 0,
+  });
   const { id } = useParams();
   const matchId = id;
 
   useEffect(() => {
     const fetchVote = async () => {
       try {
+        const votes = await axios.get(`http://localhost:4000/vote/${matchId}`);
+
         const playerId = JSON.parse(localStorage.getItem("player"));
-        const response = await axios.get(
-          `http://localhost:4000/vote/${matchId}/${playerId}`
-        );
-        if (response.data) {
-          setVote(response.data.ATTENDANCE);
-        }
+
+        let attendanceCount = 0;
+        let absenceCount = 0;
+
+        votes.data.forEach((vote) => {
+          if (vote.PLAYER_ID === playerId) {
+            setVote(vote.ATTENDANCE);
+          }
+
+          if (vote.ATTENDANCE === "참석") {
+            attendanceCount++;
+          } else {
+            absenceCount++;
+          }
+        });
+
+        setCountVote({
+          total: votes.data.length,
+          attendance: attendanceCount,
+          absence: absenceCount,
+        });
       } catch (error) {
         console.error(error);
       }
     };
 
     fetchVote();
-  }, []);
+  }, [vote]);
 
   const handleVote = async (attendance) => {
     const playerId = JSON.parse(localStorage.getItem("player"));

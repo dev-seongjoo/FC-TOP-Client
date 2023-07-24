@@ -1,11 +1,11 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const VoteBox = styled.button`
   width: 300px;
   height: 50px;
   border: 3px solid black;
   background-color: ${(props) =>
-    props.selected ? "rgba(0, 0, 0, 0.3)" : "transparent"};
+    props.selected ? "rgba(0,0,0,0.3)" : "transparent"};
   font-size: 1rem;
   font-weight: 700;
   margin-bottom: 5px;

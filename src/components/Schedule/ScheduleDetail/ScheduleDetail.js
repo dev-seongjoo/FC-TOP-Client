@@ -4,11 +4,13 @@ import * as S from "./styled";
 import { useParams } from "react-router-dom";
 import KakaoMap from "../../KakaoMap/KakaoMap";
 import Vote from "../../Vote/Vote";
+import VoteResult from "../../Vote/VoteResult/VoteResult";
 
 const ScheduleDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [schedule, setSchedule] = useState({});
   const [locationAddress, setLocationAddress] = useState([]); // 위치 주소 상태 추가
+  const [voteResult, setVoteResult] = useState(false);
 
   const { id } = useParams();
 
@@ -53,6 +55,10 @@ const ScheduleDetail = () => {
     } catch (err) {
       console.error("Failed to copy text: ", err);
     }
+  };
+
+  const handleVoteResultClick = () => {
+    setVoteResult(!voteResult);
   };
 
   return (
@@ -120,10 +126,11 @@ const ScheduleDetail = () => {
             <S.LabelWrapper>
               <S.VoteWrapper>
                 <S.Label>투표</S.Label>
-                <S.VoteResult>결과 보기</S.VoteResult>
+                <S.VoteResult onClick={handleVoteResultClick}>
+                  {voteResult ? "닫기" : "자세히 보기"}
+                </S.VoteResult>
               </S.VoteWrapper>
-
-              <Vote />
+              {voteResult ? <VoteResult /> : <Vote />}
             </S.LabelWrapper>
           </S.Container>
         </>

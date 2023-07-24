@@ -9,7 +9,7 @@ import VoteResult from "../../Vote/VoteResult/VoteResult";
 const ScheduleDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [schedule, setSchedule] = useState({});
-  const [locationAddress, setLocationAddress] = useState([]); // 위치 주소 상태 추가
+  const [locationAddress, setLocationAddress] = useState([]);
   const [voteResult, setVoteResult] = useState(false);
 
   const { id } = useParams();
@@ -83,13 +83,18 @@ const ScheduleDetail = () => {
             </S.LabelWrapper>
             <S.LabelWrapper>
               <S.Label>장소</S.Label>
-              <S.InfoBox>{schedule.LOCATION}</S.InfoBox>
+              <S.InfoBox>
+                {schedule.LOCATION === "직접 입력"
+                  ? schedule.CUSTOM_LOCATION
+                  : schedule.LOCATION}
+              </S.InfoBox>
               <KakaoMap
                 position={schedule.LOCATION_POSITION}
-                onAddressUpdate={onAddressUpdate} // 주소 정보 업데이트
+                onAddressUpdate={onAddressUpdate}
                 width={"300px"}
                 height={"300px"}
                 margin={"10px 0 0 0"}
+                isMarker={true}
               />
 
               {locationAddress[0] === "" ? (

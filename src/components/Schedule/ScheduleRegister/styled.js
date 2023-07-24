@@ -42,6 +42,10 @@ export const CustomDatePicker = styled(DatePicker)`
   font-size: 1rem;
   text-align: center;
   border: 3px solid black;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const LocationSearch = styled.button`

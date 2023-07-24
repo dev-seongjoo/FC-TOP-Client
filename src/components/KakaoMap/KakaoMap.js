@@ -10,6 +10,7 @@ const KakaoMap = ({
   onAddressUpdate,
   onPositionUpdate,
   search,
+  isMarker,
 }) => {
   useEffect(() => {
     const [latitude, longitude] = position.split(",").map(parseFloat);
@@ -56,7 +57,9 @@ const KakaoMap = ({
         marker.setPosition(mouseEvent.latLng);
         marker.setMap(map);
       });
-    } else if (onAddressUpdate) {
+    }
+
+    if (onAddressUpdate) {
       const searchDetailAddrFromCoords = (coords, callback) => {
         // 주소-좌표 변환 객체를 생성합니다
         var geocoder = new kakao.maps.services.Geocoder();
@@ -73,11 +76,13 @@ const KakaoMap = ({
           const addr = [roadAddr, lotAddr];
 
           onAddressUpdate(addr);
-
-          marker.setPosition(locationPosition);
-          marker.setMap(map);
         }
       });
+    }
+
+    if (isMarker) {
+      marker.setPosition(locationPosition);
+      marker.setMap(map);
     }
   }, [position, search]);
 

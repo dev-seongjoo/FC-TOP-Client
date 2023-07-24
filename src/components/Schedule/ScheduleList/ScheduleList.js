@@ -41,7 +41,6 @@ const ScheduleList = () => {
 
   const handleMonthSelect = (event) => {
     const month = event.target.value;
-    console.log(month);
     setSelectedMonth(month); // 선택된 월을 업데이트
     fetchData(month); // 선택된 월에 맞는 데이터 요청
   };

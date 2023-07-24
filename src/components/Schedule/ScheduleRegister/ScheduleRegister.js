@@ -22,8 +22,6 @@ const ScheduleRegister = () => {
   const customLocationAddressRef = useRef(null);
 
   const [isCustomLocation, setIsCustomLocation] = useState(false);
-  const [customLocation, setCustomLocation] = useState("");
-  const [customLocationAddress, setCustomLocationAddress] = useState(null);
   const [isFocused, setIsFocused] = useState({
     opponent: false,
     notes: false,
@@ -45,6 +43,8 @@ const ScheduleRegister = () => {
     duration: "3",
     checkLate: "30",
     location: "교하체육공원(1)",
+    customLocation: "",
+    customLocationAddress: "",
     locationPosition: "",
     opponent: "",
     notes: "",
@@ -64,13 +64,12 @@ const ScheduleRegister = () => {
     }));
   };
 
-  const handleCustomLocationChange = (event) => {
-    setCustomLocation(event.target.value);
-  };
-
   const handleSearchBtnClick = (event) => {
     event.preventDefault();
-    setCustomLocationAddress(customLocationAddressRef.current.value);
+    setFormData((prevData) => ({
+      ...prevData,
+      customLocationAddress: customLocationAddressRef.current.value,
+    }));
   };
 
   const handleFormDataChange = async (event) => {
@@ -81,8 +80,6 @@ const ScheduleRegister = () => {
         setIsCustomLocation(true);
       } else {
         setIsCustomLocation(false);
-        setCustomLocation("");
-        setCustomLocationAddress("");
 
         // 사용자가 선택한 위치의 좌표를 조회합니다.
         const response = await axios.post(
@@ -125,7 +122,7 @@ const ScheduleRegister = () => {
     }
 
     if (formData.location === "직접 입력") {
-      if (customLocation === "") {
+      if (formData.customLocation === "") {
         alert("장소를 직접 입력해주세요.");
         customLocationRef.current.focus();
         return;
@@ -137,21 +134,15 @@ const ScheduleRegister = () => {
       return;
     }
 
-    const adjustedDate = addHours(formData.date, -9);
+    console.log(formData);
 
-    let adjustedFormData;
-    if (customLocation === "") {
-      adjustedFormData = {
-        ...formData,
-        date: adjustedDate,
-      };
-    } else {
-      adjustedFormData = {
-        ...formData,
-        date: adjustedDate,
-        location: customLocation,
-      };
-    }
+    const adjustedDate = addHours(formData.date, -9);
+    const adjustedFormData = {
+      ...formData,
+      date: adjustedDate,
+    };
+
+    console.log(adjustedFormData);
 
     axios
       .post("http://localhost:4000/schedule/register", { adjustedFormData })
@@ -185,7 +176,7 @@ const ScheduleRegister = () => {
         </S.LabelWrapper>
         <S.LabelWrapper>
           <S.Label htmlFor='checkLate'>진행 시간</S.Label>
-          <S.Select name='checkLate' onChange={handleFormDataChange}>
+          <S.Select name='duration' onChange={handleFormDataChange}>
             <S.Option value='3'>3시간</S.Option>
             <S.Option value='2'>2시간</S.Option>
           </S.Select>
@@ -195,7 +186,7 @@ const ScheduleRegister = () => {
           <S.Select name='checkLate' onChange={handleFormDataChange}>
             <S.Option value='30'>30분 전</S.Option>
             <S.Option value='20'>20분 전</S.Option>
-            <S.Option value='20'>10분 전</S.Option>
+            <S.Option value='10'>10분 전</S.Option>
           </S.Select>
         </S.LabelWrapper>
         <S.LabelWrapper>
@@ -228,7 +219,7 @@ const ScheduleRegister = () => {
                   placeholder={
                     isFocused.customLocation ? "" : "구장 명을 입력해 주세요."
                   }
-                  onChange={handleCustomLocationChange}
+                  onChange={handleFormDataChange}
                   onFocus={() => handleFocus("customLocation")}
                   onBlur={() => handleBlur("customLocation")}
                   ref={customLocationRef}
@@ -244,6 +235,7 @@ const ScheduleRegister = () => {
                     onFocus={() => handleFocus("customLocationAddress")}
                     onBlur={() => handleBlur("customLocationAddress")}
                     ref={customLocationAddressRef}
+                    onChange={handleFormDataChange}
                   />
                   <S.SearchBtn onClick={handleSearchBtnClick}>입력</S.SearchBtn>
                 </S.SearchWrapper>
@@ -252,11 +244,11 @@ const ScheduleRegister = () => {
           )}
           <KakaoMap
             position={locationPosition}
-            search={customLocationAddress}
+            search={formData.customLocationAddress}
             width={"300px"}
             height={"300px"}
             margin={"10px 0 0 0"}
-            onPositionUpdate={onPositionUpdate} // 마커 찍은 좌표 업데이트
+            onPositionUpdate={onPositionUpdate}
           />
           {formData.locationPosition.length === 0 ? (
             <S.MapNotice>지도에 모일 위치를 표시해주세요.</S.MapNotice>

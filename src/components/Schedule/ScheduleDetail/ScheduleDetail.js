@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import * as S from "./styled";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import KakaoMap from "../../KakaoMap/KakaoMap";
 import Vote from "../../Vote/Vote";
 import VoteResult from "../../Vote/VoteResult/VoteResult";
@@ -13,6 +13,8 @@ const ScheduleDetail = () => {
   const [voteResult, setVoteResult] = useState(false);
 
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDataDetail();
@@ -40,9 +42,9 @@ const ScheduleDetail = () => {
   const day = date.getDate();
   const hour = date.getHours();
   const duration = +schedule.DURATION;
-  date = `${year}년 ${month}월 ${day}일 ${hour}시 - ${hour + duration}시`;
+  date = `${year}년 ${month}월 ${day}일 오전 ${hour}시 - ${hour + duration}시`;
 
-  const checkLate = `${hour - 1}시 ${60 - schedule.CHECK_LATE}분 이후`;
+  const checkLate = `오전 ${hour - 1}시 ${60 - schedule.CHECK_LATE}분 이후`;
 
   const onAddressUpdate = (newAddress) => {
     setLocationAddress(newAddress);
@@ -61,6 +63,20 @@ const ScheduleDetail = () => {
     setVoteResult(!voteResult);
   };
 
+  const handleDelete = async () => {
+    if (window.confirm("정말로 삭제하시겠습니까?")) {
+      try {
+        const response = await axios.delete(
+          `http://localhost:4000/schedule/${id}`
+        );
+        console.log(response.data);
+        navigate("/schedule");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  };
+
   return (
     <>
       {/* 로딩 상태가 아니라면, 일반 컴포넌트를 보여줍니다. */}
@@ -69,7 +85,7 @@ const ScheduleDetail = () => {
           <S.Title>경기 일정</S.Title>
           <S.BtnWrapper>
             <S.UpdateBtn to={`/schedule/update/${id}`}>수정</S.UpdateBtn>
-            <S.DeleteBtn to={`/schedule/delete/${id}`}>삭제</S.DeleteBtn>
+            <S.DeleteBtn onClick={handleDelete}>삭제</S.DeleteBtn>
           </S.BtnWrapper>
           <S.HorizontalLine />
           <S.Container>

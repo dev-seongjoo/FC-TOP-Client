@@ -134,15 +134,11 @@ const ScheduleRegister = () => {
       return;
     }
 
-    console.log(formData);
-
     const adjustedDate = addHours(formData.date, -9);
     const adjustedFormData = {
       ...formData,
       date: adjustedDate,
     };
-
-    console.log(adjustedFormData);
 
     axios
       .post("http://localhost:4000/schedule/register", { adjustedFormData })

@@ -34,9 +34,13 @@ export const UpdateBtn = styled(Link)`
   text-decoration: none;
   padding: 5px;
   margin-right: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 
-export const DeleteBtn = styled(Link)`
+export const DeleteBtn = styled.button`
   width: 100px;
   height: 40px;
   display: flex;
@@ -48,6 +52,12 @@ export const DeleteBtn = styled(Link)`
   font-weight: 700;
   text-decoration: none;
   padding: 5px;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;
 
 export const Container = styled.div`

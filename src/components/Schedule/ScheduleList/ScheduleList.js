@@ -80,7 +80,11 @@ const ScheduleList = () => {
               <S.MatchDate>
                 {new Date(schedule.DATE).toLocaleDateString()}
               </S.MatchDate>
-              <S.MatchPlace>{schedule.LOCATION}</S.MatchPlace>
+              <S.MatchPlace>
+                {schedule.LOCATION === "직접 입력"
+                  ? schedule.CUSTOM_LOCATION
+                  : schedule.LOCATION}
+              </S.MatchPlace>
             </S.MatchCalendar>
             <S.TeamGroup>
               <S.HomeTeam>FC TOP</S.HomeTeam>

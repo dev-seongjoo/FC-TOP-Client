@@ -4,22 +4,20 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const VoteResult = () => {
-  const [List, setList] = useState({
+  const [list, setList] = useState({
     attendance: [],
     absence: [],
     noVote: [],
   });
+
   const { id } = useParams();
-  const matchId = id;
 
   useEffect(() => {
     const fetchVote = async () => {
       try {
         const voteResult = await axios.get(
-          `http://localhost:4000/voteresult/${matchId}`
+          `http://localhost:4000/voteresult/${id}`
         );
-
-        // console.log(voteResult);
 
         setList((prevList) => ({
           ...prevList,
@@ -38,20 +36,20 @@ const VoteResult = () => {
   return (
     <>
       <S.ListWrapper>
-        <S.ListLabel>참석 ({List.attendance.length}명)</S.ListLabel>
-        {List.attendance.map((attendance, index) => (
+        <S.ListLabel>참석 ({list.attendance.length}명)</S.ListLabel>
+        {list.attendance.map((attendance, index) => (
           <S.List key={index}>{attendance}</S.List>
         ))}
       </S.ListWrapper>
       <S.ListWrapper>
-        <S.ListLabel>불참석 ({List.absence.length}명)</S.ListLabel>
-        {List.absence.map((absence, index) => (
+        <S.ListLabel>불참석 ({list.absence.length}명)</S.ListLabel>
+        {list.absence.map((absence, index) => (
           <S.List key={index}>{absence}</S.List>
         ))}
       </S.ListWrapper>
       <S.ListWrapper>
-        <S.ListLabel>미투표인원 ({List.noVote.length}명)</S.ListLabel>
-        {List.noVote.map((noVote, index) => (
+        <S.ListLabel>미투표인원 ({list.noVote.length}명)</S.ListLabel>
+        {list.noVote.map((noVote, index) => (
           <S.List key={index}>{noVote}</S.List>
         ))}
       </S.ListWrapper>

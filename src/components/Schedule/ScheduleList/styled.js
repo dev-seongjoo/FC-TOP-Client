@@ -53,6 +53,10 @@ export const Select = styled.select`
   padding: 10px 3px;
   border: none;
   font-size: 1rem;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const Option = styled.option``;
@@ -212,14 +216,14 @@ export const RecordBtn = styled.button`
   }
 `;
 
-export const VoteBtn = styled.button`
+export const AttendanceBtn = styled.button`
   width: 150px;
   height: 50px;
-  color: white;
+  color: black;
   font-size: 1rem;
   font-weight: 700;
-  background-color: black;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+  border: 3px solid black;
   border-radius: 5px;
   &:hover {
     opacity: 0.7;

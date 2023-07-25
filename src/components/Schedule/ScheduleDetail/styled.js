@@ -21,6 +21,25 @@ export const BtnWrapper = styled.div`
   justify-content: flex-end;
 `;
 
+export const RecordBtn = styled(Link)`
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 5px;
+  margin-right: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
+
 export const UpdateBtn = styled(Link)`
   width: 100px;
   height: 40px;
@@ -140,7 +159,7 @@ export const VoteWrapper = styled.div`
 `;
 
 export const VoteResult = styled(Link)`
-  font-size: 0.8rem;
+  font-size: 1rem;
   font-weight: 700;
   color: black;
   text-decoration: none;

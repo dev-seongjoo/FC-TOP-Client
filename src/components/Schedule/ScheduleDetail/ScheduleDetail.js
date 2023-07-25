@@ -17,28 +17,28 @@ const ScheduleDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchDataDetail = async () => {
+      try {
+        setIsLoading(true);
+        const result = await axios.get(`http://localhost:4000/schedule/${id}`);
+        if (result === null) {
+          console.log("데이터가 존재하지 않습니다.");
+          return;
+        }
+        setSchedule(result.data);
+      } catch (error) {
+        console.error("Error fetching schedule data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
     fetchDataDetail();
   }, []);
 
-  const fetchDataDetail = async () => {
-    try {
-      setIsLoading(true);
-      const result = await axios.get(`http://localhost:4000/schedule/${id}`);
-      if (result === null) {
-        console.log("데이터가 존재하지 않습니다.");
-        return;
-      }
-      setSchedule(result.data);
-    } catch (error) {
-      console.error("Error fetching schedule data:", error);
-    } finally {
-      setIsLoading(false); // 데이터를 다 불러왔으므로 로딩 상태를 false로 설정
-    }
-  };
-
   let date = new Date(schedule.DATE);
   const year = date.getFullYear();
-  const month = date.getMonth() + 1; // JavaScript의 월은 0부터 시작합니다.
+  const month = date.getMonth() + 1;
   const day = date.getDate();
   const hour = date.getHours();
   const duration = +schedule.DURATION;
@@ -79,11 +79,11 @@ const ScheduleDetail = () => {
 
   return (
     <>
-      {/* 로딩 상태가 아니라면, 일반 컴포넌트를 보여줍니다. */}
       {!isLoading && (
         <>
           <S.Title>경기 일정</S.Title>
           <S.BtnWrapper>
+            <S.RecordBtn to={`/schedule/record/${id}`}>기록</S.RecordBtn>
             <S.UpdateBtn to={`/schedule/update/${id}`}>수정</S.UpdateBtn>
             <S.DeleteBtn onClick={handleDelete}>삭제</S.DeleteBtn>
           </S.BtnWrapper>
@@ -156,7 +156,6 @@ const ScheduleDetail = () => {
           </S.Container>
         </>
       )}
-      {/* 로딩 상태라면, 로딩 중임을 알려주는 컴포넌트를 보여줍니다. */}
       {isLoading && <S.Title>로딩 중...</S.Title>}
     </>
   );

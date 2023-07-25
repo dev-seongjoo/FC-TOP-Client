@@ -36,6 +36,8 @@ import SignUpPage from "./pages/SignUp/SignUpPage";
 import LoginPage from "./pages/Login/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
 import ScheduleUpdate from "./components/Schedule/ScheduleUpdate/ScheduleUpdate";
+import ScheduleRecord from "./components/Schedule/ScheduleRecord/ScheduleRecord";
+import StartingLineup from "./components/Schedule/StartingLineup/StartingLineup";
 
 const App = () => {
   return (
@@ -50,6 +52,8 @@ const App = () => {
             <Route path='register' element={<ScheduleRegister />} />
             <Route path=':id' element={<ScheduleDetail />} />
             <Route path='update/:id' element={<ScheduleUpdate />} />
+            <Route path='record/:id' element={<ScheduleRecord />} />
+            <Route path='startingLineup/:id' element={<StartingLineup />} />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

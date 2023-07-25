@@ -95,7 +95,7 @@ const ScheduleList = () => {
               <S.AwayTeam>{schedule.OPPONENT}</S.AwayTeam>
             </S.TeamGroup>
             {new Date(schedule.DATE) > currentTime ? (
-              <S.VoteBtn>투표</S.VoteBtn>
+              <S.AttendanceBtn>출석</S.AttendanceBtn>
             ) : (
               <S.BtnGroup>
                 <S.RecordBtn>경기 기록</S.RecordBtn>

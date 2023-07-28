@@ -10,13 +10,13 @@ const VoteResult = () => {
     noVote: [],
   });
 
-  const { id } = useParams();
+  const { match } = useParams();
 
   useEffect(() => {
     const fetchVote = async () => {
       try {
         const voteResult = await axios.get(
-          `http://localhost:4000/voteresult/${id}`
+          `http://localhost:4000/voteresult/${match}`
         );
 
         setList((prevList) => ({

@@ -10,13 +10,12 @@ const Vote = () => {
     attendance: 0,
     absence: 0,
   });
-  const { id } = useParams();
-  const matchId = id;
+  const { match } = useParams();
 
   useEffect(() => {
     const fetchVote = async () => {
       try {
-        const votes = await axios.get(`http://localhost:4000/vote/${matchId}`);
+        const votes = await axios.get(`http://localhost:4000/vote/${match}`);
 
         const playerId = JSON.parse(localStorage.getItem("player"));
 
@@ -55,7 +54,7 @@ const Vote = () => {
     }
     try {
       await axios.post("http://localhost:4000/vote", {
-        matchId,
+        match,
         playerId,
         attendance,
       });

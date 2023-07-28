@@ -80,6 +80,12 @@ const ScheduleRegister = () => {
         setIsCustomLocation(true);
       } else {
         setIsCustomLocation(false);
+        setFormData((prevData) => ({
+          ...prevData,
+          locationPosition: "",
+          customLocation: "",
+          customLocationAddress: "",
+        }));
 
         // 사용자가 선택한 위치의 좌표를 조회합니다.
         const response = await axios.post(

@@ -65,9 +65,21 @@ export const Year = styled.span`
   font-size: 2rem;
   font-weight: 700;
 `;
+
 export const Month = styled.span`
   font-size: 2rem;
   font-weight: 700;
+`;
+
+export const EmptyNotice = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-top: 200px;
 `;
 
 export const MatchBox = styled(Link)`

@@ -523,8 +523,6 @@ const SignUpPage = () => {
     { value: "MF", label: "----------MF----------", disabled: true },
     { value: "CAM", label: "CAM" },
     { value: "CDM", label: "CDM" },
-    { value: "LM", label: "LM" },
-    { value: "RM", label: "RM" },
     { value: "DF", label: "----------DF----------", disabled: true },
     { value: "CB", label: "CB" },
     { value: "LB", label: "LB" },

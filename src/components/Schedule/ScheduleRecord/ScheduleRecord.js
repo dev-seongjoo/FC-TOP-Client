@@ -7,14 +7,22 @@ import field from "../../../assets/field.png";
 const ScheduleRecord = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [schedule, setSchedule] = useState({});
+  const [quarter, setQuarter] = useState(1);
 
-  const { id } = useParams();
+  const { match } = useParams();
+
+  const handleQuarterChange = (event) => {
+    setQuarter(event.target.value);
+    console.log(event.target.value);
+  };
 
   useEffect(() => {
     const fetchDataDetail = async () => {
       try {
         setIsLoading(true);
-        const result = await axios.get(`http://localhost:4000/schedule/${id}`);
+        const result = await axios.get(
+          `http://localhost:4000/schedule/${match}`
+        );
         if (result === null) {
           console.log("데이터가 존재하지 않습니다.");
           return;
@@ -53,7 +61,7 @@ const ScheduleRecord = () => {
         </S.LabelWrapper>
         <S.LabelWrapper>
           <S.Label>쿼터</S.Label>
-          <S.Select>
+          <S.Select onChange={handleQuarterChange} defaultValue={quarter}>
             <S.Option value='1'>1Q</S.Option>
             <S.Option value='2'>2Q</S.Option>
             <S.Option value='3'>3Q</S.Option>
@@ -65,7 +73,9 @@ const ScheduleRecord = () => {
         <S.LabelWrapper>
           <S.StartingWrapper>
             <S.Label>선발 명단</S.Label>
-            <S.StartingLineupSetup to={`/schedule/startingLineup/${id}`}>
+            <S.StartingLineupSetup
+              to={`/schedule/startingLineup/${match}/${quarter}`}
+            >
               작성하기
             </S.StartingLineupSetup>
           </S.StartingWrapper>

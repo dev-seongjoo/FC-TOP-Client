@@ -21,14 +21,9 @@ const ScheduleList = () => {
         `http://localhost:4000/schedule?month=${month}`
       );
 
-      if (schedules.data.length === 0) {
-        console.log("데이터가 존재하지 않습니다.");
-        return;
-      }
-
       setSchedules(schedules.data);
     } catch (error) {
-      console.error("Error fetching schedules data:", error);
+      console.error("에러 발생");
     }
   };
 
@@ -44,6 +39,8 @@ const ScheduleList = () => {
     setSelectedMonth(month); // 선택된 월을 업데이트
     fetchData(month); // 선택된 월에 맞는 데이터 요청
   };
+
+  console.log(schedules);
 
   return (
     <>
@@ -67,43 +64,47 @@ const ScheduleList = () => {
           </S.Select>
           <S.Month>월</S.Month>
         </S.DateContainer>
-        {schedules.map((schedule) => (
-          <S.MatchBox key={schedule.ID} to={`/schedule/${schedule.ID}`}>
-            <S.MatchCalendar>
-              <S.MatchTime>
-                {new Date(schedule.DATE).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: false,
-                })}
-              </S.MatchTime>
-              <S.MatchDate>
-                {new Date(schedule.DATE).toLocaleDateString()}
-              </S.MatchDate>
-              <S.MatchPlace>
-                {schedule.LOCATION === "직접 입력"
-                  ? schedule.CUSTOM_LOCATION
-                  : schedule.LOCATION}
-              </S.MatchPlace>
-            </S.MatchCalendar>
-            <S.TeamGroup>
-              <S.HomeTeam>FC TOP</S.HomeTeam>
-              <S.VersusGroup>
-                <S.Versus>VS</S.Versus>
-                <S.Round>{getWeekNumber(new Date(schedule.DATE))}R</S.Round>
-              </S.VersusGroup>
-              <S.AwayTeam>{schedule.OPPONENT}</S.AwayTeam>
-            </S.TeamGroup>
-            {new Date(schedule.DATE) > currentTime ? (
-              <S.AttendanceBtn>출석</S.AttendanceBtn>
-            ) : (
-              <S.BtnGroup>
-                <S.RecordBtn>경기 기록</S.RecordBtn>
-                <S.VideoBtn>경기 영상</S.VideoBtn>
-              </S.BtnGroup>
-            )}
-          </S.MatchBox>
-        ))}
+        {schedules.length === 0 ? (
+          <S.EmptyNotice>아직 등록된 일정이 없습니다.</S.EmptyNotice>
+        ) : (
+          schedules.map((schedule) => (
+            <S.MatchBox key={schedule.ID} to={`/schedule/${schedule.ID}`}>
+              <S.MatchCalendar>
+                <S.MatchTime>
+                  {new Date(schedule.DATE).toLocaleTimeString([], {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    hour12: false,
+                  })}
+                </S.MatchTime>
+                <S.MatchDate>
+                  {new Date(schedule.DATE).toLocaleDateString()}
+                </S.MatchDate>
+                <S.MatchPlace>
+                  {schedule.LOCATION === "직접 입력"
+                    ? schedule.CUSTOM_LOCATION
+                    : schedule.LOCATION}
+                </S.MatchPlace>
+              </S.MatchCalendar>
+              <S.TeamGroup>
+                <S.HomeTeam>FC TOP</S.HomeTeam>
+                <S.VersusGroup>
+                  <S.Versus>VS</S.Versus>
+                  <S.Round>{getWeekNumber(new Date(schedule.DATE))}R</S.Round>
+                </S.VersusGroup>
+                <S.AwayTeam>{schedule.OPPONENT}</S.AwayTeam>
+              </S.TeamGroup>
+              {new Date(schedule.DATE) > currentTime ? (
+                <S.AttendanceBtn>출석</S.AttendanceBtn>
+              ) : (
+                <S.BtnGroup>
+                  <S.RecordBtn>경기 기록</S.RecordBtn>
+                  <S.VideoBtn>경기 영상</S.VideoBtn>
+                </S.BtnGroup>
+              )}
+            </S.MatchBox>
+          ))
+        )}
       </S.Container>
     </>
   );

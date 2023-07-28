@@ -50,10 +50,13 @@ const App = () => {
           <Route path='/schedule/*' element={<SchedulePage />}>
             <Route index element={<ScheduleList />} />
             <Route path='register' element={<ScheduleRegister />} />
-            <Route path=':id' element={<ScheduleDetail />} />
-            <Route path='update/:id' element={<ScheduleUpdate />} />
-            <Route path='record/:id' element={<ScheduleRecord />} />
-            <Route path='startingLineup/:id' element={<StartingLineup />} />
+            <Route path=':match' element={<ScheduleDetail />} />
+            <Route path='update/:match' element={<ScheduleUpdate />} />
+            <Route path='record/:match' element={<ScheduleRecord />} />
+            <Route
+              path='startingLineup/:match/:quarter'
+              element={<StartingLineup />}
+            />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

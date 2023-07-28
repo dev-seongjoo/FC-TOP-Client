@@ -9,7 +9,7 @@ import { addHours } from "date-fns";
 const ScheduleUpdate = () => {
   const navigate = useNavigate();
 
-  const { id } = useParams();
+  const { match } = useParams();
 
   const opponentRef = useRef(null);
   const customLocationRef = useRef(null);
@@ -41,7 +41,9 @@ const ScheduleUpdate = () => {
     const fetchDataDetail = async () => {
       try {
         setIsLoading(true);
-        const result = await axios.get(`http://localhost:4000/schedule/${id}`);
+        const result = await axios.get(
+          `http://localhost:4000/schedule/${match}`
+        );
 
         console.log(result);
         const timestamp = result.data.DATE;
@@ -172,11 +174,11 @@ const ScheduleUpdate = () => {
     };
 
     const response = await axios.put(
-      `http://localhost:4000/schedule/${id}`,
+      `http://localhost:4000/schedule/${match}`,
       updatedFormData
     );
 
-    navigate(`/schedule/${id}`);
+    navigate(`/schedule/${match}`);
     console.log(response.data);
   };
 

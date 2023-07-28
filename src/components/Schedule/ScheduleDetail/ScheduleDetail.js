@@ -12,7 +12,7 @@ const ScheduleDetail = () => {
   const [locationAddress, setLocationAddress] = useState([]);
   const [voteResult, setVoteResult] = useState(false);
 
-  const { id } = useParams();
+  const { match } = useParams();
 
   const navigate = useNavigate();
 
@@ -20,7 +20,9 @@ const ScheduleDetail = () => {
     const fetchDataDetail = async () => {
       try {
         setIsLoading(true);
-        const result = await axios.get(`http://localhost:4000/schedule/${id}`);
+        const result = await axios.get(
+          `http://localhost:4000/schedule/${match}`
+        );
         if (result === null) {
           console.log("데이터가 존재하지 않습니다.");
           return;
@@ -67,7 +69,7 @@ const ScheduleDetail = () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
       try {
         const response = await axios.delete(
-          `http://localhost:4000/schedule/${id}`
+          `http://localhost:4000/schedule/${match}`
         );
         console.log(response.data);
         navigate("/schedule");
@@ -83,8 +85,8 @@ const ScheduleDetail = () => {
         <>
           <S.Title>경기 일정</S.Title>
           <S.BtnWrapper>
-            <S.RecordBtn to={`/schedule/record/${id}`}>기록</S.RecordBtn>
-            <S.UpdateBtn to={`/schedule/update/${id}`}>수정</S.UpdateBtn>
+            <S.RecordBtn to={`/schedule/record/${match}`}>기록</S.RecordBtn>
+            <S.UpdateBtn to={`/schedule/update/${match}`}>수정</S.UpdateBtn>
             <S.DeleteBtn onClick={handleDelete}>삭제</S.DeleteBtn>
           </S.BtnWrapper>
           <S.HorizontalLine />

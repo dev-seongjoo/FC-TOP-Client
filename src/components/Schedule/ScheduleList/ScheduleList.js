@@ -40,8 +40,6 @@ const ScheduleList = () => {
     fetchData(month); // 선택된 월에 맞는 데이터 요청
   };
 
-  console.log(schedules);
-
   return (
     <>
       <S.Title>일정/결과</S.Title>

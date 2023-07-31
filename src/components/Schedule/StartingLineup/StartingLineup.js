@@ -2,107 +2,18 @@ import * as S from "./styled";
 import field from "../../../assets/field.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  form442,
+  form433,
+  form4312,
+  form4231,
+  form4141,
+  form352,
+  form343,
+} from "../../../utils/formations";
 
 const StartingLineup = () => {
-  const form442 = {
-    player1: [25, 40, "LS"],
-    player2: [25, 60, "RS"],
-    player3: [50, 20, "LM"],
-    player4: [50, 40, "LCM"],
-    player5: [50, 60, "RCM"],
-    player6: [50, 80, "RM"],
-    player7: [75, 20, "LB"],
-    player8: [75, 40, "LCB"],
-    player9: [75, 60, "RCB"],
-    player10: [75, 80, "RB"],
-    player11: [90, 50, "GK"],
-  };
-
-  const form433 = {
-    player1: [25, 50, "ST"],
-    player2: [35, 20, "LW"],
-    player3: [35, 80, "RW"],
-    player4: [50, 30, "LCM"],
-    player5: [50, 70, "RCM"],
-    player6: [60, 50, "CDM"],
-    player7: [75, 20, "LB"],
-    player8: [75, 40, "LCB"],
-    player9: [75, 60, "RCB"],
-    player10: [75, 80, "RB"],
-    player11: [90, 50, "GK"],
-  };
-
-  const form4312 = {
-    player1: [25, 30, "LS"],
-    player2: [25, 70, "RS"],
-    player3: [40, 50, "CAM"],
-    player4: [50, 30, "LCM"],
-    player5: [50, 70, "RCM"],
-    player6: [60, 50, "CDM"],
-    player7: [75, 20, "LB"],
-    player8: [75, 40, "LCB"],
-    player9: [75, 60, "RCB"],
-    player10: [75, 80, "RB"],
-    player11: [90, 50, "GK"],
-  };
-
-  const form4231 = {
-    player1: [25, 50, "ST"],
-    player2: [35, 20, "LW"],
-    player3: [35, 80, "RW"],
-    player4: [40, 50, "CAM"],
-    player5: [60, 40, "LCDM"],
-    player6: [60, 60, "RCDM"],
-    player7: [75, 20, "LB"],
-    player8: [75, 40, "LCB"],
-    player9: [75, 60, "RCB"],
-    player10: [75, 80, "RB"],
-    player11: [90, 50, "GK"],
-  };
-
-  const form4141 = {
-    player1: [25, 50, "ST"],
-    player2: [50, 20, "LM"],
-    player3: [50, 40, "LCM"],
-    player4: [50, 60, "RCM"],
-    player5: [50, 80, "RM"],
-    player6: [60, 50, "CDM"],
-    player7: [75, 20, "LB"],
-    player8: [75, 40, "LCB"],
-    player9: [75, 60, "RCB"],
-    player10: [75, 80, "RB"],
-    player11: [90, 50, "GK"],
-  };
-
-  const form352 = {
-    player1: [25, 40, "LS"],
-    player2: [25, 60, "RS"],
-    player3: [50, 10, "LWB"],
-    player4: [50, 30, "LCM"],
-    player5: [50, 50, "CM"],
-    player6: [50, 70, "RCM"],
-    player7: [50, 90, "RWB"],
-    player8: [75, 30, "LCB"],
-    player9: [75, 50, "CB"],
-    player10: [75, 70, "RCB"],
-    player11: [90, 50, "GK"],
-  };
-
-  const form343 = {
-    player1: [25, 50, "ST"],
-    player2: [35, 20, "LW"],
-    player3: [35, 80, "RW"],
-    player4: [50, 20, "LM"],
-    player5: [50, 40, "LCM"],
-    player6: [50, 60, "RCM"],
-    player7: [50, 80, "RM"],
-    player8: [75, 30, "LCB"],
-    player9: [75, 50, "CB"],
-    player10: [75, 70, "RCB"],
-    player11: [90, 50, "GK"],
-  };
-
   const formations = {
     442: form442,
     433: form433,
@@ -132,6 +43,7 @@ const StartingLineup = () => {
   });
 
   const { match, quarter } = useParams();
+  const navigate = useNavigate();
 
   const handlePlayerClick = (num, pos) => {
     setSideOpen(true);
@@ -146,16 +58,13 @@ const StartingLineup = () => {
     );
 
     setSelectedPlayer((prevData) => {
-      // If the player has already been selected, we need to remove him from his old position
       if (existingPlayer) {
         const existingPlayerKey = existingPlayer[0];
         prevData[existingPlayerKey] = ["", ""];
       }
 
-      // And add him to the new position
       prevData[`player${selectedInfo[0]}`] = [player.KOR_NM, selectedInfo[1]];
 
-      // Return the modified state
       return { ...prevData };
     });
   };
@@ -196,15 +105,14 @@ const StartingLineup = () => {
 
     alert("저장 완료되었습니다.");
 
-    await axios.post(
-      `http://localhost:4000/startinglineup/${match}/${quarter}`,
-      {
-        match,
-        quarter,
-        selectedPlayer,
-        currentFormation,
-      }
-    );
+    await axios.post(`http://localhost:4000/${match}/${quarter}`, {
+      match,
+      quarter,
+      selectedPlayer,
+      currentFormation,
+    });
+
+    navigate(`/schedule/record/${match}`);
   };
 
   const findPlayerPosition = (playerName) => {
@@ -237,12 +145,49 @@ const StartingLineup = () => {
         }, {});
 
         setList(newList);
-      } catch (error) {
-        console.error(error);
+      } catch (err) {
+        console.error(err);
       }
     };
-
     fetchVote();
+  }, []);
+
+  useEffect(() => {
+    const fetchLineup = async () => {
+      try {
+        const result = await axios.get(
+          `http://localhost:4000/${match}/${quarter}`
+        );
+        setCurrentFormation(result.data.formation);
+
+        let newSelectedPlayers = {
+          player1: ["", ""],
+          player2: ["", ""],
+          player3: ["", ""],
+          player4: ["", ""],
+          player5: ["", ""],
+          player6: ["", ""],
+          player7: ["", ""],
+          player8: ["", ""],
+          player9: ["", ""],
+          player10: ["", ""],
+          player11: ["", ""],
+        };
+
+        for (let member of result.data.selectedStartings) {
+          for (let key in formations[result.data.formation]) {
+            if (formations[result.data.formation][key][2] === member.POSITION) {
+              newSelectedPlayers[key] = [member.PLAYER, member.POSITION];
+            }
+          }
+        }
+
+        setSelectedPlayer(newSelectedPlayers);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    fetchLineup();
   }, []);
 
   return (
@@ -253,7 +198,7 @@ const StartingLineup = () => {
         <S.FormationWrapper>
           <S.LabelWrapper>
             <S.Label>포메이션</S.Label>
-            <S.Select onChange={handleFormationChange}>
+            <S.Select onChange={handleFormationChange} value={currentFormation}>
               <S.Option value='442'>4-4-2</S.Option>
               <S.Option value='433'>4-3-3</S.Option>
               <S.Option value='4312'>4-3-1-2</S.Option>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import uniform from "../../../assets/uniform.png";
 
 export const Title = styled.div`
   margin: 50px;
@@ -87,6 +88,16 @@ export const StartingLineup = styled.div`
 export const Field = styled.img`
   width: 100%;
   height: 100%;
+`;
+
+export const Player = styled.div`
+  position: absolute;
+  top: ${(props) => props.top}%;
+  left: ${(props) => props.left}%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: url(${uniform}) no-repeat center center/cover;
 `;
 
 export const RecordBtn = styled.button`

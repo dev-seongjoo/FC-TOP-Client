@@ -85,7 +85,9 @@ const ScheduleDetail = () => {
         <>
           <S.Title>경기 일정</S.Title>
           <S.BtnWrapper>
-            <S.RecordBtn to={`/schedule/record/${match}`}>기록</S.RecordBtn>
+            <S.RecordBtn to={`/schedule/recordsetting/${match}`}>
+              기록
+            </S.RecordBtn>
             <S.UpdateBtn to={`/schedule/update/${match}`}>수정</S.UpdateBtn>
             <S.DeleteBtn onClick={handleDelete}>삭제</S.DeleteBtn>
           </S.BtnWrapper>

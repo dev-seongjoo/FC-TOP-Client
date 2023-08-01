@@ -1,8 +1,8 @@
 import * as S from "./styled";
-import field from "../../../assets/field.png";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import field from "../../../assets/field.png";
 import {
   form442,
   form433,
@@ -112,7 +112,7 @@ const StartingLineup = () => {
       currentFormation,
     });
 
-    navigate(`/schedule/record/${match}`);
+    navigate(`/schedule/recordsetting/${match}`);
   };
 
   const findPlayerPosition = (playerName) => {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/fc-top.png";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as S from "./styled";
@@ -8,6 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = () => {
     navigate("/");
@@ -20,14 +21,41 @@ const Navbar = () => {
     navigate("/");
   };
 
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
-    <S.MainNav>
-      <S.NavLeft>
+    <>
+      <S.NavContainer>
         <S.Logo>
           <S.LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
         </S.Logo>
+        <span
+          className='material-symbols-outlined'
+          style={{ color: "white", fontSize: "2rem" }}
+          onClick={handleMenuClick}
+        >
+          menu
+        </span>
+        {isMenuOpen && (
+          <S.MenuList>
+            <S.Menu>선수단</S.Menu>
+            <S.Menu>선수단</S.Menu>
+            <S.Menu>선수단</S.Menu>
+            <S.Menu>선수단</S.Menu>
+            <S.Menu>선수단</S.Menu>
+          </S.MenuList>
+        )}
+      </S.NavContainer>
+    </>
+  );
+};
+
+export default Navbar;
+
+/* <S.NavLeft>
         <S.MenuList>
-          {/* <MenuLink to='/notice'>공지사항</MenuLink> */}
           <S.MenuLink to='/player'>선수단</S.MenuLink>
           <S.MenuLink to='/schedule'>일정/결과</S.MenuLink>
           <S.MenuLink to='/record'>기록/순위</S.MenuLink>
@@ -47,9 +75,4 @@ const Navbar = () => {
             <S.AuthLink onClick={handleLogout}>로그아웃</S.AuthLink>
           </S.Auth>
         )}
-      </S.NavRight>
-    </S.MainNav>
-  );
-};
-
-export default Navbar;
+      </S.NavRight> */

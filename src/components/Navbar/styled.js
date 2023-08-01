@@ -1,19 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const MainNav = styled.div`
-  height: 100%;
+export const NavContainer = styled.div`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 30px;
-  background-color: #c70101;
+  /* background-color: #c70101; */
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
-`;
-
-export const NavLeft = styled.div`
-  display: flex;
-  align-items: center;
+  padding: 0 30px;
 `;
 
 export const Logo = styled.div`
@@ -28,8 +23,37 @@ export const LogoImg = styled.img`
     cursor: pointer;
   }
 `;
+export const MenuList = styled.div`
+  position: absolute;
+  top: 100%;
+  left: 0%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+`;
 
-export const MenuList = styled.div``;
+export const Menu = styled(Link)`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-decoration: none;
+  background-color: #ccc;
+  border-bottom: 1px solid black;
+
+  &:last-child {
+    border-bottom: none;
+  }
+`;
+
+export const NavLeft = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 export const MenuLink = styled(Link)`
   color: white;

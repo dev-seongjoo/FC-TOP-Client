@@ -36,8 +36,9 @@ import SignUpPage from "./pages/SignUp/SignUpPage";
 import LoginPage from "./pages/Login/LoginPage";
 import Navbar from "./components/Navbar/Navbar";
 import ScheduleUpdate from "./components/Schedule/ScheduleUpdate/ScheduleUpdate";
-import ScheduleRecord from "./components/Schedule/ScheduleRecord/ScheduleRecord";
 import StartingLineup from "./components/Schedule/StartingLineup/StartingLineup";
+import ScheduleRecordSetting from "./components/Schedule/ScheduleRecordSetting/ScheduleRecordSetting";
+import ScheduleRecord from "./components/Schedule/ScheduleRecord/ScheduleRecord";
 
 const App = () => {
   return (
@@ -52,11 +53,15 @@ const App = () => {
             <Route path='register' element={<ScheduleRegister />} />
             <Route path=':match' element={<ScheduleDetail />} />
             <Route path='update/:match' element={<ScheduleUpdate />} />
-            <Route path='record/:match' element={<ScheduleRecord />} />
+            <Route
+              path='recordsetting/:match'
+              element={<ScheduleRecordSetting />}
+            />
             <Route
               path='startingLineup/:match/:quarter'
               element={<StartingLineup />}
             />
+            <Route path='record/:match/:quarter' element={<ScheduleRecord />} />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

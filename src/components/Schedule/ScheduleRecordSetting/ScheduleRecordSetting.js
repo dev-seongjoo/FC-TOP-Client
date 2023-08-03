@@ -36,17 +36,19 @@ const ScheduleRecordSetting = () => {
       const selectedQuarter = await axios.get(
         `http://localhost:4000/${match}/${quarter}`
       );
+
       setQuarter(quarter);
       setCurrentFormation(selectedQuarter.data.formation);
     } catch (err) {
       console.error(err);
+      setQuarter(quarter);
       setCurrentFormation(null);
     }
   };
 
   useEffect(() => {
     fetchQuarter(quarter);
-  }, [quarter]);
+  }, []);
 
   const handleQuarterChange = (event) => {
     fetchQuarter(event.target.value);
@@ -94,7 +96,7 @@ const ScheduleRecordSetting = () => {
         </S.LabelWrapper>
         <S.LabelWrapper>
           <S.Label>쿼터</S.Label>
-          <S.Select onChange={handleQuarterChange} defaultValue={quarter}>
+          <S.Select onChange={handleQuarterChange} value={quarter}>
             <S.Option value='1'>1Q</S.Option>
             <S.Option value='2'>2Q</S.Option>
             <S.Option value='3'>3Q</S.Option>

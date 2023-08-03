@@ -2,11 +2,11 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 
 export const Title = styled.div`
-  margin: 50px;
   font-family: "Noto Sans Display", sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
   text-align: center;
+  margin: 30px 0;
 `;
 
 export const HorizontalLine = styled.div`

@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./styled";
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 
 const ScoreBoard = ({ score, lp }) => {
   const navigate = useNavigate();
@@ -16,10 +15,6 @@ const ScoreBoard = ({ score, lp }) => {
   const seconds = time % 60;
   const displayMinutes = String(minutes).padStart(2, "0");
   const displaySeconds = String(seconds).padStart(2, "0");
-
-  // useEffect(() => {
-  //   axios.get();
-  // });
 
   useEffect(() => {
     if (isRecording) {
@@ -48,7 +43,16 @@ const ScoreBoard = ({ score, lp }) => {
 
   return (
     <>
-      <S.ScoreBoardContainer>
+      <S.Container>
+        <S.TimeContainer>
+          <S.Time>{`${displayMinutes} : ${displaySeconds}`}</S.Time>
+          {isRecorded ? null : (
+            <S.RecordingBtn onClick={handleRecording}>
+              {!isRecording ? `기록 시작` : `기록 종료`}
+            </S.RecordingBtn>
+          )}
+        </S.TimeContainer>
+        <S.HorizontalLine />
         <S.TeamContainer>
           <S.TeamWrapper>
             <S.TeamName>FC TOP</S.TeamName>
@@ -56,21 +60,11 @@ const ScoreBoard = ({ score, lp }) => {
           </S.TeamWrapper>
           <S.Versus>VS</S.Versus>
           <S.TeamWrapper>
-            <S.TeamScore>{lp}</S.TeamScore>
             <S.TeamName>FC ZZZ</S.TeamName>
+            <S.TeamScore>{lp}</S.TeamScore>
           </S.TeamWrapper>
         </S.TeamContainer>
-        <S.TimeContainer>
-          <S.TimeWrapper>
-            {`${displayMinutes} : ${displaySeconds}`}
-          </S.TimeWrapper>
-          {isRecorded ? null : (
-            <S.RecordingBtn onClick={handleRecording}>
-              {!isRecording ? `기록 시작` : `기록 종료`}
-            </S.RecordingBtn>
-          )}
-        </S.TimeContainer>
-      </S.ScoreBoardContainer>
+      </S.Container>
     </>
   );
 };

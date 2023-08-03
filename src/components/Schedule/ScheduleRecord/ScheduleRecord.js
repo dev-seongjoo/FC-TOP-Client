@@ -21,13 +21,7 @@ const ScheduleRecord = () => {
   const [currentFormation, setCurrentFormation] = useState(442);
   const [sideOpen, setSideOpen] = useState(false);
   const [list, setList] = useState({});
-  const [score, setScore] = useState(0);
-  const [lp, setLp] = useState(0);
-  const [selectedPlayerIndex, setSelectedPlayerIndex] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const [isAssist, setIsAssist] = useState(false);
-
-  const [selectedPlayer, setSelectedPlayer] = useState({
+  const [startingPlayers, setStartingPlayers] = useState({
     player1: ["", ""],
     player2: ["", ""],
     player3: ["", ""],
@@ -40,6 +34,14 @@ const ScheduleRecord = () => {
     player10: ["", ""],
     player11: ["", ""],
   });
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [isScore, setIsScore] = useState(false);
+  const [score, setScore] = useState(0);
+  const [scoreInfo, setScoreInfo] = useState(null);
+  const [isAssist, setIsAssist] = useState(false);
+  const [assistInfo, setAssistInfo] = useState(null);
+  const [isSub, setIsSub] = useState(false);
+  const [lp, setLp] = useState(0);
 
   const formations = {
     442: form442,
@@ -58,7 +60,7 @@ const ScheduleRecord = () => {
       );
       setCurrentFormation(selectedQuarter.data.formation);
 
-      let newSelectedPlayers = {
+      let newStartingPlayers = {
         player1: ["", ""],
         player2: ["", ""],
         player3: ["", ""],
@@ -78,31 +80,51 @@ const ScheduleRecord = () => {
             formations[selectedQuarter.data.formation][key][2] ===
             member.POSITION
           ) {
-            newSelectedPlayers[key] = [member.PLAYER, member.POSITION];
+            newStartingPlayers[key] = [member.PLAYER, member.POSITION];
           }
         }
       }
 
-      setSelectedPlayer(newSelectedPlayers);
+      setStartingPlayers(newStartingPlayers);
     } catch (err) {
       console.error(err);
       setCurrentFormation(null);
     }
   };
 
+  const handlePlayerClick = (index) => {
+    if (!sideOpen) {
+      setSideOpen(true);
+      setSelectedPlayer(startingPlayers[`player${index + 1}`][0]);
+    } else {
+      setSideOpen(false);
+      setIsScore(false);
+    }
+  };
+
+  const handleScoreClick = () => {
+    setIsScore(true);
+  };
+
+  const handleAssistClick = (player) => {
+    setSideOpen(false);
+    setAssistInfo(player);
+    setScore(score + 1);
+    setIsScore(false);
+  };
+
+  const handleSubClick = () => {
+    setIsSub(true);
+    console.log("교체");
+  };
+
   const handlePlayerListClick = () => {
     setSideOpen(false);
   };
 
-  const handlePlayerClick = (index) => {
-    setSelectedPlayerIndex(index);
-    setShowPopup(true);
-  };
-
-  const handleScoreClick = () => {};
-
-  const handleSubClick = () => {
-    setSideOpen(true);
+  const handleFieldClick = () => {
+    setSideOpen(false);
+    setIsScore(false);
   };
 
   useEffect(() => {
@@ -142,25 +164,54 @@ const ScheduleRecord = () => {
       <S.HorizontalLine />
       <S.Container>
         <ScoreBoard score={score} lp={lp} />
+
+        <S.Notice></S.Notice>
         <S.StartingLineup>
           <S.SideBar sideOpen={sideOpen}>
             <S.SideBarHead>
-              <S.SideBarHeadContent>이름</S.SideBarHeadContent>
-              <S.SideBarHeadContent>선호 포지션</S.SideBarHeadContent>
+              <S.SideBarHeadContent>
+                {isScore ? "도움 선수" : selectedPlayer ? selectedPlayer : null}
+              </S.SideBarHeadContent>
             </S.SideBarHead>
-            {Object.values(list).map((player, index) => (
-              <S.PlayerList key={index} onClick={handlePlayerListClick}>
-                <S.PlayerListContent>{player.KOR_NM}</S.PlayerListContent>
-                <S.PlayerListContent>
-                  {player.POSITION_FIRST}
-                </S.PlayerListContent>
-              </S.PlayerList>
-            ))}
+            {!isScore ? (
+              <>
+                <S.SideBarBody>
+                  <S.SideBarBodyContent onClick={handleScoreClick}>
+                    득점
+                  </S.SideBarBodyContent>
+                </S.SideBarBody>
+                <S.SideBarBody>
+                  <S.SideBarBodyContent onClick={handleSubClick}>
+                    교체
+                  </S.SideBarBodyContent>
+                </S.SideBarBody>
+              </>
+            ) : (
+              <>
+                <S.SideBarBody>
+                  <S.SideBarBodyContent onClick={() => handleAssistClick(null)}>
+                    도움 선수 없음
+                  </S.SideBarBodyContent>
+                </S.SideBarBody>
+                {Object.values(startingPlayers).map(
+                  (player, index) =>
+                    player[0] !== selectedPlayer && (
+                      <S.SideBarBody key={index}>
+                        <S.SideBarBodyContent
+                          onClick={() => handleAssistClick(player[0])}
+                        >
+                          {player[0]}
+                        </S.SideBarBodyContent>
+                      </S.SideBarBody>
+                    )
+                )}
+              </>
+            )}
           </S.SideBar>
           <S.Field
             src={field}
             onDragStart={(e) => e.preventDefault()}
-            onClick={() => setSideOpen(false)}
+            onClick={handleFieldClick}
           />
           {Object.values(formations[currentFormation]).map((player, index) => (
             <S.Player
@@ -169,16 +220,12 @@ const ScheduleRecord = () => {
               left={player[1]}
               onClick={() => handlePlayerClick(index)}
             >
-              <S.PlayerName>
-                {selectedPlayer[`player${index + 1}`][0]}
-              </S.PlayerName>
-              <S.PlayerPosition>{player[2]}</S.PlayerPosition>
-              {showPopup && selectedPlayerIndex === index && (
-                <S.Popup>
-                  <S.PopupOption onClick={handleScoreClick}>득점</S.PopupOption>
-                  <S.PopupOption onClick={handleSubClick}>교체</S.PopupOption>
-                </S.Popup>
-              )}
+              <S.PlayerInfoWrapper>
+                <S.PlayerInfo>
+                  {startingPlayers[`player${index + 1}`][0]}
+                </S.PlayerInfo>
+                <S.PlayerInfo>{player[2]}</S.PlayerInfo>
+              </S.PlayerInfoWrapper>
             </S.Player>
           ))}
         </S.StartingLineup>
@@ -188,3 +235,14 @@ const ScheduleRecord = () => {
 };
 
 export default ScheduleRecord;
+
+{
+  /* {Object.values(list).map((player, index) => (
+              <S.PlayerList key={index} onClick={handlePlayerListClick}>
+                <S.PlayerListContent>{player.KOR_NM}</S.PlayerListContent>
+                <S.PlayerListContent>
+                  {player.POSITION_FIRST}
+                </S.PlayerListContent>
+              </S.PlayerList>
+            ))} */
+}

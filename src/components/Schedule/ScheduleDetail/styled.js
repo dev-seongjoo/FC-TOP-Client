@@ -2,81 +2,17 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
-  margin-top: 50px;
   font-family: "Noto Sans Display", sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
   text-align: center;
+  margin: 30px 0;
 `;
 
 export const HorizontalLine = styled.div`
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
   margin: 10px 0 50px 0;
-`;
-
-export const BtnWrapper = styled.div`
-  margin-right: 10px;
-  display: flex;
-  justify-content: flex-end;
-`;
-
-export const RecordBtn = styled(Link)`
-  width: 100px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid black;
-  color: black;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 5px;
-  margin-right: 5px;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-`;
-
-export const UpdateBtn = styled(Link)`
-  width: 100px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid black;
-  color: black;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 5px;
-  margin-right: 5px;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-`;
-
-export const DeleteBtn = styled.button`
-  width: 100px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid red;
-  color: red;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 5px;
-  background-color: transparent;
-
-  &:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
 `;
 
 export const Container = styled.div`
@@ -163,4 +99,68 @@ export const VoteResult = styled(Link)`
   font-weight: 700;
   color: black;
   text-decoration: none;
+`;
+
+export const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+`;
+
+export const RecordBtn = styled(Link)`
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 5px;
+  margin-right: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const UpdateBtn = styled(Link)`
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 5px;
+  margin-right: 5px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+`;
+
+export const DeleteBtn = styled.button`
+  width: 100px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid red;
+  color: red;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 5px;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
 `;

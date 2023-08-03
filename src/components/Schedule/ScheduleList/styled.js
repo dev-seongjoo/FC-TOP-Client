@@ -2,22 +2,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Title = styled.div`
-  margin-top: 50px;
   font-family: "Noto Sans Display", sans-serif;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
   text-align: center;
-`;
-
-export const UploadBtnWrapper = styled.div`
-  margin-right: 10px;
-  display: flex;
-  justify-content: flex-end;
+  margin: 30px 0;
 `;
 
 export const UploadBtn = styled(Link)`
-  width: 100px;
-  height: 40px;
+  width: 200px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,12 +25,12 @@ export const UploadBtn = styled(Link)`
 export const HorizontalLine = styled.div`
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
-  margin: 10px 0 50px 0;
+  margin-bottom: 30px;
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,57 +77,48 @@ export const EmptyNotice = styled.div`
 `;
 
 export const MatchBox = styled(Link)`
-  max-width: 1200px;
+  width: 100%;
   height: 200px;
-  padding: 0 30px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.3);
   margin-bottom: 30px;
   color: black;
   text-decoration: none;
 `;
 
 export const MatchCalendar = styled.div`
-  width: 150px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-export const MatchTime = styled.div`
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 10px;
+  justify-content: center;
 `;
 
 export const MatchDate = styled.div`
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-right: 10px;
+`;
+
+export const MatchTime = styled.div`
+  font-size: 1rem;
   font-weight: 700;
 `;
 
 export const MatchPlace = styled.div`
-  margin-top: 20px;
-  color: rgba(0, 0, 0, 0.5);
-  font-size: 0.9rem;
-  font-weight: 900;
-
-  &:hover {
-    cursor: pointer;
-  }
+  font-size: 1rem;
+  font-weight: 700;
 `;
 
 export const TeamGroup = styled.div`
-  width: 600px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const HomeTeam = styled.div`
-  width: 300px;
+  width: 150px;
   height: 100px;
   display: flex;
   justify-content: flex-end;
@@ -143,7 +128,7 @@ export const HomeTeam = styled.div`
 `;
 
 export const AwayTeam = styled.div`
-  width: 300px;
+  width: 150px;
   height: 100px;
   display: flex;
   justify-content: flex-start;

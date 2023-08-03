@@ -2,15 +2,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  width: 600px;
-  height: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 50px 20px 0 20px;
-  border-left: 1px solid rgba(255, 255, 255, 0.3);
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
   background-color: black;
+  border-bottom: 1px solid white;
 `;
 
 export const TitleRow = styled.div`
@@ -18,7 +16,7 @@ export const TitleRow = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 `;
 
 export const Title = styled.div`
@@ -40,15 +38,15 @@ export const SearchBtnRight = styled(Link)`
 `;
 
 export const Date = styled.div`
-  margin-bottom: 10px;
   color: white;
   text-align: center;
+  margin-bottom: 10px;
 `;
 
 export const Location = styled.div`
-  margin-bottom: 50px;
   color: white;
   text-align: center;
+  margin-bottom: 30px;
 `;
 
 export const ScoreGroup = styled.div`
@@ -61,14 +59,14 @@ export const ScoreGroup = styled.div`
 export const HomeTeam = styled.div`
   margin-bottom: 10px;
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
 `;
 
 export const Versus = styled.div`
   color: rgba(255, 255, 255, 0.7);
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 900;
   margin: 10px 0;
 `;
@@ -76,14 +74,14 @@ export const Versus = styled.div`
 export const AwayTeam = styled.div`
   margin-top: 10px;
   color: white;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
 `;
 
 export const VotingBtn = styled(Link)`
   width: 200px;
-  height: 60px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;

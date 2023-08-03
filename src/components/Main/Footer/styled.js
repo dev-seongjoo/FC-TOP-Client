@@ -3,7 +3,11 @@ import { Link } from "react-router-dom";
 
 export const Container = styled.div`
   width: 100%;
-  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 0;
   background-color: #1a1a1a;
 `;
 
@@ -65,7 +69,7 @@ export const TeamName = styled.div`
   color: white;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 export const Leader = styled.div`

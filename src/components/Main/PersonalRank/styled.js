@@ -2,13 +2,12 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  width: 300px;
-  height: 500px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding: 50px 20px 0 20px;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
+  border-bottom: 1px solid white;
   background-color: black;
 `;
 

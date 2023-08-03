@@ -1,51 +1,28 @@
 import styled from "styled-components";
 
-export const ScoreBoardContainer = styled.div`
-  width: 600px;
-  height: 200px;
+export const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  border: 5px solid black;
-  background-color: transparent;
-  margin-bottom: 30px;
-`;
-export const ScoreBoardWrapper = styled.div`
-  display: flex;
 `;
 
-export const TeamContainer = styled.div`
-  display: flex;
-`;
-export const TeamWrapper = styled.div`
-  width: 250px;
-  display: flex;
-  justify-content: space-around;
-`;
-export const TeamName = styled.div`
-  font-size: 3rem;
-  font-weight: 700;
-`;
-export const TeamScore = styled.div`
-  font-size: 3rem;
-  font-weight: 700;
-`;
-
-export const Versus = styled.span`
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 5px;
+export const HorizontalLine = styled.div`
+  width: 100%;
+  height: 1px;
+  background-color: black;
 `;
 
 export const TimeContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  align-items: flex-end;
+  margin: 30px 0;
 `;
-export const TimeWrapper = styled.div`
-  display: flex;
+
+export const Time = styled.div`
   font-size: 3rem;
   font-weight: 700;
 `;
@@ -54,20 +31,39 @@ export const RecordingBtn = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  width: 150px;
   height: 50px;
   border: 3px solid black;
   border-radius: 5px;
   background-color: transparent;
   font-size: 1rem;
   font-weight: 700;
+`;
 
-  &:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+export const TeamContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px 0 20px 0;
+`;
+export const TeamWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+export const TeamName = styled.div`
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+`;
+export const TeamScore = styled.div`
+  font-size: 3rem;
+  font-weight: 700;
+`;
 
-  &:active {
-    background-color: transparent;
-  }
+export const Versus = styled.span`
+  font-size: 2rem;
+  font-weight: 700;
 `;

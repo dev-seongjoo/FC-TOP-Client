@@ -31,20 +31,28 @@ const Navbar = () => {
         <S.Logo>
           <S.LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
         </S.Logo>
-        <span
+        <S.MenuIcon
           className='material-symbols-outlined'
-          style={{ color: "white", fontSize: "2rem" }}
           onClick={handleMenuClick}
         >
           menu
-        </span>
+        </S.MenuIcon>
         {isMenuOpen && (
-          <S.MenuList>
-            <S.Menu>선수단</S.Menu>
-            <S.Menu>선수단</S.Menu>
-            <S.Menu>선수단</S.Menu>
-            <S.Menu>선수단</S.Menu>
-            <S.Menu>선수단</S.Menu>
+          <S.MenuList onClick={handleMenuClick}>
+            {!isLoggedIn ? (
+              <>
+                <S.Menu to='/signup'>회원가입</S.Menu>
+                <S.Menu to='/login'>로그인</S.Menu>
+              </>
+            ) : (
+              <>
+                <S.Menu onClick={handleLogout}>로그아웃</S.Menu>
+                <S.Menu to='/mypage'>마이페이지</S.Menu>
+              </>
+            )}
+            <S.Menu to='/player'>선수단</S.Menu>
+            <S.Menu to='/schedule'>일정/결과</S.Menu>
+            <S.Menu to='/record'>기록/순위</S.Menu>
           </S.MenuList>
         )}
       </S.NavContainer>
@@ -53,26 +61,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-/* <S.NavLeft>
-        <S.MenuList>
-          <S.MenuLink to='/player'>선수단</S.MenuLink>
-          <S.MenuLink to='/schedule'>일정/결과</S.MenuLink>
-          <S.MenuLink to='/record'>기록/순위</S.MenuLink>
-        </S.MenuList>
-      </S.NavLeft>
-      <S.NavRight>
-        {!isLoggedIn ? (
-          <S.Auth>
-            <S.AuthLink to='/signup'>회원가입</S.AuthLink>
-            <S.Seperation>/</S.Seperation>
-            <S.AuthLink to='/login'>로그인</S.AuthLink>
-          </S.Auth>
-        ) : (
-          <S.Auth>
-            <S.AuthLink>실시간 출석</S.AuthLink>
-            <S.AuthLink to='/mypage'>마이페이지</S.AuthLink>
-            <S.AuthLink onClick={handleLogout}>로그아웃</S.AuthLink>
-          </S.Auth>
-        )}
-      </S.NavRight> */

@@ -43,9 +43,6 @@ const ScheduleList = () => {
   return (
     <>
       <S.Title>일정/결과</S.Title>
-      <S.UploadBtnWrapper>
-        <S.UploadBtn to='/schedule/register'>일정 등록</S.UploadBtn>
-      </S.UploadBtnWrapper>
       <S.HorizontalLine />
       <S.Container>
         <S.DateContainer>
@@ -68,6 +65,9 @@ const ScheduleList = () => {
           schedules.map((schedule) => (
             <S.MatchBox key={schedule.ID} to={`/schedule/${schedule.ID}`}>
               <S.MatchCalendar>
+                <S.MatchDate>
+                  {new Date(schedule.DATE).toLocaleDateString()}
+                </S.MatchDate>
                 <S.MatchTime>
                   {new Date(schedule.DATE).toLocaleTimeString([], {
                     hour: "2-digit",
@@ -75,14 +75,6 @@ const ScheduleList = () => {
                     hour12: false,
                   })}
                 </S.MatchTime>
-                <S.MatchDate>
-                  {new Date(schedule.DATE).toLocaleDateString()}
-                </S.MatchDate>
-                <S.MatchPlace>
-                  {schedule.LOCATION === "직접 입력"
-                    ? schedule.CUSTOM_LOCATION
-                    : schedule.LOCATION}
-                </S.MatchPlace>
               </S.MatchCalendar>
               <S.TeamGroup>
                 <S.HomeTeam>FC TOP</S.HomeTeam>
@@ -92,17 +84,23 @@ const ScheduleList = () => {
                 </S.VersusGroup>
                 <S.AwayTeam>{schedule.OPPONENT}</S.AwayTeam>
               </S.TeamGroup>
-              {new Date(schedule.DATE) > currentTime ? (
+              <S.MatchPlace>
+                {schedule.LOCATION === "직접 입력"
+                  ? schedule.CUSTOM_LOCATION
+                  : schedule.LOCATION}
+              </S.MatchPlace>
+              {/* {new Date(schedule.DATE) > currentTime ? (
                 <S.AttendanceBtn>출석</S.AttendanceBtn>
               ) : (
                 <S.BtnGroup>
                   <S.RecordBtn>경기 기록</S.RecordBtn>
                   <S.VideoBtn>경기 영상</S.VideoBtn>
                 </S.BtnGroup>
-              )}
+              )} */}
             </S.MatchBox>
           ))
         )}
+        <S.UploadBtn to='/schedule/register'>일정 등록</S.UploadBtn>
       </S.Container>
     </>
   );

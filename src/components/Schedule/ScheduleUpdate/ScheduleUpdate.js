@@ -105,6 +105,8 @@ const ScheduleUpdate = () => {
       }
     }
 
+    console.log(name, value);
+
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 

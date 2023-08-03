@@ -249,10 +249,12 @@ const StartingLineup = () => {
                 }
               }}
             >
-              <S.PlayerName>
-                {selectedPlayer[`player${index + 1}`][0]}
-              </S.PlayerName>
-              <S.PlayerPosition>{player[2]}</S.PlayerPosition>
+              <S.PlayerInfoWrapper>
+                <S.PlayerInfo>
+                  {selectedPlayer[`player${index + 1}`][0]}
+                </S.PlayerInfo>
+                <S.PlayerInfo>{player[2]}</S.PlayerInfo>
+              </S.PlayerInfoWrapper>
             </S.Player>
           ))}
         </S.StartingLineup>

@@ -15,8 +15,8 @@ const PastMatch = () => {
         </S.HomeTeamGroup>
         <S.Versus>VS</S.Versus>
         <S.AwayTeamGroup>
-          <S.AwayScore>0</S.AwayScore>
           <S.AwayTeam>R.egend FC</S.AwayTeam>
+          <S.AwayScore>0</S.AwayScore>
         </S.AwayTeamGroup>
       </S.ScoreGroup>
     </S.Container>

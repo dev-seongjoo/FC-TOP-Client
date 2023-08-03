@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 
 export const NavContainer = styled.div`
   position: relative;
+  height: 75px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  /* background-color: #c70101; */
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.4);
+  background-color: black;
   padding: 0 30px;
 `;
 
 export const Logo = styled.div`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: inline-block;
   padding: 10px;
 `;
@@ -23,6 +25,15 @@ export const LogoImg = styled.img`
     cursor: pointer;
   }
 `;
+
+export const MenuIcon = styled.span`
+  position: absolute;
+  right: 30px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+`;
+
 export const MenuList = styled.div`
   position: absolute;
   top: 100%;
@@ -39,15 +50,11 @@ export const Menu = styled(Link)`
   justify-content: center;
   align-items: center;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 400;
   text-decoration: none;
-  background-color: #ccc;
+  background-color: white;
   border-bottom: 1px solid black;
-
-  &:last-child {
-    border-bottom: none;
-  }
 `;
 
 export const NavLeft = styled.div`

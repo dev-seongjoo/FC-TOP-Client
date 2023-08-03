@@ -5,11 +5,11 @@ import PersonalRank from "../PersonalRank/PersonalRank";
 
 const Notice = () => {
   return (
-    <S.Container>
+    <>
       <PastMatch />
       <FutureMatch />
       <PersonalRank />
-    </S.Container>
+    </>
   );
 };
 

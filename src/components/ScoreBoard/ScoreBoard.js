@@ -1,10 +1,11 @@
 import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./styled";
 import { useEffect, useRef, useState } from "react";
+import axios from "axios";
 
-const ScoreBoard = ({ score, lp, recordEvent }) => {
+const ScoreBoard = ({ score, lp, recordEvent, results }) => {
   const navigate = useNavigate();
-  const { match } = useParams();
+  const { match, quarter } = useParams();
 
   const [time, setTime] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
@@ -20,21 +21,24 @@ const ScoreBoard = ({ score, lp, recordEvent }) => {
     if (isRecording) {
       intervalRef.current = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
-        recordEvent(time); // 시간 값이 변경될 때마다 recordEvent 호출
+        recordEvent(time);
       }, 1000);
     } else {
       clearInterval(intervalRef.current);
     }
 
     return () => clearInterval(intervalRef.current);
-  }, [isRecording, time]); // displayMinutes와 displaySeconds 추가
+  }, [isRecording, time]);
 
-  const handleRecording = () => {
+  const handleRecording = async () => {
     if (isRecording) {
       const confirmEnd = window.confirm("기록을 종료하시겠습니까?");
       if (confirmEnd) {
         setIsRecorded(true);
         setIsRecording(false);
+        await axios.post(`http://localhost:4000/record/${match}/${quarter}`, {
+          results,
+        });
         navigate(`/schedule/recordsetting/${match}`);
       }
     } else {

@@ -186,24 +186,39 @@ const ScheduleRecord = () => {
       <S.Title>{quarter}Q</S.Title>
       <S.HorizontalLine />
       <S.Container>
-        <ScoreBoard score={score} lp={lp} recordEvent={setTime} />
+        <ScoreBoard
+          score={score}
+          lp={lp}
+          recordEvent={setTime}
+          results={results}
+        />
         <S.Notice>
           {results.length !== 0 &&
             results.map((result, index) => {
               if (result.event === "득점") {
                 return (
                   <div key={index}>
-                    {`${Math.floor(result.time / 60)}분, 득점: ${
-                      result.player1
-                    }, 도움: ${result.player2}`}
+                    {`${String(Math.floor(result.time / 60)).padStart(
+                      2,
+                      "0"
+                    )}분 ${String(result.time % 60).padStart(
+                      2,
+                      "0"
+                    )}초, 득점: ${result.player1}, 도움: ${result.player2}`}
                   </div>
                 );
               } else if (result.event === "교체") {
                 return (
                   <div key={index}>
-                    {`${Math.floor(result.time / 60)}분, 교체IN: ${
-                      result.player2
-                    }, 교체 OUT: ${result.player1}`}
+                    {`${String(Math.floor(result.time / 60)).padStart(
+                      2,
+                      "0"
+                    )}분 ${String(result.time % 60).padStart(
+                      2,
+                      "0"
+                    )}초, 교체IN: ${result.player2}, 교체 OUT: ${
+                      result.player1
+                    }`}
                   </div>
                 );
               }

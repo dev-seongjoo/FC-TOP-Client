@@ -45,6 +45,10 @@ const StartingLineup = () => {
   const { match, quarter } = useParams();
   const navigate = useNavigate();
 
+  const handleFieldClick = () => {
+    setSideOpen(false);
+  };
+
   const handlePlayerClick = (num, pos) => {
     setSideOpen(true);
     setSelectedInfo([num, pos]);
@@ -234,7 +238,7 @@ const StartingLineup = () => {
           <S.Field
             src={field}
             onDragStart={(e) => e.preventDefault()}
-            onClick={() => setSideOpen(false)}
+            onClick={handleFieldClick}
           />
           {Object.values(formations[currentFormation]).map((player, index) => (
             <S.Player

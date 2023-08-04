@@ -2,7 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as S from "./styled";
 import { useEffect, useRef, useState } from "react";
 
-const ScoreBoard = ({ score, lp }) => {
+const ScoreBoard = ({ score, lp, recordEvent }) => {
   const navigate = useNavigate();
   const { match } = useParams();
 
@@ -20,13 +20,14 @@ const ScoreBoard = ({ score, lp }) => {
     if (isRecording) {
       intervalRef.current = setInterval(() => {
         setTime((prevTime) => prevTime + 1);
+        recordEvent(time); // 시간 값이 변경될 때마다 recordEvent 호출
       }, 1000);
     } else {
       clearInterval(intervalRef.current);
     }
 
     return () => clearInterval(intervalRef.current);
-  }, [isRecording]);
+  }, [isRecording, time]); // displayMinutes와 displaySeconds 추가
 
   const handleRecording = () => {
     if (isRecording) {

@@ -20,7 +20,6 @@ const ScheduleRecord = () => {
 
   const [currentFormation, setCurrentFormation] = useState(442);
   const [sideOpen, setSideOpen] = useState(false);
-  const [list, setList] = useState({});
   const [startingPlayers, setStartingPlayers] = useState({
     player1: ["", ""],
     player2: ["", ""],
@@ -35,13 +34,17 @@ const ScheduleRecord = () => {
     player11: ["", ""],
   });
   const [selectedPlayer, setSelectedPlayer] = useState(null);
+  const [time, setTime] = useState(0);
+  const [clickTime, setClickTime] = useState(0);
   const [isScore, setIsScore] = useState(false);
-  const [score, setScore] = useState(0);
   const [scoreInfo, setScoreInfo] = useState(null);
-  const [isAssist, setIsAssist] = useState(false);
+  // const [isAssist, setIsAssist] = useState(false);
   const [assistInfo, setAssistInfo] = useState(null);
   const [isSub, setIsSub] = useState(false);
+  const [list, setList] = useState({});
+  const [score, setScore] = useState(0);
   const [lp, setLp] = useState(0);
+  const [result, setResult] = useState({});
 
   const formations = {
     442: form442,
@@ -53,52 +56,15 @@ const ScheduleRecord = () => {
     343: form343,
   };
 
-  const fetchQuarter = async (quarter) => {
-    try {
-      const selectedQuarter = await axios.get(
-        `http://localhost:4000/${match}/${quarter}`
-      );
-      setCurrentFormation(selectedQuarter.data.formation);
-
-      let newStartingPlayers = {
-        player1: ["", ""],
-        player2: ["", ""],
-        player3: ["", ""],
-        player4: ["", ""],
-        player5: ["", ""],
-        player6: ["", ""],
-        player7: ["", ""],
-        player8: ["", ""],
-        player9: ["", ""],
-        player10: ["", ""],
-        player11: ["", ""],
-      };
-
-      for (let member of selectedQuarter.data.selectedStartings) {
-        for (let key in formations[selectedQuarter.data.formation]) {
-          if (
-            formations[selectedQuarter.data.formation][key][2] ===
-            member.POSITION
-          ) {
-            newStartingPlayers[key] = [member.PLAYER, member.POSITION];
-          }
-        }
-      }
-
-      setStartingPlayers(newStartingPlayers);
-    } catch (err) {
-      console.error(err);
-      setCurrentFormation(null);
-    }
-  };
-
   const handlePlayerClick = (index) => {
     if (!sideOpen) {
       setSideOpen(true);
       setSelectedPlayer(startingPlayers[`player${index + 1}`][0]);
+      setClickTime(time + 1);
     } else {
       setSideOpen(false);
       setIsScore(false);
+      setIsSub(false);
     }
   };
 
@@ -108,6 +74,7 @@ const ScheduleRecord = () => {
 
   const handleAssistClick = (player) => {
     setSideOpen(false);
+    setScoreInfo(selectedPlayer);
     setAssistInfo(player);
     setScore(score + 1);
     setIsScore(false);
@@ -115,19 +82,75 @@ const ScheduleRecord = () => {
 
   const handleSubClick = () => {
     setIsSub(true);
-    console.log("교체");
   };
 
-  const handlePlayerListClick = () => {
+  const handlePlayerListClick = (player) => {
     setSideOpen(false);
+    setIsSub(false);
+
+    const updatedStartingPlayers = { ...startingPlayers };
+    const subOutPlayer = Object.keys(updatedStartingPlayers).find(
+      (key) => updatedStartingPlayers[key][0] === selectedPlayer
+    );
+
+    updatedStartingPlayers[subOutPlayer] = [
+      player.KOR_NM,
+      updatedStartingPlayers[subOutPlayer][1],
+    ];
+
+    setStartingPlayers(updatedStartingPlayers);
   };
 
   const handleFieldClick = () => {
     setSideOpen(false);
     setIsScore(false);
+    setIsSub(false);
+  };
+
+  const recordEvent = (time, scorePlayer, assistPlayer) => {
+    setResult({ time: [scorePlayer, assistPlayer] });
   };
 
   useEffect(() => {
+    const fetchQuarter = async (quarter) => {
+      try {
+        const selectedQuarter = await axios.get(
+          `http://localhost:4000/${match}/${quarter}`
+        );
+        setCurrentFormation(selectedQuarter.data.formation);
+
+        let newStartingPlayers = {
+          player1: ["", ""],
+          player2: ["", ""],
+          player3: ["", ""],
+          player4: ["", ""],
+          player5: ["", ""],
+          player6: ["", ""],
+          player7: ["", ""],
+          player8: ["", ""],
+          player9: ["", ""],
+          player10: ["", ""],
+          player11: ["", ""],
+        };
+
+        for (let member of selectedQuarter.data.selectedStartings) {
+          for (let key in formations[selectedQuarter.data.formation]) {
+            if (
+              formations[selectedQuarter.data.formation][key][2] ===
+              member.POSITION
+            ) {
+              newStartingPlayers[key] = [member.PLAYER, member.POSITION];
+            }
+          }
+        }
+
+        setStartingPlayers(newStartingPlayers);
+      } catch (err) {
+        console.error(err);
+        setCurrentFormation(null);
+      }
+    };
+
     fetchQuarter(quarter);
   }, []);
 
@@ -163,17 +186,32 @@ const ScheduleRecord = () => {
       <S.Title>{quarter}Q</S.Title>
       <S.HorizontalLine />
       <S.Container>
-        <ScoreBoard score={score} lp={lp} />
+        <ScoreBoard score={score} lp={lp} recordEvent={setTime} />
 
         <S.Notice></S.Notice>
         <S.StartingLineup>
           <S.SideBar sideOpen={sideOpen}>
             <S.SideBarHead>
-              <S.SideBarHeadContent>
-                {isScore ? "도움 선수" : selectedPlayer ? selectedPlayer : null}
-              </S.SideBarHeadContent>
+              {!isScore && !isSub ? (
+                <S.SideBarHeadContent>{selectedPlayer}</S.SideBarHeadContent>
+              ) : isScore ? (
+                <S.SideBarHeadContent>도움</S.SideBarHeadContent>
+              ) : isSub ? (
+                <>
+                  <S.SideBarHeadContent
+                    style={{ width: "50%", fontSize: "1rem" }}
+                  >
+                    교체IN
+                  </S.SideBarHeadContent>
+                  <S.SideBarHeadContent
+                    style={{ width: "50%", fontSize: "1rem" }}
+                  >
+                    선호 포지션
+                  </S.SideBarHeadContent>
+                </>
+              ) : null}
             </S.SideBarHead>
-            {!isScore ? (
+            {!isScore && !isSub ? (
               <>
                 <S.SideBarBody>
                   <S.SideBarBodyContent onClick={handleScoreClick}>
@@ -186,11 +224,11 @@ const ScheduleRecord = () => {
                   </S.SideBarBodyContent>
                 </S.SideBarBody>
               </>
-            ) : (
+            ) : isScore ? (
               <>
                 <S.SideBarBody>
                   <S.SideBarBodyContent onClick={() => handleAssistClick(null)}>
-                    도움 선수 없음
+                    없음
                   </S.SideBarBodyContent>
                 </S.SideBarBody>
                 {Object.values(startingPlayers).map(
@@ -206,7 +244,32 @@ const ScheduleRecord = () => {
                     )
                 )}
               </>
-            )}
+            ) : isSub ? (
+              <>
+                {Object.keys(list).map((playerName, index) => {
+                  if (
+                    !Object.values(startingPlayers).some(
+                      (player) => player[0] === playerName
+                    )
+                  ) {
+                    const player = list[playerName];
+                    return (
+                      <S.SideBarBody
+                        key={index}
+                        onClick={() => handlePlayerListClick(player)}
+                      >
+                        <S.SideBarBodyContent>
+                          {player.KOR_NM}
+                        </S.SideBarBodyContent>
+                        <S.SideBarBodyContent>
+                          {player.POSITION_FIRST}
+                        </S.SideBarBodyContent>
+                      </S.SideBarBody>
+                    );
+                  }
+                })}
+              </>
+            ) : null}
           </S.SideBar>
           <S.Field
             src={field}
@@ -235,14 +298,3 @@ const ScheduleRecord = () => {
 };
 
 export default ScheduleRecord;
-
-{
-  /* {Object.values(list).map((player, index) => (
-              <S.PlayerList key={index} onClick={handlePlayerListClick}>
-                <S.PlayerListContent>{player.KOR_NM}</S.PlayerListContent>
-                <S.PlayerListContent>
-                  {player.POSITION_FIRST}
-                </S.PlayerListContent>
-              </S.PlayerList>
-            ))} */
-}

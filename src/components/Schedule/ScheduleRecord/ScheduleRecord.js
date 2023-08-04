@@ -37,14 +37,11 @@ const ScheduleRecord = () => {
   const [time, setTime] = useState(0);
   const [clickTime, setClickTime] = useState(0);
   const [isScore, setIsScore] = useState(false);
-  const [scoreInfo, setScoreInfo] = useState(null);
-  // const [isAssist, setIsAssist] = useState(false);
-  const [assistInfo, setAssistInfo] = useState(null);
   const [isSub, setIsSub] = useState(false);
   const [list, setList] = useState({});
   const [score, setScore] = useState(0);
   const [lp, setLp] = useState(0);
-  const [result, setResult] = useState({});
+  const [results, setResults] = useState([]);
 
   const formations = {
     442: form442,
@@ -74,17 +71,16 @@ const ScheduleRecord = () => {
 
   const handleAssistClick = (player) => {
     setSideOpen(false);
-    setScoreInfo(selectedPlayer);
-    setAssistInfo(player);
-    setScore(score + 1);
     setIsScore(false);
+    setScore(score + 1);
+    recordEvent(clickTime, "득점", selectedPlayer, player);
   };
 
   const handleSubClick = () => {
     setIsSub(true);
   };
 
-  const handlePlayerListClick = (player) => {
+  const handleSubListClick = (player) => {
     setSideOpen(false);
     setIsSub(false);
 
@@ -99,6 +95,7 @@ const ScheduleRecord = () => {
     ];
 
     setStartingPlayers(updatedStartingPlayers);
+    recordEvent(clickTime, "교체", selectedPlayer, player.KOR_NM);
   };
 
   const handleFieldClick = () => {
@@ -107,8 +104,11 @@ const ScheduleRecord = () => {
     setIsSub(false);
   };
 
-  const recordEvent = (time, scorePlayer, assistPlayer) => {
-    setResult({ time: [scorePlayer, assistPlayer] });
+  const recordEvent = (time, event, player1, player2) => {
+    setResults((prevData) => [
+      ...prevData,
+      { time: time, event: event, player1: player1, player2: player2 },
+    ]);
   };
 
   useEffect(() => {
@@ -187,8 +187,29 @@ const ScheduleRecord = () => {
       <S.HorizontalLine />
       <S.Container>
         <ScoreBoard score={score} lp={lp} recordEvent={setTime} />
-
-        <S.Notice></S.Notice>
+        <S.Notice>
+          {results.length !== 0 &&
+            results.map((result, index) => {
+              if (result.event === "득점") {
+                return (
+                  <div key={index}>
+                    {`${Math.floor(result.time / 60)}분, 득점: ${
+                      result.player1
+                    }, 도움: ${result.player2}`}
+                  </div>
+                );
+              } else if (result.event === "교체") {
+                return (
+                  <div key={index}>
+                    {`${Math.floor(result.time / 60)}분, 교체IN: ${
+                      result.player2
+                    }, 교체 OUT: ${result.player1}`}
+                  </div>
+                );
+              }
+              return null;
+            })}
+        </S.Notice>
         <S.StartingLineup>
           <S.SideBar sideOpen={sideOpen}>
             <S.SideBarHead>
@@ -227,7 +248,9 @@ const ScheduleRecord = () => {
             ) : isScore ? (
               <>
                 <S.SideBarBody>
-                  <S.SideBarBodyContent onClick={() => handleAssistClick(null)}>
+                  <S.SideBarBodyContent
+                    onClick={() => handleAssistClick("없음")}
+                  >
                     없음
                   </S.SideBarBodyContent>
                 </S.SideBarBody>
@@ -256,7 +279,7 @@ const ScheduleRecord = () => {
                     return (
                       <S.SideBarBody
                         key={index}
-                        onClick={() => handlePlayerListClick(player)}
+                        onClick={() => handleSubListClick(player)}
                       >
                         <S.SideBarBodyContent>
                           {player.KOR_NM}

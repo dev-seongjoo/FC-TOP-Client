@@ -58,7 +58,7 @@ export const TeamName = styled.div`
   font-weight: 700;
   margin-bottom: 10px;
 `;
-export const TeamScore = styled.div`
+export const HomeTeamScore = styled.div`
   font-size: 3rem;
   font-weight: 700;
 `;
@@ -67,3 +67,17 @@ export const Versus = styled.span`
   font-size: 2rem;
   font-weight: 700;
 `;
+
+export const AwayTeamScoreWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AwayTeamScore = styled.div`
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 10px;
+`;
+
+export const LpBtn = styled.span``;

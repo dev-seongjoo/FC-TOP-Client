@@ -44,10 +44,21 @@ export const EventBtn = styled.div`
   }
 `;
 
-export const Notice = styled.div`
+export const Notice = styled.div``;
+
+export const NoticeContent = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 1rem;
   font-weight: 700;
-  text-align: center;
+  color: black;
+  padding: 5px;
+`;
+
+export const DeleteBtn = styled.span`
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-left: 10px;
 `;
 
 export const StartingLineup = styled.div`

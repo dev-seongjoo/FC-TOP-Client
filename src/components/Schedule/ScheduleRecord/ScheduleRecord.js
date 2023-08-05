@@ -38,6 +38,7 @@ const ScheduleRecord = () => {
   const [clickTime, setClickTime] = useState(0);
   const [isScore, setIsScore] = useState(false);
   const [isSub, setIsSub] = useState(false);
+  const [isGk, setIsGk] = useState(false);
   const [list, setList] = useState({});
   const [score, setScore] = useState(0);
   const [lp, setLp] = useState(0);
@@ -54,19 +55,22 @@ const ScheduleRecord = () => {
   };
 
   const handlePlayerClick = (index) => {
+    const selectedPlayerPosition =
+      formations[currentFormation][`player${index + 1}`][2];
+
     if (!sideOpen) {
       setSideOpen(true);
       setSelectedPlayer(startingPlayers[`player${index + 1}`][0]);
       setClickTime(time + 1);
+      if (selectedPlayerPosition === "GK") {
+        setIsGk(true);
+      }
     } else {
       setSideOpen(false);
       setIsScore(false);
       setIsSub(false);
+      setIsGk(false);
     }
-  };
-
-  const handleScoreClick = () => {
-    setIsScore(true);
   };
 
   const handleAssistClick = (player) => {
@@ -74,10 +78,6 @@ const ScheduleRecord = () => {
     setIsScore(false);
     setScore(score + 1);
     recordEvent(clickTime, "득점", selectedPlayer, player);
-  };
-
-  const handleSubClick = () => {
-    setIsSub(true);
   };
 
   const handleSubListClick = (player) => {
@@ -98,13 +98,21 @@ const ScheduleRecord = () => {
     recordEvent(clickTime, "교체", selectedPlayer, player.KOR_NM);
   };
 
+  const handleLpClick = () => {
+    setSideOpen(false);
+    setIsGk(false);
+    setLp(lp + 1);
+    recordEvent(clickTime, "실점", selectedPlayer);
+  };
+
   const handleFieldClick = () => {
     setSideOpen(false);
     setIsScore(false);
     setIsSub(false);
+    setIsGk(false);
   };
 
-  const recordEvent = (time, event, player1, player2) => {
+  const recordEvent = (time, event, player1, player2 = "") => {
     setResults((prevData) => [
       ...prevData,
       { time: time, event: event, player1: player1, player2: player2 },
@@ -195,9 +203,23 @@ const ScheduleRecord = () => {
         <S.Notice>
           {results.length !== 0 &&
             results.map((result, index) => {
+              if (result.event === "실점") {
+                return (
+                  <S.NoticeContent key={index}>
+                    {`${String(Math.floor(result.time / 60)).padStart(
+                      2,
+                      "0"
+                    )}분 ${String(result.time % 60).padStart(
+                      2,
+                      "0"
+                    )}초, 실점: ${result.player1}`}
+                  </S.NoticeContent>
+                );
+              }
+
               if (result.event === "득점") {
                 return (
-                  <div key={index}>
+                  <S.NoticeContent key={index}>
                     {`${String(Math.floor(result.time / 60)).padStart(
                       2,
                       "0"
@@ -205,11 +227,13 @@ const ScheduleRecord = () => {
                       2,
                       "0"
                     )}초, 득점: ${result.player1}, 도움: ${result.player2}`}
-                  </div>
+                  </S.NoticeContent>
                 );
-              } else if (result.event === "교체") {
+              }
+
+              if (result.event === "교체") {
                 return (
-                  <div key={index}>
+                  <S.NoticeContent key={index}>
                     {`${String(Math.floor(result.time / 60)).padStart(
                       2,
                       "0"
@@ -219,7 +243,7 @@ const ScheduleRecord = () => {
                     )}초, 교체IN: ${result.player2}, 교체 OUT: ${
                       result.player1
                     }`}
-                  </div>
+                  </S.NoticeContent>
                 );
               }
               return null;
@@ -250,15 +274,22 @@ const ScheduleRecord = () => {
             {!isScore && !isSub ? (
               <>
                 <S.SideBarBody>
-                  <S.SideBarBodyContent onClick={handleScoreClick}>
+                  <S.SideBarBodyContent onClick={() => setIsScore(true)}>
                     득점
                   </S.SideBarBodyContent>
                 </S.SideBarBody>
                 <S.SideBarBody>
-                  <S.SideBarBodyContent onClick={handleSubClick}>
+                  <S.SideBarBodyContent onClick={() => setIsSub(true)}>
                     교체
                   </S.SideBarBodyContent>
                 </S.SideBarBody>
+                {isGk && (
+                  <S.SideBarBody>
+                    <S.SideBarBodyContent onClick={handleLpClick}>
+                      실점
+                    </S.SideBarBodyContent>
+                  </S.SideBarBody>
+                )}
               </>
             ) : isScore ? (
               <>

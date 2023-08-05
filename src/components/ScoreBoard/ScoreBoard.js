@@ -61,12 +61,14 @@ const ScoreBoard = ({ score, lp, recordEvent, results }) => {
         <S.TeamContainer>
           <S.TeamWrapper>
             <S.TeamName>FC TOP</S.TeamName>
-            <S.TeamScore>{score}</S.TeamScore>
+            <S.HomeTeamScore>{score}</S.HomeTeamScore>
           </S.TeamWrapper>
           <S.Versus>VS</S.Versus>
           <S.TeamWrapper>
             <S.TeamName>FC ZZZ</S.TeamName>
-            <S.TeamScore>{lp}</S.TeamScore>
+            <S.AwayTeamScoreWrapper>
+              <S.AwayTeamScore>{lp}</S.AwayTeamScore>
+            </S.AwayTeamScoreWrapper>
           </S.TeamWrapper>
         </S.TeamContainer>
       </S.Container>

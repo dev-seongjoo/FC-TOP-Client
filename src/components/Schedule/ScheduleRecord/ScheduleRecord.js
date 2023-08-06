@@ -55,6 +55,11 @@ const ScheduleRecord = () => {
   };
 
   const handlePlayerClick = (index) => {
+    if (time === 0) {
+      alert("기록을 시작해야 합니다.");
+      return;
+    }
+
     const selectedPlayerPosition =
       formations[currentFormation][`player${index + 1}`][2];
 
@@ -106,6 +111,11 @@ const ScheduleRecord = () => {
   };
 
   const handleFieldClick = () => {
+    if (time === 0) {
+      alert("기록을 시작해야 합니다.");
+      return;
+    }
+
     setSideOpen(false);
     setIsScore(false);
     setIsSub(false);

@@ -79,5 +79,3 @@ export const AwayTeamScore = styled.div`
   font-weight: 700;
   margin: 0 10px;
 `;
-
-export const LpBtn = styled.span``;

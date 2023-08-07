@@ -38,6 +38,7 @@ const ScoreBoard = ({ score, lp, recordEvent, results }) => {
         setIsRecording(false);
         await axios.post(`http://localhost:4000/record/${match}/${quarter}`, {
           results,
+          time,
         });
         navigate(`/schedule/recordsummary/${match}/${quarter}`);
       }

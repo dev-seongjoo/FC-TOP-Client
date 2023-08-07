@@ -39,6 +39,7 @@ import ScheduleUpdate from "./components/Schedule/ScheduleUpdate/ScheduleUpdate"
 import StartingLineup from "./components/Schedule/StartingLineup/StartingLineup";
 import ScheduleRecordSetting from "./components/Schedule/ScheduleRecordSetting/ScheduleRecordSetting";
 import ScheduleRecord from "./components/Schedule/ScheduleRecord/ScheduleRecord";
+import ScheduleRecordSummary from "./components/Schedule/ScheduleRecordSummary/ScheduleRecordSummary";
 
 const App = () => {
   return (
@@ -62,6 +63,10 @@ const App = () => {
               element={<StartingLineup />}
             />
             <Route path='record/:match/:quarter' element={<ScheduleRecord />} />
+            <Route
+              path='recordsummary/:match/:quarter'
+              element={<ScheduleRecordSummary />}
+            />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

@@ -15,7 +15,7 @@ import {
 
 const ScheduleRecordSetting = () => {
   const [schedule, setSchedule] = useState({});
-  const [quarter, setQuarter] = useState(0);
+  const [quarter, setQuarter] = useState(1);
   const [quarterRecord, setQuarterRecord] = useState({
     "1Q": null,
     "2Q": null,
@@ -76,7 +76,7 @@ const ScheduleRecordSetting = () => {
     if (quarter !== 0) {
       try {
         const selectedQuarter = await axios.get(
-          `http://localhost:4000/${match}/${quarter}`
+          `http://localhost:4000/starting/${match}/${quarter}`
         );
         setCurrentFormation(selectedQuarter.data.formation);
       } catch (err) {

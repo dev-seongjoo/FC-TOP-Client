@@ -187,8 +187,12 @@ const StartingLineup = () => {
         }
 
         setSelectedPlayer(newSelectedPlayers);
-      } catch (err) {
-        console.error(err);
+      } catch (error) {
+        if (error.response && error.response.status === 404) {
+          console.log("Lineup data not found.");
+        } else {
+          console.error("An error occurred:", error);
+        }
       }
     };
     fetchLineup();

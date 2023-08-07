@@ -39,7 +39,7 @@ const ScoreBoard = ({ score, lp, recordEvent, results }) => {
         await axios.post(`http://localhost:4000/record/${match}/${quarter}`, {
           results,
         });
-        navigate(`/schedule/recordsetting/${match}`);
+        navigate(`/schedule/recordsummary/${match}/${quarter}`);
       }
     } else {
       setIsRecording(true);

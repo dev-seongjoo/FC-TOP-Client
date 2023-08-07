@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const NavContainer = styled.div`
   position: relative;
+  width: 100%;
   height: 75px;
   display: flex;
   align-items: center;
@@ -97,4 +98,8 @@ export const AuthLink = styled(Link)`
     color: black;
     transition: 0.2s;
   }
+`;
+
+export const ArrowBack = styled.span`
+  color: white;
 `;

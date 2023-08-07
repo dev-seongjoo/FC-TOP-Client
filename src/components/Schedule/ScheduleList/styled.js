@@ -71,9 +71,10 @@ export const EmptyNotice = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-  margin-top: 200px;
+  margin-top: 150px;
+  margin-bottom: 50px;
 `;
 
 export const MatchBox = styled(Link)`

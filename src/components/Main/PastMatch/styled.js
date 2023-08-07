@@ -61,7 +61,7 @@ export const HomeTeam = styled.div`
 
 export const HomeScore = styled.div`
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
 `;
 
@@ -89,6 +89,6 @@ export const AwayTeam = styled.div`
 
 export const AwayScore = styled.div`
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 700;
 `;

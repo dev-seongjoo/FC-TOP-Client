@@ -2,10 +2,11 @@ import React, { useContext, useState } from "react";
 import logo from "../../assets/fc-top.png";
 import { AuthContext } from "../../contexts/AuthContext";
 import * as S from "./styled";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,6 +29,15 @@ const Navbar = () => {
   return (
     <>
       <S.NavContainer>
+        <S.ArrowBack
+          className='material-symbols-outlined'
+          onClick={() => navigate(-1)}
+          style={{
+            display: location.pathname !== "/" ? "block" : "none",
+          }}
+        >
+          arrow_back_ios
+        </S.ArrowBack>
         <S.Logo>
           <S.LogoImg onClick={handleLogoClick} src={logo} alt='logo' />
         </S.Logo>

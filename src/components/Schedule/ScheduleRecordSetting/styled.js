@@ -71,18 +71,27 @@ export const StartingWrapper = styled.div`
   align-items: center;
 `;
 
+export const StartingLineupSetupWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+`;
+
 export const StartingLineupSetup = styled(Link)`
   text-decoration: none;
   color: black;
   font-size: 1rem;
   font-weight: 700;
+  margin-right: 5px;
+`;
+
+export const StartingLineupSetupBtn = styled.span`
+  font-size: 1.2rem;
 `;
 
 export const StartingLineup = styled.div`
   position: relative;
   width: 300px;
   height: 400px;
-  margin-top: 5px;
 `;
 
 export const Field = styled.img`

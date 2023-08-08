@@ -1,29 +1,4 @@
-import {
-  Title,
-  Container,
-  Option,
-  Select,
-  Table,
-  TheadTr,
-  RankTh,
-  NameTh,
-  ScoreTh,
-  MatchTh,
-  ScorePerMatchTh,
-  TbodydTr,
-  RankTd,
-  NameTd,
-  ScoreTd,
-  MatchTd,
-  ScorePerMatchTd,
-  ProfileImg,
-  ProfileName,
-  ProfileGroup,
-  PositionTd,
-  PositionTh,
-} from "./styled";
-
-import ProfileBasicImg from "../../../assets/basic-profile.jpg";
+import * as S from "./styled";
 
 const Assist = () => {
   const dummyData = [
@@ -34,7 +9,6 @@ const Assist = () => {
       assist: 5,
       match: 5,
       assistPerMatch: 1,
-      img: ProfileBasicImg,
     },
     {
       rank: 2,
@@ -43,7 +17,6 @@ const Assist = () => {
       assist: 4,
       match: 6,
       assistPerMatch: 0.67,
-      img: ProfileBasicImg,
     },
     {
       rank: 3,
@@ -52,7 +25,6 @@ const Assist = () => {
       assist: 4,
       match: 7,
       assistPerMatch: 0.57,
-      img: ProfileBasicImg,
     },
     {
       rank: 4,
@@ -61,7 +33,6 @@ const Assist = () => {
       assist: 3,
       match: 5,
       assistPerMatch: 0.6,
-      img: ProfileBasicImg,
     },
     {
       rank: 5,
@@ -70,7 +41,6 @@ const Assist = () => {
       assist: 3,
       match: 6,
       assistPerMatch: 0.5,
-      img: ProfileBasicImg,
     },
     {
       rank: 6,
@@ -79,7 +49,6 @@ const Assist = () => {
       assist: 2,
       match: 5,
       assistPerMatch: 0.4,
-      img: ProfileBasicImg,
     },
     {
       rank: 7,
@@ -88,7 +57,6 @@ const Assist = () => {
       assist: 2,
       match: 6,
       assistPerMatch: 0.33,
-      img: ProfileBasicImg,
     },
     {
       rank: 8,
@@ -97,7 +65,6 @@ const Assist = () => {
       assist: 1,
       match: 5,
       assistPerMatch: 0.2,
-      img: ProfileBasicImg,
     },
     {
       rank: 9,
@@ -106,7 +73,6 @@ const Assist = () => {
       assist: 1,
       match: 7,
       assistPerMatch: 0.14,
-      img: ProfileBasicImg,
     },
     {
       rank: 10,
@@ -115,49 +81,43 @@ const Assist = () => {
       assist: 0,
       match: 6,
       assistPerMatch: 0,
-      img: ProfileBasicImg,
     },
   ];
 
   return (
     <>
-      <Title>도움순위</Title>
-      <Container>
-        <Select>
-          <Option>2023</Option>
-        </Select>
-        <Table>
+      <S.Title>도움순위</S.Title>
+      <S.Container>
+        <S.Select>
+          <S.Option>2023</S.Option>
+        </S.Select>
+        <S.Table>
           <thead>
-            <TheadTr>
-              <RankTh>순위</RankTh>
-              <NameTh>선수 이름</NameTh>
-              <PositionTh>포지션</PositionTh>
-              <ScoreTh>득점</ScoreTh>
-              <MatchTh>경기</MatchTh>
-              <ScorePerMatchTh>경기당 득점</ScorePerMatchTh>
-            </TheadTr>
+            <S.TheadTr>
+              <S.RankTh>순위</S.RankTh>
+              <S.NameTh>선수 이름</S.NameTh>
+              <S.PositionTh>포지션</S.PositionTh>
+              <S.ScoreTh>도움</S.ScoreTh>
+              <S.MatchTh>경기</S.MatchTh>
+            </S.TheadTr>
           </thead>
           <tbody>
-            {dummyData.map((data) => (
-              <TbodydTr>
-                <RankTd>{data.rank}</RankTd>
-                <NameTd>
-                  <ProfileGroup>
-                    <ProfileImg src={data.img} />
-                    <ProfileName>{data.name}</ProfileName>
-                  </ProfileGroup>
-                </NameTd>
-                <PositionTd>{data.position}</PositionTd>
-                <ScoreTd>{data.assist}도움</ScoreTd>
-                <MatchTd>{data.match}경기</MatchTd>
-                <ScorePerMatchTd>
-                  경기당 {data.assistPerMatch} 도움
-                </ScorePerMatchTd>
-              </TbodydTr>
+            {dummyData.map((data, index) => (
+              <S.TbodydTr key={index}>
+                <S.RankTd>{data.rank}</S.RankTd>
+                <S.NameTd>
+                  <S.ProfileGroup>
+                    <S.ProfileName>{data.name}</S.ProfileName>
+                  </S.ProfileGroup>
+                </S.NameTd>
+                <S.PositionTd>{data.position}</S.PositionTd>
+                <S.ScoreTd>{data.assist}도움</S.ScoreTd>
+                <S.MatchTd>{data.match}경기</S.MatchTd>
+              </S.TbodydTr>
             ))}
           </tbody>
-        </Table>
-      </Container>
+        </S.Table>
+      </S.Container>
     </>
   );
 };

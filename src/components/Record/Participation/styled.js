@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
 export const Title = styled.div`
-  margin: 60px 0px;
+  margin: 40px 0px 30px 0;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
 `;
 
 export const Container = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 `;
 
 export const Select = styled.select`
@@ -36,7 +35,7 @@ export const TheadTr = styled.tr`
 `;
 
 export const NameTh = styled.th`
-  width: 20%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -44,7 +43,7 @@ export const NameTh = styled.th`
 `;
 
 export const PositionTh = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -52,7 +51,7 @@ export const PositionTh = styled.th`
 `;
 
 export const MatchNumTh = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -60,7 +59,7 @@ export const MatchNumTh = styled.th`
 `;
 
 export const SubInTh = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -68,7 +67,7 @@ export const SubInTh = styled.th`
 `;
 
 export const SubOutTh = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -76,7 +75,7 @@ export const SubOutTh = styled.th`
 `;
 
 export const GoalTh = styled.th`
-  width: 7.69%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -84,7 +83,7 @@ export const GoalTh = styled.th`
 `;
 
 export const AssistTh = styled.th`
-  width: 7.69%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -92,14 +91,7 @@ export const AssistTh = styled.th`
 `;
 
 export const LpTh = styled.th`
-  width: 7.69%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-export const OgTh = styled.th`
-  width: 7.69%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -112,7 +104,7 @@ export const TbodyTr = styled.tr`
 `;
 
 export const NameTd = styled.th`
-  width: 20%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -134,7 +126,7 @@ export const ProfileImg = styled.img`
 export const ProfileName = styled.span``;
 
 export const PositionTd = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -142,7 +134,7 @@ export const PositionTd = styled.th`
 `;
 
 export const MatchNumTd = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -150,7 +142,7 @@ export const MatchNumTd = styled.th`
 `;
 
 export const SubInTd = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -158,7 +150,7 @@ export const SubInTd = styled.th`
 `;
 
 export const SubOutTd = styled.th`
-  width: 10%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -166,7 +158,7 @@ export const SubOutTd = styled.th`
 `;
 
 export const GoalTd = styled.th`
-  width: 7.69%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -174,7 +166,7 @@ export const GoalTd = styled.th`
 `;
 
 export const AssistTd = styled.th`
-  width: 7.69%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -182,14 +174,7 @@ export const AssistTd = styled.th`
 `;
 
 export const LpTd = styled.th`
-  width: 7.69%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-export const OgTd = styled.th`
-  width: 7.69%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.div`
-  margin: 60px 0px;
+  margin: 40px 0px 30px 0;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 2rem;
   font-weight: 500;
@@ -9,8 +9,7 @@ export const Title = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 `;
 
 export const Select = styled.select`
@@ -36,7 +35,7 @@ export const TheadTr = styled.tr`
 `;
 
 export const RankTh = styled.th`
-  width: 7.69%;
+  width: 15.38%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -44,7 +43,7 @@ export const RankTh = styled.th`
 `;
 
 export const NameTh = styled.th`
-  width: 30.77%;
+  width: 23.07%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -89,7 +88,7 @@ export const TbodydTr = styled.tr`
 `;
 
 export const RankTd = styled.td`
-  width: 7.69%;
+  width: 15.38%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -97,7 +96,7 @@ export const RankTd = styled.td`
 `;
 
 export const NameTd = styled.td`
-  width: 30.77%;
+  width: 23.07%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;

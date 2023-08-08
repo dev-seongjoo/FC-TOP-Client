@@ -160,7 +160,7 @@ const StartingLineup = () => {
     const fetchLineup = async () => {
       try {
         const result = await axios.get(
-          `http://localhost:4000/${match}/${quarter}`
+          `http://localhost:4000/starting/${match}/${quarter}`
         );
         setCurrentFormation(result.data.formation);
 
@@ -188,11 +188,7 @@ const StartingLineup = () => {
 
         setSelectedPlayer(newSelectedPlayers);
       } catch (error) {
-        if (error.response && error.response.status === 404) {
-          console.log("Lineup data not found.");
-        } else {
-          console.error("An error occurred:", error);
-        }
+        console.error(error);
       }
     };
     fetchLineup();

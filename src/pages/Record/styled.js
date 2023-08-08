@@ -11,14 +11,10 @@ export const RecordPageNav = styled.div`
 
 export const NavList = styled(Link)`
   color: black;
+  font-size: 0.8rem;
   font-weight: 500;
   text-decoration: none;
-  margin: 0 20px;
-  padding-bottom: 5px;
   border-bottom: ${(props) => (props.selected ? "2px solid black" : "none")};
-
-  &:hover {
-    opacity: 0.3;
-    transition: 0.2s;
-  }
+  padding-bottom: 5px;
+  margin: 0 20px;
 `;

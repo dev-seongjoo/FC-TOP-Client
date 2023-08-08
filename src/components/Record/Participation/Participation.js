@@ -1,31 +1,4 @@
-import {
-  AssistTd,
-  AssistTh,
-  Container,
-  GoalTd,
-  GoalTh,
-  LpTd,
-  LpTh,
-  MatchNumTd,
-  MatchNumTh,
-  NameTd,
-  NameTh,
-  OgTd,
-  OgTh,
-  Option,
-  PositionTd,
-  PositionTh,
-  ProfileGroup,
-  ProfileImg,
-  ProfileName,
-  Select,
-  Table,
-  TbodyTr,
-  TheadTr,
-  Title,
-} from "./styled";
-
-import ProfileBasicImg from "../../../assets/basic-profile.jpg";
+import * as S from "./styled";
 
 const Participation = () => {
   const dummyData = [
@@ -143,43 +116,40 @@ const Participation = () => {
 
   return (
     <>
-      <Title>선수별 출전기록</Title>
-      <Container>
-        <Select>
-          <Option>2023</Option>
-        </Select>
-        <Table>
+      <S.Title>선수별 출전기록</S.Title>
+      <S.Container>
+        <S.Select>
+          <S.Option>2023</S.Option>
+        </S.Select>
+        <S.Table>
           <thead>
-            <TheadTr>
-              <NameTh>이름</NameTh>
-              <PositionTh>포지션</PositionTh>
-              <MatchNumTh>경기</MatchNumTh>
-              <GoalTh>득점</GoalTh>
-              <AssistTh>도움</AssistTh>
-              <LpTh>실점</LpTh>
-              <OgTh>자책</OgTh>
-            </TheadTr>
+            <S.TheadTr>
+              <S.NameTh>이름</S.NameTh>
+              <S.PositionTh>포지션</S.PositionTh>
+              <S.MatchNumTh>경기</S.MatchNumTh>
+              <S.GoalTh>득점</S.GoalTh>
+              <S.AssistTh>도움</S.AssistTh>
+              <S.LpTh>실점</S.LpTh>
+            </S.TheadTr>
           </thead>
           <tbody>
-            {dummyData.map((data) => (
-              <TbodyTr>
-                <NameTd>
-                  <ProfileGroup>
-                    <ProfileImg src={ProfileBasicImg} />
-                    <ProfileName>{data.name}</ProfileName>
-                  </ProfileGroup>
-                </NameTd>
-                <PositionTd>{data.position}</PositionTd>
-                <MatchNumTd>{data.matchNum}경기</MatchNumTd>
-                <GoalTd>{data.goal}득점</GoalTd>
-                <AssistTd>{data.assist}도움</AssistTd>
-                <LpTd>{data.lp}실점</LpTd>
-                <OgTd>{data.og}자책</OgTd>
-              </TbodyTr>
+            {dummyData.map((data, index) => (
+              <S.TbodyTr key={index}>
+                <S.NameTd>
+                  <S.ProfileGroup>
+                    <S.ProfileName>{data.name}</S.ProfileName>
+                  </S.ProfileGroup>
+                </S.NameTd>
+                <S.PositionTd>{data.position}</S.PositionTd>
+                <S.MatchNumTd>{data.matchNum}경기</S.MatchNumTd>
+                <S.GoalTd>{data.goal}득점</S.GoalTd>
+                <S.AssistTd>{data.assist}도움</S.AssistTd>
+                <S.LpTd>{data.lp}실점</S.LpTd>
+              </S.TbodyTr>
             ))}
           </tbody>
-        </Table>
-      </Container>
+        </S.Table>
+      </S.Container>
     </>
   );
 };

@@ -15,14 +15,14 @@ import {
 
 const ScheduleRecordSetting = () => {
   const [schedule, setSchedule] = useState({});
-  const [quarter, setQuarter] = useState(1);
+  const [quarter, setQuarter] = useState(0);
   const [quarterRecord, setQuarterRecord] = useState({
-    "1Q": null,
-    "2Q": null,
-    "3Q": null,
-    "4Q": null,
-    "5Q": null,
-    "6Q": null,
+    "1Q": false,
+    "2Q": false,
+    "3Q": false,
+    "4Q": false,
+    "5Q": false,
+    "6Q": false,
   });
   const [currentFormation, setCurrentFormation] = useState(null);
 
@@ -43,28 +43,27 @@ const ScheduleRecordSetting = () => {
       const selectedMatch = await axios.get(
         `http://localhost:4000/schedule/${match}`
       );
-      const quarterRecord = await axios.get(
+      const quarterRecords = await axios.get(
         `http://localhost:4000/record/check/${match}`
       );
 
       setSchedule(selectedMatch.data);
-      setQuarterRecord({
-        "1Q": quarterRecord.data[0].RECORD,
-        "2Q": quarterRecord.data[1].RECORD,
-        "3Q": quarterRecord.data[2].RECORD,
-        "4Q": quarterRecord.data[3].RECORD,
-        "5Q": quarterRecord.data[4].RECORD,
-        "6Q": quarterRecord.data[5].RECORD,
+
+      const updatedQuarterRecord = { ...quarterRecord };
+
+      quarterRecords.data.map((record) => {
+        updatedQuarterRecord[`${record.QUARTER}Q`] = record.RECORD;
       });
 
-      const result = quarterRecord.data.find(
+      setQuarterRecord(updatedQuarterRecord);
+
+      const result = quarterRecords.data.find(
         (record) => record.RECORD === false
       );
 
       setQuarter(result.QUARTER);
     } catch (error) {
-      console.error("Error fetching schedule data:", error);
-      console.log("데이터가 존재하지 않습니다.");
+      console.error(error);
     }
   };
 
@@ -81,7 +80,6 @@ const ScheduleRecordSetting = () => {
         setCurrentFormation(selectedQuarter.data.formation);
       } catch (err) {
         console.error(err);
-        console.log("데이터가 존재하지 않습니다.");
         setCurrentFormation(null);
       }
     }
@@ -118,6 +116,9 @@ const ScheduleRecordSetting = () => {
             onChange={(e) => setQuarter(e.target.value)}
             value={quarter}
           >
+            <S.Option value='0' disabled={true}>
+              쿼터를 선택해주세요.
+            </S.Option>
             <S.Option value='1' disabled={quarterRecord["1Q"]}>
               1Q
             </S.Option>
@@ -138,37 +139,41 @@ const ScheduleRecordSetting = () => {
             </S.Option>
           </S.Select>
         </S.LabelWrapper>
-        <S.LabelWrapper>
-          <S.StartingWrapper>
-            <S.Label>선발 명단</S.Label>
-            <S.StartingLineupSetupWrapper>
-              <S.StartingLineupSetup
-                to={`/schedule/startingLineup/${match}/${quarter}`}
-              >
-                작성하기
-              </S.StartingLineupSetup>
-              <S.StartingLineupSetupBtn className='material-symbols-outlined'>
-                edit
-              </S.StartingLineupSetupBtn>
-            </S.StartingLineupSetupWrapper>
-          </S.StartingWrapper>
-          <S.StartingLineup>
-            <S.Field src={field} onDragStart={(e) => e.preventDefault()} />
-            {formations[currentFormation] &&
-              Object.values(formations[currentFormation]).map(
-                (player, index) => (
-                  <S.Player
-                    key={index}
-                    top={player[0]}
-                    left={player[1]}
-                  ></S.Player>
-                )
-              )}
-          </S.StartingLineup>
-        </S.LabelWrapper>
-        <S.RecordBtn to={`/schedule/record/${match}/${quarter}`}>
-          기록
-        </S.RecordBtn>
+        {quarter !== 0 && (
+          <>
+            <S.LabelWrapper>
+              <S.StartingWrapper>
+                <S.Label>선발 명단</S.Label>
+                <S.StartingLineupSetupWrapper>
+                  <S.StartingLineupSetup
+                    to={`/schedule/startingLineup/${match}/${quarter}`}
+                  >
+                    작성하기
+                  </S.StartingLineupSetup>
+                  <S.StartingLineupSetupBtn className='material-symbols-outlined'>
+                    edit
+                  </S.StartingLineupSetupBtn>
+                </S.StartingLineupSetupWrapper>
+              </S.StartingWrapper>
+              <S.StartingLineup>
+                <S.Field src={field} onDragStart={(e) => e.preventDefault()} />
+                {formations[currentFormation] &&
+                  Object.values(formations[currentFormation]).map(
+                    (player, index) => (
+                      <S.Player
+                        key={index}
+                        top={player[0]}
+                        left={player[1]}
+                      ></S.Player>
+                    )
+                  )}
+              </S.StartingLineup>
+            </S.LabelWrapper>
+            <S.RecordBtn to={`/schedule/record/${match}/${quarter}`}>
+              기록
+            </S.RecordBtn>
+          </>
+        )}
       </S.Container>
     </>
   );

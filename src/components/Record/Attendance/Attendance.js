@@ -1,29 +1,4 @@
-import {
-  Title,
-  Container,
-  Option,
-  Select,
-  Table,
-  TheadTr,
-  RankTh,
-  NameTh,
-  ScoreTh,
-  TbodydTr,
-  RankTd,
-  NameTd,
-  ScoreTd,
-  ProfileImg,
-  ProfileName,
-  ProfileGroup,
-  AttendanceTh,
-  LatenessTh,
-  AbsenceTh,
-  AttendanceTd,
-  LatenessTd,
-  AbsenceTd,
-} from "./styled";
-
-import ProfileBasicImg from "../../../assets/basic-profile.jpg";
+import * as S from "./styled";
 
 const Attendance = () => {
   const dummyData = [
@@ -34,7 +9,6 @@ const Attendance = () => {
       goal: 5,
       match: 5,
       goalPerMatch: 1,
-      img: ProfileBasicImg,
     },
     {
       rank: 2,
@@ -43,7 +17,6 @@ const Attendance = () => {
       goal: 4,
       match: 6,
       goalPerMatch: 0.67,
-      img: ProfileBasicImg,
     },
     {
       rank: 3,
@@ -52,7 +25,6 @@ const Attendance = () => {
       goal: 4,
       match: 7,
       goalPerMatch: 0.57,
-      img: ProfileBasicImg,
     },
     {
       rank: 4,
@@ -61,7 +33,6 @@ const Attendance = () => {
       goal: 3,
       match: 5,
       goalPerMatch: 0.6,
-      img: ProfileBasicImg,
     },
     {
       rank: 5,
@@ -70,7 +41,6 @@ const Attendance = () => {
       goal: 3,
       match: 6,
       goalPerMatch: 0.5,
-      img: ProfileBasicImg,
     },
     {
       rank: 6,
@@ -79,7 +49,6 @@ const Attendance = () => {
       goal: 2,
       match: 5,
       goalPerMatch: 0.4,
-      img: ProfileBasicImg,
     },
     {
       rank: 7,
@@ -88,7 +57,6 @@ const Attendance = () => {
       goal: 2,
       match: 6,
       goalPerMatch: 0.33,
-      img: ProfileBasicImg,
     },
     {
       rank: 8,
@@ -97,7 +65,6 @@ const Attendance = () => {
       goal: 1,
       match: 5,
       goalPerMatch: 0.2,
-      img: ProfileBasicImg,
     },
     {
       rank: 9,
@@ -106,7 +73,6 @@ const Attendance = () => {
       goal: 1,
       match: 7,
       goalPerMatch: 0.14,
-      img: ProfileBasicImg,
     },
     {
       rank: 10,
@@ -115,47 +81,45 @@ const Attendance = () => {
       goal: 0,
       match: 6,
       goalPerMatch: 0,
-      img: ProfileBasicImg,
     },
   ];
 
   return (
     <>
-      <Title>출석순위</Title>
-      <Container>
-        <Select>
-          <Option>2023</Option>
-        </Select>
-        <Table>
+      <S.Title>출석순위</S.Title>
+      <S.Container>
+        <S.Select>
+          <S.Option>2023</S.Option>
+        </S.Select>
+        <S.Table>
           <thead>
-            <TheadTr>
-              <RankTh>순위</RankTh>
-              <NameTh>선수 이름</NameTh>
-              <AttendanceTh>참석</AttendanceTh>
-              <LatenessTh>무단지각</LatenessTh>
-              <AbsenceTh>무단불참</AbsenceTh>
-              <ScoreTh>점수</ScoreTh>
-            </TheadTr>
+            <S.TheadTr>
+              <S.RankTh>순위</S.RankTh>
+              <S.NameTh>선수 이름</S.NameTh>
+              <S.AttendanceTh>참석</S.AttendanceTh>
+              <S.LatenessTh>무단지각</S.LatenessTh>
+              <S.AbsenceTh>무단불참</S.AbsenceTh>
+              <S.ScoreTh>점수</S.ScoreTh>
+            </S.TheadTr>
           </thead>
           <tbody>
-            {dummyData.map((data) => (
-              <TbodydTr>
-                <RankTd>{data.rank}</RankTd>
-                <NameTd>
-                  <ProfileGroup>
-                    <ProfileImg src={data.img} />
-                    <ProfileName>{data.name}</ProfileName>
-                  </ProfileGroup>
-                </NameTd>
-                <AttendanceTd>{data.goal} 회</AttendanceTd>
-                <LatenessTd>{data.match} 회</LatenessTd>
-                <AbsenceTd>{data.match} 회</AbsenceTd>
-                <ScoreTd>{data.goalPerMatch} 점</ScoreTd>
-              </TbodydTr>
+            {dummyData.map((data, index) => (
+              <S.TbodydTr key={index}>
+                <S.RankTd>{data.rank}</S.RankTd>
+                <S.NameTd>
+                  <S.ProfileGroup>
+                    <S.ProfileName>{data.name}</S.ProfileName>
+                  </S.ProfileGroup>
+                </S.NameTd>
+                <S.AttendanceTd>{data.goal} 회</S.AttendanceTd>
+                <S.LatenessTd>{data.match} 회</S.LatenessTd>
+                <S.AbsenceTd>{data.match} 회</S.AbsenceTd>
+                <S.ScoreTd>{data.goalPerMatch} 점</S.ScoreTd>
+              </S.TbodydTr>
             ))}
           </tbody>
-        </Table>
-      </Container>
+        </S.Table>
+      </S.Container>
     </>
   );
 };

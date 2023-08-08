@@ -111,7 +111,7 @@ const ScheduleRecord = () => {
   };
 
   const handleFieldClick = () => {
-    if (time === 0) {
+    if (clickTime === 0) {
       alert("기록을 시작해야 합니다.");
       return;
     }
@@ -133,36 +133,39 @@ const ScheduleRecord = () => {
     const fetchQuarter = async (quarter) => {
       try {
         const selectedQuarter = await axios.get(
-          `http://localhost:4000/${match}/${quarter}`
+          `http://localhost:4000/starting/${match}/${quarter}`
         );
-        setCurrentFormation(selectedQuarter.data.formation);
 
-        let newStartingPlayers = {
-          player1: ["", ""],
-          player2: ["", ""],
-          player3: ["", ""],
-          player4: ["", ""],
-          player5: ["", ""],
-          player6: ["", ""],
-          player7: ["", ""],
-          player8: ["", ""],
-          player9: ["", ""],
-          player10: ["", ""],
-          player11: ["", ""],
-        };
+        if (selectedQuarter) {
+          setCurrentFormation(selectedQuarter.data.formation);
 
-        for (let member of selectedQuarter.data.selectedStartings) {
-          for (let key in formations[selectedQuarter.data.formation]) {
-            if (
-              formations[selectedQuarter.data.formation][key][2] ===
-              member.POSITION
-            ) {
-              newStartingPlayers[key] = [member.PLAYER, member.POSITION];
+          let newStartingPlayers = {
+            player1: ["", ""],
+            player2: ["", ""],
+            player3: ["", ""],
+            player4: ["", ""],
+            player5: ["", ""],
+            player6: ["", ""],
+            player7: ["", ""],
+            player8: ["", ""],
+            player9: ["", ""],
+            player10: ["", ""],
+            player11: ["", ""],
+          };
+
+          for (let member of selectedQuarter.data.selectedStartings) {
+            for (let key in formations[selectedQuarter.data.formation]) {
+              if (
+                formations[selectedQuarter.data.formation][key][2] ===
+                member.POSITION
+              ) {
+                newStartingPlayers[key] = [member.PLAYER, member.POSITION];
+              }
             }
           }
-        }
 
-        setStartingPlayers(newStartingPlayers);
+          setStartingPlayers(newStartingPlayers);
+        }
       } catch (err) {
         console.error(err);
         setCurrentFormation(null);

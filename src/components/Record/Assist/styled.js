@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Title = styled.div`
-  margin: 60px 0px;
+  margin: 40px 0px 30px 0;
   font-family: "Noto Sans Display", sans-serif;
   font-size: 2rem;
   font-weight: 500;
@@ -9,8 +9,7 @@ export const Title = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 `;
 
 export const Select = styled.select`
@@ -36,7 +35,7 @@ export const TheadTr = styled.tr`
 `;
 
 export const RankTh = styled.th`
-  width: 7.69%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -44,7 +43,7 @@ export const RankTh = styled.th`
 `;
 
 export const NameTh = styled.th`
-  width: 30.77%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -52,7 +51,7 @@ export const NameTh = styled.th`
 `;
 
 export const PositionTh = styled.th`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -60,7 +59,7 @@ export const PositionTh = styled.th`
 `;
 
 export const ScoreTh = styled.th`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -68,7 +67,7 @@ export const ScoreTh = styled.th`
 `;
 
 export const MatchTh = styled.th`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -76,7 +75,7 @@ export const MatchTh = styled.th`
 `;
 
 export const ScorePerMatchTh = styled.th`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -89,7 +88,7 @@ export const TbodydTr = styled.tr`
 `;
 
 export const RankTd = styled.td`
-  width: 7.69%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -97,14 +96,14 @@ export const RankTd = styled.td`
 `;
 
 export const NameTd = styled.td`
-  width: 30.77%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
   vertical-align: middle;
 `;
 export const PositionTd = styled.td`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -126,7 +125,7 @@ export const ProfileImg = styled.img`
 export const ProfileName = styled.span``;
 
 export const ScoreTd = styled.td`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -134,7 +133,7 @@ export const ScoreTd = styled.td`
 `;
 
 export const MatchTd = styled.td`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -142,7 +141,7 @@ export const MatchTd = styled.td`
 `;
 
 export const ScorePerMatchTd = styled.td`
-  width: 15.38%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;

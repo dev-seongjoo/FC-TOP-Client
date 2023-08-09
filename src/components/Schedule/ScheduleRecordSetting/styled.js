@@ -109,7 +109,7 @@ export const Player = styled.div`
   background: url(${uniform}) no-repeat center center/cover;
 `;
 
-export const RecordBtn = styled(Link)`
+export const RecordBtn = styled.button`
   width: 300px;
   min-height: 50px;
   display: flex;
@@ -121,13 +121,4 @@ export const RecordBtn = styled(Link)`
   text-decoration: none;
   border: 3px solid black;
   background-color: transparent;
-
-  &:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
-  &:active {
-    background-color: transparent;
-  }
 `;

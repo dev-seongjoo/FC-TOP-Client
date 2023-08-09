@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import * as S from "./styled";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import field from "../../../assets/field.png";
 import {
   form442,
@@ -28,6 +28,8 @@ const ScheduleRecordSetting = () => {
 
   const { match } = useParams();
 
+  const navigate = useNavigate();
+
   const formations = {
     442: form442,
     433: form433,
@@ -38,16 +40,24 @@ const ScheduleRecordSetting = () => {
     343: form343,
   };
 
+  const handleRecordBtnClick = () => {
+    if (currentFormation === null) {
+      alert("선발 명단을 작성해주세요.");
+    }
+    navigate(`/schedule/record/${match}/${quarter}`);
+  };
+
   const fetchDataDetail = async () => {
     try {
       const selectedMatch = await axios.get(
         `http://localhost:4000/schedule/${match}`
       );
+
+      setSchedule(selectedMatch.data);
+
       const quarterRecords = await axios.get(
         `http://localhost:4000/record/check/${match}`
       );
-
-      setSchedule(selectedMatch.data);
 
       const updatedQuarterRecord = { ...quarterRecord };
 
@@ -56,12 +66,6 @@ const ScheduleRecordSetting = () => {
       });
 
       setQuarterRecord(updatedQuarterRecord);
-
-      const result = quarterRecords.data.find(
-        (record) => record.RECORD === false
-      );
-
-      setQuarter(result.QUARTER);
     } catch (error) {
       console.error(error);
     }
@@ -77,7 +81,9 @@ const ScheduleRecordSetting = () => {
         const selectedQuarter = await axios.get(
           `http://localhost:4000/starting/${match}/${quarter}`
         );
-        setCurrentFormation(selectedQuarter.data.formation);
+        if (selectedQuarter) {
+          setCurrentFormation(selectedQuarter.data.formation);
+        }
       } catch (err) {
         console.error(err);
         setCurrentFormation(null);
@@ -169,9 +175,7 @@ const ScheduleRecordSetting = () => {
                   )}
               </S.StartingLineup>
             </S.LabelWrapper>
-            <S.RecordBtn to={`/schedule/record/${match}/${quarter}`}>
-              기록
-            </S.RecordBtn>
+            <S.RecordBtn onClick={handleRecordBtnClick}>기록</S.RecordBtn>
           </>
         )}
       </S.Container>

@@ -35,7 +35,7 @@ export const TheadTr = styled.tr`
 `;
 
 export const RankTh = styled.th`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -43,7 +43,7 @@ export const RankTh = styled.th`
 `;
 
 export const NameTh = styled.th`
-  width: 23.07%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -51,7 +51,7 @@ export const NameTh = styled.th`
 `;
 
 export const AttendanceTh = styled.th`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -59,7 +59,7 @@ export const AttendanceTh = styled.th`
 `;
 
 export const LatenessTh = styled.th`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -67,7 +67,7 @@ export const LatenessTh = styled.th`
 `;
 
 export const AbsenceTh = styled.th`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -75,7 +75,7 @@ export const AbsenceTh = styled.th`
 `;
 
 export const ScoreTh = styled.th`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -88,25 +88,25 @@ export const TbodydTr = styled.tr`
 `;
 
 export const RankTd = styled.td`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;
 
 export const NameTd = styled.td`
-  width: 23.07%;
+  width: 16.67%;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;
 
 export const AttendanceTd = styled.td`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;
@@ -126,25 +126,25 @@ export const ProfileImg = styled.img`
 export const ProfileName = styled.span``;
 
 export const LatenessTd = styled.td`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;
 
 export const AbsenceTd = styled.td`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;
 
 export const ScoreTd = styled.td`
-  width: 15.38%;
+  width: 16.67%;
   font-size: 0.9rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;

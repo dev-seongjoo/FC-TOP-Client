@@ -1,6 +1,9 @@
+import { useEffect, useState } from "react";
 import * as S from "./styled";
+import axios from "axios";
 
 const Goal = () => {
+  // const [ranks, setRanks] = useState([]);
   const dummyData = [
     {
       rank: 1,
@@ -84,6 +87,15 @@ const Goal = () => {
     },
   ];
 
+  // const fetchGoalData = async () => {
+  //   const rank = await axios.get("http://localhost:4000/goalrank");
+  //   setRanks(rank.data);
+  // };
+
+  // useEffect(() => {
+  //   fetchGoalData();
+  // }, []);
+
   return (
     <>
       <S.Title>득점순위</S.Title>
@@ -95,26 +107,22 @@ const Goal = () => {
           <thead>
             <S.TheadTr>
               <S.RankTh>순위</S.RankTh>
-              <S.NameTh>선수 이름</S.NameTh>
+              <S.NameTh>이름</S.NameTh>
               <S.PositionTh>포지션</S.PositionTh>
               <S.ScoreTh>득점</S.ScoreTh>
               <S.MatchTh>경기</S.MatchTh>
             </S.TheadTr>
           </thead>
           <tbody>
-            {dummyData.map((data, index) => (
+            {/* {ranks.map((rank, index) => (
               <S.TbodydTr key={index}>
-                <S.RankTd>{data.rank}</S.RankTd>
-                <S.NameTd>
-                  <S.ProfileGroup>
-                    <S.ProfileName>{data.name}</S.ProfileName>
-                  </S.ProfileGroup>
-                </S.NameTd>
-                <S.PositionTd>{data.position}</S.PositionTd>
-                <S.ScoreTd>{data.goal}골</S.ScoreTd>
+                <S.RankTd>{index}</S.RankTd>
+                <S.NameTd>{rank.Player.KOR_NM}</S.NameTd>
+                <S.PositionTd>{rank.Player.POSITION_FIRST}</S.PositionTd>
+                <S.ScoreTd>{rank.goal_count}골</S.ScoreTd>
                 <S.MatchTd>{data.match}경기</S.MatchTd>
               </S.TbodydTr>
-            ))}
+            ))} */}
           </tbody>
         </S.Table>
       </S.Container>

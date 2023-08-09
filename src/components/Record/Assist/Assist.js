@@ -95,7 +95,7 @@ const Assist = () => {
           <thead>
             <S.TheadTr>
               <S.RankTh>순위</S.RankTh>
-              <S.NameTh>선수 이름</S.NameTh>
+              <S.NameTh>이름</S.NameTh>
               <S.PositionTh>포지션</S.PositionTh>
               <S.ScoreTh>도움</S.ScoreTh>
               <S.MatchTh>경기</S.MatchTh>
@@ -105,11 +105,7 @@ const Assist = () => {
             {dummyData.map((data, index) => (
               <S.TbodydTr key={index}>
                 <S.RankTd>{data.rank}</S.RankTd>
-                <S.NameTd>
-                  <S.ProfileGroup>
-                    <S.ProfileName>{data.name}</S.ProfileName>
-                  </S.ProfileGroup>
-                </S.NameTd>
+                <S.NameTd>{data.name}</S.NameTd>
                 <S.PositionTd>{data.position}</S.PositionTd>
                 <S.ScoreTd>{data.assist}도움</S.ScoreTd>
                 <S.MatchTd>{data.match}경기</S.MatchTd>

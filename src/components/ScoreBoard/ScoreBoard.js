@@ -36,7 +36,7 @@ const ScoreBoard = ({ score, lp, recordEvent, results }) => {
       if (confirmEnd) {
         setIsRecorded(true);
         setIsRecording(false);
-        console.log(results);
+
         await axios.post(`http://localhost:4000/record/${match}/${quarter}`, {
           results,
           time,

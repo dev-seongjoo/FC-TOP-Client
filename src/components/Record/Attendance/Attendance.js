@@ -1,4 +1,6 @@
 import * as S from "./styled";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Attendance = () => {
   const dummyData = [
@@ -95,26 +97,22 @@ const Attendance = () => {
           <thead>
             <S.TheadTr>
               <S.RankTh>순위</S.RankTh>
-              <S.NameTh>선수 이름</S.NameTh>
+              <S.NameTh>이름</S.NameTh>
+              <S.ScoreTh>점수</S.ScoreTh>
               <S.AttendanceTh>참석</S.AttendanceTh>
               <S.LatenessTh>무단지각</S.LatenessTh>
               <S.AbsenceTh>무단불참</S.AbsenceTh>
-              <S.ScoreTh>점수</S.ScoreTh>
             </S.TheadTr>
           </thead>
           <tbody>
             {dummyData.map((data, index) => (
               <S.TbodydTr key={index}>
                 <S.RankTd>{data.rank}</S.RankTd>
-                <S.NameTd>
-                  <S.ProfileGroup>
-                    <S.ProfileName>{data.name}</S.ProfileName>
-                  </S.ProfileGroup>
-                </S.NameTd>
+                <S.NameTd>{data.name}</S.NameTd>
+                <S.ScoreTd>{data.goalPerMatch} 점</S.ScoreTd>
                 <S.AttendanceTd>{data.goal} 회</S.AttendanceTd>
                 <S.LatenessTd>{data.match} 회</S.LatenessTd>
                 <S.AbsenceTd>{data.match} 회</S.AbsenceTd>
-                <S.ScoreTd>{data.goalPerMatch} 점</S.ScoreTd>
               </S.TbodydTr>
             ))}
           </tbody>

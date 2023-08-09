@@ -55,7 +55,7 @@ const ScheduleRecord = () => {
   };
 
   const handlePlayerClick = (index) => {
-    if (time === 0) {
+    if (time < 1) {
       alert("기록을 시작해야 합니다.");
       return;
     }
@@ -111,7 +111,7 @@ const ScheduleRecord = () => {
   };
 
   const handleFieldClick = () => {
-    if (clickTime === 0) {
+    if (time < 1) {
       alert("기록을 시작해야 합니다.");
       return;
     }
@@ -159,7 +159,10 @@ const ScheduleRecord = () => {
                 formations[selectedQuarter.data.formation][key][2] ===
                 member.POSITION
               ) {
-                newStartingPlayers[key] = [member.PLAYER, member.POSITION];
+                newStartingPlayers[key] = [
+                  member.Player.KOR_NM,
+                  member.POSITION,
+                ];
               }
             }
           }

@@ -124,9 +124,9 @@ const Participation = () => {
         <S.Table>
           <thead>
             <S.TheadTr>
+              <S.MatchNumTh>출전</S.MatchNumTh>
               <S.NameTh>이름</S.NameTh>
               <S.PositionTh>포지션</S.PositionTh>
-              <S.MatchNumTh>경기</S.MatchNumTh>
               <S.GoalTh>득점</S.GoalTh>
               <S.AssistTh>도움</S.AssistTh>
               <S.LpTh>실점</S.LpTh>
@@ -135,13 +135,9 @@ const Participation = () => {
           <tbody>
             {dummyData.map((data, index) => (
               <S.TbodyTr key={index}>
-                <S.NameTd>
-                  <S.ProfileGroup>
-                    <S.ProfileName>{data.name}</S.ProfileName>
-                  </S.ProfileGroup>
-                </S.NameTd>
-                <S.PositionTd>{data.position}</S.PositionTd>
                 <S.MatchNumTd>{data.matchNum}경기</S.MatchNumTd>
+                <S.NameTd>{data.name}</S.NameTd>
+                <S.PositionTd>{data.position}</S.PositionTd>
                 <S.GoalTd>{data.goal}득점</S.GoalTd>
                 <S.AssistTd>{data.assist}도움</S.AssistTd>
                 <S.LpTd>{data.lp}실점</S.LpTd>

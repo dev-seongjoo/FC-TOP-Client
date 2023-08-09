@@ -109,7 +109,7 @@ const StartingLineup = () => {
 
     alert("저장 완료되었습니다.");
 
-    await axios.post(`http://localhost:4000/${match}/${quarter}`, {
+    await axios.post(`http://localhost:4000/starting/${match}/${quarter}`, {
       match,
       quarter,
       selectedPlayer,
@@ -164,6 +164,8 @@ const StartingLineup = () => {
         );
         setCurrentFormation(result.data.formation);
 
+        console.log(result);
+
         let newSelectedPlayers = {
           player1: ["", ""],
           player2: ["", ""],
@@ -181,7 +183,7 @@ const StartingLineup = () => {
         for (let member of result.data.selectedStartings) {
           for (let key in formations[result.data.formation]) {
             if (formations[result.data.formation][key][2] === member.POSITION) {
-              newSelectedPlayers[key] = [member.PLAYER, member.POSITION];
+              newSelectedPlayers[key] = [member.Player.KOR_NM, member.POSITION];
             }
           }
         }

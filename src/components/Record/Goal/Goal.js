@@ -3,98 +3,29 @@ import * as S from "./styled";
 import axios from "axios";
 
 const Goal = () => {
-  // const [ranks, setRanks] = useState([]);
-  const dummyData = [
-    {
-      rank: 1,
-      name: "김성주",
-      position: "ST",
-      goal: 5,
-      match: 5,
-      goalPerMatch: 1,
-    },
-    {
-      rank: 2,
-      name: "박지성",
-      position: "CDM",
-      goal: 4,
-      match: 6,
-      goalPerMatch: 0.67,
-    },
-    {
-      rank: 3,
-      name: "황의조",
-      position: "LW",
-      goal: 4,
-      match: 7,
-      goalPerMatch: 0.57,
-    },
-    {
-      rank: 4,
-      name: "손흥민",
-      position: "RW",
-      goal: 3,
-      match: 5,
-      goalPerMatch: 0.6,
-    },
-    {
-      rank: 5,
-      name: "이승우",
-      position: "LM",
-      goal: 3,
-      match: 6,
-      goalPerMatch: 0.5,
-    },
-    {
-      rank: 6,
-      name: "이강인",
-      position: "RM",
-      goal: 2,
-      match: 5,
-      goalPerMatch: 0.4,
-    },
-    {
-      rank: 7,
-      name: "조현우",
-      position: "GK",
-      goal: 2,
-      match: 6,
-      goalPerMatch: 0.33,
-    },
-    {
-      rank: 8,
-      name: "기성용",
-      position: "CAM",
-      goal: 1,
-      match: 5,
-      goalPerMatch: 0.2,
-    },
-    {
-      rank: 9,
-      name: "김영권",
-      position: "CB",
-      goal: 1,
-      match: 7,
-      goalPerMatch: 0.14,
-    },
-    {
-      rank: 10,
-      name: "구자철",
-      position: "RB",
-      goal: 0,
-      match: 6,
-      goalPerMatch: 0,
-    },
-  ];
+  const [ranks, setRanks] = useState([]);
 
-  // const fetchGoalData = async () => {
-  //   const rank = await axios.get("http://localhost:4000/goalrank");
-  //   setRanks(rank.data);
-  // };
+  const fetchGoalData = async () => {
+    const rank = await axios.get("http://localhost:4000/goalrank");
 
-  // useEffect(() => {
-  //   fetchGoalData();
-  // }, []);
+    for (const player of rank.data) {
+      const id = player.PLAYER_ID;
+      const matchCountData = await axios.post(
+        `http://localhost:4000/personalmatchcount`,
+        {
+          id,
+        }
+      );
+
+      player.matchCount = matchCountData.data.matchCount;
+    }
+
+    setRanks(rank.data);
+  };
+
+  useEffect(() => {
+    fetchGoalData();
+  }, []);
 
   return (
     <>
@@ -114,15 +45,15 @@ const Goal = () => {
             </S.TheadTr>
           </thead>
           <tbody>
-            {/* {ranks.map((rank, index) => (
+            {ranks.map((rank, index) => (
               <S.TbodydTr key={index}>
-                <S.RankTd>{index}</S.RankTd>
+                <S.RankTd>{index + 1}</S.RankTd>
                 <S.NameTd>{rank.Player.KOR_NM}</S.NameTd>
                 <S.PositionTd>{rank.Player.POSITION_FIRST}</S.PositionTd>
                 <S.ScoreTd>{rank.goal_count}골</S.ScoreTd>
-                <S.MatchTd>{data.match}경기</S.MatchTd>
+                <S.MatchTd>{rank.matchCount}경기</S.MatchTd>
               </S.TbodydTr>
-            ))} */}
+            ))}
           </tbody>
         </S.Table>
       </S.Container>

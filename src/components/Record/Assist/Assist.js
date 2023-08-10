@@ -1,88 +1,31 @@
+import { useEffect, useState } from "react";
 import * as S from "./styled";
+import axios from "axios";
 
 const Assist = () => {
-  const dummyData = [
-    {
-      rank: 1,
-      name: "김성주",
-      position: "ST",
-      assist: 5,
-      match: 5,
-      assistPerMatch: 1,
-    },
-    {
-      rank: 2,
-      name: "박지성",
-      position: "CDM",
-      assist: 4,
-      match: 6,
-      assistPerMatch: 0.67,
-    },
-    {
-      rank: 3,
-      name: "황의조",
-      position: "LW",
-      assist: 4,
-      match: 7,
-      assistPerMatch: 0.57,
-    },
-    {
-      rank: 4,
-      name: "손흥민",
-      position: "RW",
-      assist: 3,
-      match: 5,
-      assistPerMatch: 0.6,
-    },
-    {
-      rank: 5,
-      name: "이승우",
-      position: "LM",
-      assist: 3,
-      match: 6,
-      assistPerMatch: 0.5,
-    },
-    {
-      rank: 6,
-      name: "이강인",
-      position: "RM",
-      assist: 2,
-      match: 5,
-      assistPerMatch: 0.4,
-    },
-    {
-      rank: 7,
-      name: "조현우",
-      position: "GK",
-      assist: 2,
-      match: 6,
-      assistPerMatch: 0.33,
-    },
-    {
-      rank: 8,
-      name: "기성용",
-      position: "CAM",
-      assist: 1,
-      match: 5,
-      assistPerMatch: 0.2,
-    },
-    {
-      rank: 9,
-      name: "김영권",
-      position: "CB",
-      assist: 1,
-      match: 7,
-      assistPerMatch: 0.14,
-    },
-    {
-      rank: 10,
-      name: "구자철",
-      position: "RB",
-      assist: 0,
-      match: 6,
-      assistPerMatch: 0,
-    },
-  ];
+  const [ranks, setRanks] = useState([]);
+
+  const fetchAssistData = async () => {
+    const rank = await axios.get("http://localhost:4000/assistrank");
+
+    for (const player of rank.data) {
+      const id = player.PLAYER_ID;
+      const matchCountData = await axios.post(
+        `http://localhost:4000/personalmatchcount`,
+        {
+          id,
+        }
+      );
+
+      player.matchCount = matchCountData.data.matchCount;
+    }
+
+    setRanks(rank.data);
+  };
+
+  useEffect(() => {
+    fetchAssistData();
+  }, []);
 
   return (
     <>
@@ -102,13 +45,13 @@ const Assist = () => {
             </S.TheadTr>
           </thead>
           <tbody>
-            {dummyData.map((data, index) => (
+            {ranks.map((rank, index) => (
               <S.TbodydTr key={index}>
-                <S.RankTd>{data.rank}</S.RankTd>
-                <S.NameTd>{data.name}</S.NameTd>
-                <S.PositionTd>{data.position}</S.PositionTd>
-                <S.ScoreTd>{data.assist}도움</S.ScoreTd>
-                <S.MatchTd>{data.match}경기</S.MatchTd>
+                <S.RankTd>{index + 1}</S.RankTd>
+                <S.NameTd>{rank.Player.KOR_NM}</S.NameTd>
+                <S.PositionTd>{rank.Player.POSITION_FIRST}</S.PositionTd>
+                <S.ScoreTd>{rank.assist_count}도움</S.ScoreTd>
+                <S.MatchTd>{rank.matchCount}경기</S.MatchTd>
               </S.TbodydTr>
             ))}
           </tbody>

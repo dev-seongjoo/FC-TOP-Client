@@ -106,6 +106,7 @@ const ScheduleRegister = () => {
   const onPositionUpdate = (newPosition) => {
     const La = newPosition.La;
     const Ma = newPosition.Ma;
+    console.log(La, Ma);
 
     setFormData((prevData) => ({
       ...prevData,

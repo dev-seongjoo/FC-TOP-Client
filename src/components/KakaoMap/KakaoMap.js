@@ -95,16 +95,28 @@ const KakaoMap = ({
       const [myLatitude, myLongitude] = myPosition.split(",").map(parseFloat);
       const myPositionLatLng = new kakao.maps.LatLng(myLatitude, myLongitude);
 
+      var coContent =
+        "<div style='background-color: black; color: white; padding: 7px; border-radius: 10px;'>현재 위치</div>";
+      var coPosition = myPositionLatLng;
+      var customOverlay = new kakao.maps.CustomOverlay({
+        position: coPosition,
+        content: coContent,
+        xAnchor: 0.5,
+        yAnchor: 2.5,
+      });
+
       if (!myMarkerRef.current) {
         const myMarker = new kakao.maps.Marker({
           position: myPositionLatLng,
         });
         myMarkerRef.current = myMarker;
+        customOverlay.setMap(map);
       } else {
         const myMarker = new kakao.maps.Marker({
           position: myPositionLatLng,
         });
         myMarkerRef.current = myMarker;
+        customOverlay.setMap(map);
       }
       myMarkerRef.current.setPosition(myPositionLatLng);
       myMarkerRef.current.setMap(map);
@@ -124,8 +136,6 @@ const KakaoMap = ({
     moveLocationPosition,
     moveMyPosition,
     isRegister,
-    onPositionUpdate,
-    onAddressUpdate,
   ]);
 
   return <S.Container id='map'></S.Container>;

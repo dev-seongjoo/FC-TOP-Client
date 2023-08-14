@@ -141,7 +141,7 @@ export const CustomLocation = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px 0;
 `;
 
 export const SearchWrapper = styled.div`

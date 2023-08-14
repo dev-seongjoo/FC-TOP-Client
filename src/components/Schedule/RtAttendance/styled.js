@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Title = styled.div`
   font-family: "Noto Sans Display", sans-serif;
@@ -22,9 +22,15 @@ export const Container = styled.div`
   align-items: center;
 `;
 
+export const NoticeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
 export const Notice = styled.div`
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: 10px;
 `;
 
@@ -37,7 +43,24 @@ export const MyLocationBtn = styled.button`
 `;
 
 export const DistanceNotice = styled.div`
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 500;
   margin-bottom: 10px;
+`;
+
+export const AttendanceBtn = styled.button`
+  width: 300px;
+  height: 50px;
+  border: 3px solid black;
+  color: black;
+  background-color: transparent;
+  margin-top: 10px;
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      background-color: #ccc; /* 회색 배경 */
+      color: white; /* 글자색 흰색 */
+      cursor: not-allowed; /* 커서 스타일 변경 */
+    `}
 `;

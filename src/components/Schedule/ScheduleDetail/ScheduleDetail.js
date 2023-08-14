@@ -105,9 +105,6 @@ const ScheduleDetail = () => {
               <KakaoMap
                 position={schedule.LOCATION_POSITION}
                 onAddressUpdate={onAddressUpdate}
-                width={"300px"}
-                height={"300px"}
-                margin={"10px 0 0 0"}
                 isMarker={true}
               />
 

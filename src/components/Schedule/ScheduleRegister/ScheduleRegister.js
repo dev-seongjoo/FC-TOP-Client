@@ -246,10 +246,8 @@ const ScheduleRegister = () => {
           )}
           <KakaoMap
             position={locationPosition}
+            isRegister={true}
             search={formData.customLocationAddress}
-            width={"300px"}
-            height={"300px"}
-            margin={"10px 0 0 0"}
             onPositionUpdate={onPositionUpdate}
           />
           {formData.locationPosition.length === 0 ? (

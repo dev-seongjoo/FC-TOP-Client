@@ -10,7 +10,7 @@ const RecordPage = () => {
     { path: "/record/attendance", label: "출석 순위" },
     { path: "/record/goal", label: "득점 순위" },
     { path: "/record/assist", label: "도움 순위" },
-    { path: "/record/participation", label: "선수별 출전 기록" },
+    { path: "/record/participation", label: "선수별 기록" },
   ];
 
   useEffect(() => {

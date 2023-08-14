@@ -53,6 +53,7 @@ const Vote = () => {
       alert("로그인이 필요합니다.");
     }
     try {
+      console.log(match, playerId, attendance);
       await axios.post("http://localhost:4000/vote", {
         match,
         playerId,

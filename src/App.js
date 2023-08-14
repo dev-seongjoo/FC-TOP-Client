@@ -40,6 +40,7 @@ import StartingLineup from "./components/Schedule/StartingLineup/StartingLineup"
 import ScheduleRecordSetting from "./components/Schedule/ScheduleRecordSetting/ScheduleRecordSetting";
 import ScheduleRecord from "./components/Schedule/ScheduleRecord/ScheduleRecord";
 import ScheduleRecordSummary from "./components/Schedule/ScheduleRecordSummary/ScheduleRecordSummary";
+import RtAttendance from "./components/Schedule/RtAttendance/RtAttendance";
 
 const App = () => {
   return (
@@ -67,6 +68,7 @@ const App = () => {
               path='recordsummary/:match/:quarter'
               element={<ScheduleRecordSummary />}
             />
+            <Route path='rtattendance/:match' element={<RtAttendance />} />
           </Route>
           <Route path='/record/*' element={<RecordPage />}>
             <Route path='attendance' element={<Attendance />} />

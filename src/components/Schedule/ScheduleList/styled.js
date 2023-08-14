@@ -9,19 +9,6 @@ export const Title = styled.div`
   margin: 30px 0;
 `;
 
-export const UploadBtn = styled(Link)`
-  width: 200px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid black;
-  color: black;
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-`;
-
 export const HorizontalLine = styled.div`
   height: 1px;
   background-color: rgba(0, 0, 0, 0.2);
@@ -79,7 +66,7 @@ export const EmptyNotice = styled.div`
 
 export const MatchBox = styled(Link)`
   width: 100%;
-  height: 200px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -110,6 +97,7 @@ export const MatchTime = styled.div`
 export const MatchPlace = styled.div`
   font-size: 1rem;
   font-weight: 700;
+  margin-bottom: 15px;
 `;
 
 export const TeamGroup = styled.div`
@@ -168,7 +156,6 @@ export const Round = styled.div`
 
 export const BtnGroup = styled.div`
   display: flex;
-  flex-direction: column;
 `;
 
 export const VideoBtn = styled.button`
@@ -181,15 +168,7 @@ export const VideoBtn = styled.button`
   background-color: #c70101;
   border: none;
   border-radius: 5px;
-
-  &:hover {
-    opacity: 0.7;
-    cursor: pointer;
-  }
-
-  &:active {
-    opacity: 1;
-  }
+  margin-right: 10px;
 `;
 
 export const RecordBtn = styled.button`
@@ -223,12 +202,18 @@ export const AttendanceBtn = styled.button`
   background-color: transparent;
   border: 3px solid black;
   border-radius: 5px;
-  &:hover {
-    opacity: 0.7;
-    cursor: pointer;
-  }
+`;
 
-  &:active {
-    opacity: 1;
-  }
+export const UploadBtn = styled(Link)`
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid black;
+  color: black;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-bottom: 30px;
 `;

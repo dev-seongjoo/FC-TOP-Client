@@ -1,15 +1,21 @@
 import { useEffect, useState } from "react";
 import * as S from "./styled";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ScheduleList = () => {
   const currentTime = Date.now();
   const currentMonth = new Date().getMonth() + 1;
-  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const monthOptions = Array.from({ length: 12 }, (_, index) => index + 1);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
   const [schedules, setSchedules] = useState([]);
 
-  // 선택된 월에 해당하는 데이터를 백엔드로부터 가져와서 상태로 저장
+  const navigate = useNavigate();
+
+  const handleAttendanceClick = (event, id) => {
+    event.preventDefault();
+    navigate(`/schedule/rtattendance/${id}`);
+  };
 
   useEffect(() => {
     fetchData(currentMonth);
@@ -36,8 +42,8 @@ const ScheduleList = () => {
 
   const handleMonthSelect = (event) => {
     const month = event.target.value;
-    setSelectedMonth(month); // 선택된 월을 업데이트
-    fetchData(month); // 선택된 월에 맞는 데이터 요청
+    setSelectedMonth(month);
+    fetchData(month);
   };
 
   return (
@@ -89,14 +95,18 @@ const ScheduleList = () => {
                   ? schedule.CUSTOM_LOCATION
                   : schedule.LOCATION}
               </S.MatchPlace>
-              {/* {new Date(schedule.DATE) > currentTime ? (
-                <S.AttendanceBtn>출석</S.AttendanceBtn>
+              {new Date(schedule.DATE) > currentTime ? (
+                <S.AttendanceBtn
+                  onClick={(event) => handleAttendanceClick(event, schedule.ID)}
+                >
+                  출석
+                </S.AttendanceBtn>
               ) : (
                 <S.BtnGroup>
-                  <S.RecordBtn>경기 기록</S.RecordBtn>
                   <S.VideoBtn>경기 영상</S.VideoBtn>
+                  <S.RecordBtn>경기 기록</S.RecordBtn>
                 </S.BtnGroup>
-              )} */}
+              )}
             </S.MatchBox>
           ))
         )}

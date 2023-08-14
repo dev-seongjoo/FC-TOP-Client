@@ -35,7 +35,7 @@ export const TheadTr = styled.tr`
 `;
 
 export const RankTh = styled.th`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -43,7 +43,7 @@ export const RankTh = styled.th`
 `;
 
 export const NameTh = styled.th`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -51,7 +51,7 @@ export const NameTh = styled.th`
 `;
 
 export const AttendanceTh = styled.th`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -59,7 +59,7 @@ export const AttendanceTh = styled.th`
 `;
 
 export const LatenessTh = styled.th`
-  width: 16.67%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -67,7 +67,7 @@ export const LatenessTh = styled.th`
 `;
 
 export const AbsenceTh = styled.th`
-  width: 16.67%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -75,7 +75,7 @@ export const AbsenceTh = styled.th`
 `;
 
 export const ScoreTh = styled.th`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -88,7 +88,7 @@ export const TbodydTr = styled.tr`
 `;
 
 export const RankTd = styled.td`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -96,7 +96,7 @@ export const RankTd = styled.td`
 `;
 
 export const NameTd = styled.td`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -104,29 +104,15 @@ export const NameTd = styled.td`
 `;
 
 export const AttendanceTd = styled.td`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
   vertical-align: middle;
 `;
 
-export const ProfileGroup = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ProfileImg = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 20px;
-`;
-
-export const ProfileName = styled.span``;
-
 export const LatenessTd = styled.td`
-  width: 16.67%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -134,7 +120,7 @@ export const LatenessTd = styled.td`
 `;
 
 export const AbsenceTd = styled.td`
-  width: 16.67%;
+  width: 20%;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;
@@ -142,7 +128,7 @@ export const AbsenceTd = styled.td`
 `;
 
 export const ScoreTd = styled.td`
-  width: 16.67%;
+  width: 15%;
   font-size: 0.9rem;
   font-weight: 600;
   text-align: center;

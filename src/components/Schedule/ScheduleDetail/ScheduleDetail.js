@@ -38,17 +38,28 @@ const ScheduleDetail = () => {
     fetchDataDetail();
   }, []);
 
-  let date = new Date(schedule.DATE);
-  const year = date.getFullYear();
-  const month = date.getMonth() + 1;
-  const day = date.getDate();
-  const hour = date.getHours();
+  let matchTime = new Date(schedule.DATE);
+  const year = matchTime.getFullYear();
+  const month = matchTime.getMonth() + 1;
+  const day = matchTime.getDate();
+  const hour = matchTime.getHours();
   const duration = +schedule.DURATION;
-  date = `${year}년 ${month}월 ${day}일 오전 ${hour}시 - ${hour + duration}시`;
-
-  const checkLate = `오전 ${hour - 1}시 ${60 - schedule.CHECK_LATE}분 이후`;
 
   const currentTime = new Date();
+  const voteEnabled =
+    currentTime.getTime() <
+    matchTime.getTime() - schedule.CHECK_LATE * 60 * 1000 - 30 * 60 * 1000;
+
+  console.log("현재시간: ", currentTime.getTime());
+  console.log(
+    "투표가능시간: ",
+    matchTime.getTime() - schedule.CHECK_LATE * 60 * 1000 - 30 * 60 * 1000
+  );
+
+  matchTime = `${year}년 ${month}월 ${day}일 오전 ${hour}시 - ${
+    hour + duration
+  }시`;
+  const checkLate = `오전 ${hour - 1}시 ${60 - schedule.CHECK_LATE}분 이후`;
 
   const onAddressUpdate = (newAddress) => {
     setLocationAddress(newAddress);
@@ -91,7 +102,7 @@ const ScheduleDetail = () => {
           <S.Container>
             <S.LabelWrapper>
               <S.Label>일시</S.Label>
-              <S.InfoBox>{date}</S.InfoBox>
+              <S.InfoBox>{matchTime}</S.InfoBox>
             </S.LabelWrapper>
             <S.LabelWrapper>
               <S.Label>지각 체크</S.Label>
@@ -143,15 +154,17 @@ const ScheduleDetail = () => {
             <S.LabelWrapper>
               <S.VoteWrapper>
                 <S.Label>투표</S.Label>
-                {currentTime > new Date(schedule.DATE) ? (
-                  <div> 투표가 종료되었습니다 </div>
-                ) : (
-                  <S.VoteResult onClick={handleVoteResultClick}>
-                    {voteResult ? "닫기" : "자세히 보기"}
-                  </S.VoteResult>
-                )}
+                <S.VoteResult onClick={handleVoteResultClick}>
+                  {voteResult ? "닫기" : "자세히 보기"}
+                </S.VoteResult>
               </S.VoteWrapper>
-              {voteResult ? <VoteResult /> : <Vote />}
+              {voteResult ? (
+                <VoteResult />
+              ) : voteEnabled ? (
+                <Vote />
+              ) : (
+                <S.InfoBox>투표가 종료되었습니다.</S.InfoBox>
+              )}
             </S.LabelWrapper>
             <S.BtnWrapper>
               <S.RecordBtn to={`/schedule/recordsetting/${match}`}>

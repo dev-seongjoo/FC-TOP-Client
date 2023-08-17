@@ -1,25 +1,5 @@
 import React from "react";
-import {
-  Title,
-  Container,
-  Option,
-  Select,
-  Table,
-  TheadTr,
-  MatchDateTh,
-  OpponentTh,
-  AttendanceLimitTh,
-  AttendanceTimeTh,
-  AttendanceStatusTh,
-  TbodydTr,
-  MatchDateTd,
-  OpponentTd,
-  AttendanceLimitTd,
-  AttendanceTimeTd,
-  AttendanceStatusTd,
-  VotingTd,
-  VotingTh,
-} from "./styled";
+import * as S from "./styled";
 
 const MyAttendance = () => {
   const dummyData = [
@@ -37,7 +17,7 @@ const MyAttendance = () => {
       voting: "불참석",
       attendanceLimit: "06:30",
       attendanceTime: "정보 없음",
-      attendanceStatus: "인정 결석",
+      attendanceStatus: "결석",
     },
     {
       matchDate: "2023/07/15",
@@ -45,7 +25,7 @@ const MyAttendance = () => {
       voting: "참석",
       attendanceLimit: "06:30",
       attendanceTime: "06:33",
-      attendanceStatus: "무단 지각",
+      attendanceStatus: "지각",
     },
     {
       matchDate: "2023/07/22",
@@ -53,7 +33,7 @@ const MyAttendance = () => {
       voting: "참석",
       attendanceLimit: "06:30",
       attendanceTime: "정보 없음",
-      attendanceStatus: "무단 결석",
+      attendanceStatus: "결석",
     },
     {
       matchDate: "2023/07/29",
@@ -61,41 +41,43 @@ const MyAttendance = () => {
       voting: "참석",
       attendanceLimit: "06:30",
       attendanceTime: "07:00",
-      attendanceStatus: "인정 지각",
+      attendanceStatus: "지각",
     },
   ];
 
   return (
-    <Container>
-      <Title>출석</Title>
-      <Select>
-        <Option>2023</Option>
-      </Select>
-      <Table>
+    <S.Container>
+      <S.Title>출석</S.Title>
+      <S.Select>
+        <S.Option>2023</S.Option>
+      </S.Select>
+      <S.Table>
         <thead>
-          <TheadTr>
-            <MatchDateTh>경기 일자</MatchDateTh>
-            <OpponentTh>상대팀</OpponentTh>
-            <VotingTh>투표</VotingTh>
-            <AttendanceLimitTh>출석 제한 시간</AttendanceLimitTh>
-            <AttendanceTimeTh>출석 시간</AttendanceTimeTh>
-            <AttendanceStatusTh>출석 상태</AttendanceStatusTh>
-          </TheadTr>
+          <S.TheadTr>
+            <S.MatchDateTh>경기 일자</S.MatchDateTh>
+            <S.OpponentTh>상대팀</S.OpponentTh>
+            <S.VotingTh>투표</S.VotingTh>
+            <S.AttendanceLimitTh>지각 체크</S.AttendanceLimitTh>
+            <S.AttendanceTimeTh>출석 시간</S.AttendanceTimeTh>
+            <S.AttendanceStatusTh>출석 상태</S.AttendanceStatusTh>
+          </S.TheadTr>
         </thead>
         <tbody>
           {dummyData.map((data) => (
-            <TbodydTr>
-              <MatchDateTd>{data.matchDate}</MatchDateTd>
-              <OpponentTd>{data.opponent}</OpponentTd>
-              <VotingTd>{data.voting}</VotingTd>
-              <AttendanceLimitTd>{data.attendanceLimit}</AttendanceLimitTd>
-              <AttendanceTimeTd>{data.attendanceTime}</AttendanceTimeTd>
-              <AttendanceStatusTd>{data.attendanceStatus}</AttendanceStatusTd>
-            </TbodydTr>
+            <S.TbodydTr>
+              <S.MatchDateTd>{data.matchDate}</S.MatchDateTd>
+              <S.OpponentTd>{data.opponent}</S.OpponentTd>
+              <S.VotingTd>{data.voting}</S.VotingTd>
+              <S.AttendanceLimitTd>{data.attendanceLimit}</S.AttendanceLimitTd>
+              <S.AttendanceTimeTd>{data.attendanceTime}</S.AttendanceTimeTd>
+              <S.AttendanceStatusTd>
+                {data.attendanceStatus}
+              </S.AttendanceStatusTd>
+            </S.TbodydTr>
           ))}
         </tbody>
-      </Table>
-    </Container>
+      </S.Table>
+    </S.Container>
   );
 };
 

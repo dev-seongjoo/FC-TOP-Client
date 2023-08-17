@@ -50,12 +50,6 @@ const ScheduleDetail = () => {
     currentTime.getTime() <
     matchTime.getTime() - schedule.CHECK_LATE * 60 * 1000 - 30 * 60 * 1000;
 
-  console.log("현재시간: ", currentTime.getTime());
-  console.log(
-    "투표가능시간: ",
-    matchTime.getTime() - schedule.CHECK_LATE * 60 * 1000 - 30 * 60 * 1000
-  );
-
   matchTime = `${year}년 ${month}월 ${day}일 오전 ${hour}시 - ${
     hour + duration
   }시`;
@@ -97,7 +91,6 @@ const ScheduleDetail = () => {
       {!isLoading && (
         <>
           <S.Title>경기 일정</S.Title>
-
           <S.HorizontalLine />
           <S.Container>
             <S.LabelWrapper>

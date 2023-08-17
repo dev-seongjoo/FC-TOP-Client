@@ -1,37 +1,5 @@
 import React, { useState } from "react";
-import {
-  Title,
-  Container,
-  Option,
-  Select,
-  TheadTr,
-  MatchDateTh,
-  OpponentTh,
-  TbodyTr,
-  MatchDateTd,
-  OpponentTd,
-  VotingTd,
-  VotingTh,
-  QuaterTh,
-  QuaterTd,
-  MainTable,
-  SubTable,
-  ExpandBtn,
-  ParticipationTimeTd,
-  ParticipationTimeTh,
-  PersonalGoalTh,
-  PersonalAssistTh,
-  PersonalGoalTd,
-  PersonalAssistTd,
-  SubTheadTr,
-  SubTbodyTr,
-  LpTh,
-  OgTh,
-  LpTd,
-  OgTd,
-  PositionTh,
-  PositionTd,
-} from "./styled";
+import * as S from "./styled";
 
 const MyRecord = () => {
   const [expandedRows, setExpandedRows] = useState([]);
@@ -98,122 +66,118 @@ const MyRecord = () => {
   ];
 
   return (
-    <Container>
-      <Title>경기 기록</Title>
-      <Select>
-        <Option>2023</Option>
-      </Select>
-      <MainTable>
+    <S.Container>
+      <S.Title>경기 기록</S.Title>
+      <S.Select>
+        <S.Option>2023</S.Option>
+      </S.Select>
+      <S.MainTable>
         <thead>
-          <TheadTr>
-            <MatchDateTh>경기 일자</MatchDateTh>
-            <OpponentTh>상대팀</OpponentTh>
-            <VotingTh>자세히 보기</VotingTh>
-          </TheadTr>
+          <S.TheadTr>
+            <S.MatchDateTh>경기 일자</S.MatchDateTh>
+            <S.OpponentTh>상대팀</S.OpponentTh>
+            <S.VotingTh>자세히 보기</S.VotingTh>
+          </S.TheadTr>
         </thead>
         <tbody>
           {dummyData.map((data) => (
             <>
-              <TbodyTr key={data.id}>
-                <MatchDateTd>{data.matchDate}</MatchDateTd>
-                <OpponentTd>{data.opponent}</OpponentTd>
-                <VotingTd>
-                  <ExpandBtn
+              <S.TbodyTr key={data.id}>
+                <S.MatchDateTd>{data.matchDate}</S.MatchDateTd>
+                <S.OpponentTd>{data.opponent}</S.OpponentTd>
+                <S.VotingTd>
+                  <S.ExpandBtn
                     className='material-symbols-outlined'
                     onClick={() => handleExpandClick(data.id)}
                   >
                     {expandedRows.includes(data.id)
                       ? "expand_less"
                       : "expand_more"}
-                  </ExpandBtn>
-                </VotingTd>
-              </TbodyTr>
+                  </S.ExpandBtn>
+                </S.VotingTd>
+              </S.TbodyTr>
               {expandedRows.includes(data.id) && (
-                <TbodyTr>
+                <S.TbodyTr>
                   <td colSpan={3}>
-                    <SubTable>
+                    <S.SubTable>
                       <thead>
-                        <SubTheadTr>
-                          <QuaterTh>쿼터</QuaterTh>
-                          <PositionTh>포지션</PositionTh>
-                          <ParticipationTimeTh>출전 시간</ParticipationTimeTh>
-                          <PersonalGoalTh>득점</PersonalGoalTh>
-                          <PersonalAssistTh>도움</PersonalAssistTh>
-                          <LpTh>실점</LpTh>
-                          <OgTh>자책</OgTh>
-                        </SubTheadTr>
+                        <S.SubTheadTr>
+                          <S.QuaterTh>쿼터</S.QuaterTh>
+                          <S.PositionTh>포지션</S.PositionTh>
+                          <S.ParticipationTimeTh>
+                            출전 시간
+                          </S.ParticipationTimeTh>
+                          <S.PersonalGoalTh>득점</S.PersonalGoalTh>
+                          <S.PersonalAssistTh>도움</S.PersonalAssistTh>
+                          <S.LpTh>실점</S.LpTh>
+                          <S.OgTh>자책</S.OgTh>
+                        </S.SubTheadTr>
                       </thead>
                       <tbody>
-                        <SubTbodyTr>
-                          <QuaterTd>1Q</QuaterTd>
-                          <PositionTd>LW</PositionTd>
-                          <ParticipationTimeTd>22분</ParticipationTimeTd>
-
-                          <PersonalGoalTd>1득점</PersonalGoalTd>
-                          <PersonalAssistTd>0도움</PersonalAssistTd>
-                          <LpTd>0</LpTd>
-                          <OgTd>0</OgTd>
-                        </SubTbodyTr>
-                        <SubTbodyTr>
-                          <QuaterTd>2Q</QuaterTd>
-                          <PositionTd>미출전</PositionTd>
-                          <ParticipationTimeTd>미출전</ParticipationTimeTd>
-
-                          <PersonalGoalTd>미출전</PersonalGoalTd>
-                          <PersonalAssistTd>미출전</PersonalAssistTd>
-                          <LpTd>미출전</LpTd>
-                          <OgTd>미출전</OgTd>
-                        </SubTbodyTr>
-                        <SubTbodyTr>
-                          <QuaterTd>3Q</QuaterTd>
-                          <PositionTd>LW</PositionTd>
-                          <ParticipationTimeTd>23분</ParticipationTimeTd>
-
-                          <PersonalGoalTd>1득점</PersonalGoalTd>
-                          <PersonalAssistTd>1도움</PersonalAssistTd>
-                          <LpTd>0</LpTd>
-                          <OgTd>0</OgTd>
-                        </SubTbodyTr>
-                        <SubTbodyTr>
-                          <QuaterTd>4Q</QuaterTd>
-                          <PositionTd>미출전</PositionTd>
-                          <ParticipationTimeTd>미출전</ParticipationTimeTd>
-
-                          <PersonalGoalTd>미출전</PersonalGoalTd>
-                          <PersonalAssistTd>미출전</PersonalAssistTd>
-                          <LpTd>미출전</LpTd>
-                          <OgTd>미출전</OgTd>
-                        </SubTbodyTr>
-                        <SubTbodyTr>
-                          <QuaterTd>5Q</QuaterTd>
-                          <PositionTd>LW</PositionTd>
-                          <ParticipationTimeTd>20분</ParticipationTimeTd>
-
-                          <PersonalGoalTd>0득점</PersonalGoalTd>
-                          <PersonalAssistTd>0도움</PersonalAssistTd>
-                          <LpTd>0</LpTd>
-                          <OgTd>0</OgTd>
-                        </SubTbodyTr>
-                        <SubTbodyTr>
-                          <QuaterTd>6Q</QuaterTd>
-                          <PositionTd>LW</PositionTd>
-                          <ParticipationTimeTd>5분</ParticipationTimeTd>
-
-                          <PersonalGoalTd>0득점</PersonalGoalTd>
-                          <PersonalAssistTd>2도움</PersonalAssistTd>
-                          <LpTd>0</LpTd>
-                          <OgTd>0</OgTd>
-                        </SubTbodyTr>
+                        <S.SubTbodyTr>
+                          <S.QuaterTd>1Q</S.QuaterTd>
+                          <S.PositionTd>LW</S.PositionTd>
+                          <S.ParticipationTimeTd>22분</S.ParticipationTimeTd>
+                          <S.PersonalGoalTd>1득점</S.PersonalGoalTd>
+                          <S.PersonalAssistTd>0도움</S.PersonalAssistTd>
+                          <S.LpTd>0</S.LpTd>
+                          <S.OgTd>0</S.OgTd>
+                        </S.SubTbodyTr>
+                        <S.SubTbodyTr>
+                          <S.QuaterTd>2Q</S.QuaterTd>
+                          <S.PositionTd>미출전</S.PositionTd>
+                          <S.ParticipationTimeTd>미출전</S.ParticipationTimeTd>
+                          <S.PersonalGoalTd>미출전</S.PersonalGoalTd>
+                          <S.PersonalAssistTd>미출전</S.PersonalAssistTd>
+                          <S.LpTd>미출전</S.LpTd>
+                          <S.OgTd>미출전</S.OgTd>
+                        </S.SubTbodyTr>
+                        <S.SubTbodyTr>
+                          <S.QuaterTd>3Q</S.QuaterTd>
+                          <S.PositionTd>LW</S.PositionTd>
+                          <S.ParticipationTimeTd>23분</S.ParticipationTimeTd>
+                          <S.PersonalGoalTd>1득점</S.PersonalGoalTd>
+                          <S.PersonalAssistTd>1도움</S.PersonalAssistTd>
+                          <S.LpTd>0</S.LpTd>
+                          <S.OgTd>0</S.OgTd>
+                        </S.SubTbodyTr>
+                        <S.SubTbodyTr>
+                          <S.QuaterTd>4Q</S.QuaterTd>
+                          <S.PositionTd>미출전</S.PositionTd>
+                          <S.ParticipationTimeTd>미출전</S.ParticipationTimeTd>
+                          <S.PersonalGoalTd>미출전</S.PersonalGoalTd>
+                          <S.PersonalAssistTd>미출전</S.PersonalAssistTd>
+                          <S.LpTd>미출전</S.LpTd>
+                          <S.OgTd>미출전</S.OgTd>
+                        </S.SubTbodyTr>
+                        <S.SubTbodyTr>
+                          <S.QuaterTd>5Q</S.QuaterTd>
+                          <S.PositionTd>LW</S.PositionTd>
+                          <S.ParticipationTimeTd>20분</S.ParticipationTimeTd>
+                          <S.PersonalGoalTd>0득점</S.PersonalGoalTd>
+                          <S.PersonalAssistTd>0도움</S.PersonalAssistTd>
+                          <S.LpTd>0</S.LpTd>
+                          <S.OgTd>0</S.OgTd>
+                        </S.SubTbodyTr>
+                        <S.SubTbodyTr>
+                          <S.QuaterTd>6Q</S.QuaterTd>
+                          <S.PositionTd>LW</S.PositionTd>
+                          <S.ParticipationTimeTd>5분</S.ParticipationTimeTd>
+                          <S.PersonalGoalTd>0득점</S.PersonalGoalTd>
+                          <S.PersonalAssistTd>2도움</S.PersonalAssistTd>
+                          <S.LpTd>0</S.LpTd>
+                          <S.OgTd>0</S.OgTd>
+                        </S.SubTbodyTr>
                       </tbody>
-                    </SubTable>
+                    </S.SubTable>
                   </td>
-                </TbodyTr>
+                </S.TbodyTr>
               )}
             </>
           ))}
         </tbody>
-      </MainTable>
-    </Container>
+      </S.MainTable>
+    </S.Container>
   );
 };
 

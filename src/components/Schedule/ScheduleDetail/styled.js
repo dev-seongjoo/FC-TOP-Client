@@ -16,8 +16,7 @@ export const HorizontalLine = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,6 +31,7 @@ export const LabelWrapper = styled.div`
 export const Label = styled.label`
   font-size: 1.5rem;
   font-weight: 700;
+  margin-top: -10px;
   margin-bottom: 10px;
 `;
 
@@ -44,6 +44,7 @@ export const InfoBox = styled.div`
   font-size: 1.2rem;
   font-weight: 700;
   border: 3px solid black;
+  margin-bottom: 10px;
 `;
 
 export const AddrWrapper = styled.div`

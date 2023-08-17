@@ -2,8 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Title = styled.div`
@@ -19,7 +22,9 @@ export const CardRow = styled.div`
   justify-content: space-around;
 `;
 
-export const CardGroup = styled.div``;
+export const CardGroup = styled.div`
+  margin-bottom: 30px;
+`;
 
 export const TitleRow = styled.div`
   display: flex;
@@ -42,7 +47,7 @@ export const CardSearch = styled(Link)`
 `;
 
 export const Card = styled.div`
-  width: 525px;
+  width: 350px;
   height: 350px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 10px;
@@ -59,14 +64,15 @@ export const Year = styled.div`
   margin-top: 50px;
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `;
 
 export const InfoGroup = styled.div`
-  width: 400px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  padding: 20px;
 `;
 
 export const InfoContent = styled.div`
@@ -77,12 +83,12 @@ export const InfoContent = styled.div`
 `;
 
 export const InfoTitle = styled.div`
-  margin-bottom: 20px;
   font-size: 1.5rem;
   font-weight: 700;
 `;
 
 export const InfoDetailGroup = styled.div`
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;

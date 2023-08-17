@@ -9,8 +9,8 @@ export const Title = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 0 5px;
 `;
 
 export const Select = styled.select`
@@ -36,7 +36,7 @@ export const TheadTr = styled.tr`
 `;
 
 export const MatchDateTh = styled.th`
-  width: 16.66%;
+  width: 33.33%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -44,7 +44,7 @@ export const MatchDateTh = styled.th`
 `;
 
 export const OpponentTh = styled.th`
-  width: 16.66%;
+  width: 33.33%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -52,31 +52,7 @@ export const OpponentTh = styled.th`
 `;
 
 export const VotingTh = styled.th`
-  width: 16.66%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const AttendanceLimitTh = styled.th`
-  width: 16.66%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const AttendanceTimeTh = styled.th`
-  width: 16.66%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const AttendanceStatusTh = styled.th`
-  width: 16.66%;
+  width: 33.33%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -89,7 +65,7 @@ export const TbodyTr = styled.tr`
 `;
 
 export const MatchDateTd = styled.td`
-  width: 16.66%;
+  width: 33.33%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -97,7 +73,7 @@ export const MatchDateTd = styled.td`
 `;
 
 export const OpponentTd = styled.td`
-  width: 16.66%;
+  width: 33.33%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -105,7 +81,7 @@ export const OpponentTd = styled.td`
 `;
 
 export const VotingTd = styled.td`
-  width: 16.66%;
+  width: 33.33%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -116,30 +92,6 @@ export const ExpandBtn = styled.span`
   &:hover {
     cursor: pointer;
   }
-`;
-
-export const AttendanceLimitTd = styled.td`
-  width: 16.66%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const AttendanceTimeTd = styled.td`
-  width: 16.66%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
-`;
-
-export const AttendanceStatusTd = styled.td`
-  width: 16.66%;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-align: center;
-  vertical-align: middle;
 `;
 
 export const SubTable = styled.table`
@@ -155,7 +107,7 @@ export const SubTheadTr = styled.tr`
 `;
 
 export const QuaterTh = styled.th`
-  width: 20%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -163,7 +115,7 @@ export const QuaterTh = styled.th`
 `;
 
 export const PositionTh = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -171,7 +123,7 @@ export const PositionTh = styled.th`
 `;
 
 export const ParticipationTimeTh = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -179,7 +131,7 @@ export const ParticipationTimeTh = styled.th`
 `;
 
 export const PersonalGoalTh = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -187,7 +139,7 @@ export const PersonalGoalTh = styled.th`
 `;
 
 export const PersonalAssistTh = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -195,7 +147,7 @@ export const PersonalAssistTh = styled.th`
 `;
 
 export const LpTh = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -203,7 +155,7 @@ export const LpTh = styled.th`
 `;
 
 export const OgTh = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -216,7 +168,7 @@ export const SubTbodyTr = styled.tr`
 `;
 
 export const QuaterTd = styled.td`
-  width: 20%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -224,7 +176,7 @@ export const QuaterTd = styled.td`
 `;
 
 export const PositionTd = styled.td`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -232,7 +184,7 @@ export const PositionTd = styled.td`
 `;
 
 export const ParticipationTimeTd = styled.td`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -240,7 +192,7 @@ export const ParticipationTimeTd = styled.td`
 `;
 
 export const PersonalGoalTd = styled.td`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -248,7 +200,7 @@ export const PersonalGoalTd = styled.td`
 `;
 
 export const PersonalAssistTd = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -256,7 +208,7 @@ export const PersonalAssistTd = styled.th`
 `;
 
 export const LpTd = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;
@@ -264,7 +216,7 @@ export const LpTd = styled.th`
 `;
 
 export const OgTd = styled.th`
-  width: 10%;
+  width: 14.28%;
   font-size: 0.9rem;
   font-weight: 700;
   text-align: center;

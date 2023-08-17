@@ -25,19 +25,21 @@ const KakaoMap = ({
     };
     var map = new kakao.maps.Map(mapContainer, mapOption);
     const marker = new kakao.maps.Marker();
-    var circle = new kakao.maps.Circle({
-      center: locationPosition,
-      radius: 30,
-      strokeWeight: 5,
-      strokeColor: "#75B8FA",
-      strokeOpacity: 1,
-      strokeStyle: "dashed",
-      fillColor: "#CFE7FF",
-      fillOpacity: 0.3,
-    });
-    circle.setMap(map);
+    var circle;
 
     if (!isRegister) {
+      circle = new kakao.maps.Circle({
+        center: locationPosition,
+        radius: 30,
+        strokeWeight: 5,
+        strokeColor: "#75B8FA",
+        strokeOpacity: 1,
+        strokeStyle: "dashed",
+        fillColor: "#CFE7FF",
+        fillOpacity: 0.3,
+      });
+      circle.setMap(map);
+
       if (markerRef.current) {
         markerRef.current.setPosition(locationPosition);
         markerRef.current.setMap(map);

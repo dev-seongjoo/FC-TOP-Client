@@ -28,10 +28,15 @@ export const NoticeWrapper = styled.div`
   align-items: flex-start;
 `;
 
+export const Label = styled.div`
+  font-size: 1rem;
+  font-weight: 700;
+`;
+
 export const Notice = styled.div`
   font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 export const MyLocationBtn = styled.button`
@@ -45,7 +50,7 @@ export const MyLocationBtn = styled.button`
 export const DistanceNotice = styled.div`
   font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 export const AttendanceBtn = styled.button`

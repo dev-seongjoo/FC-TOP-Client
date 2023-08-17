@@ -6,6 +6,8 @@ import KakaoMap from "../../KakaoMap/KakaoMap";
 
 const RtAttendance = () => {
   const { match } = useParams();
+  const player = localStorage.getItem("player");
+
   const [locationPosition, setLocationPosition] = useState(
     "37.761615734035495,126.74125327825291"
   );
@@ -17,6 +19,7 @@ const RtAttendance = () => {
   const [duration, setDuration] = useState(0);
   const [checkLate, setCheckLate] = useState(0);
   const [isDistanceExceeded, setIsDistanceExceeded] = useState(true);
+  const [attendanceComplete, setAttendanceComplete] = useState(false);
 
   function haversineDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; // 지구의 반지름 (단위: km)
@@ -58,9 +61,24 @@ const RtAttendance = () => {
     }
   };
 
+  const fetchPlayerAttendance = async () => {
+    try {
+      const attendanceData = await axios.get(
+        `http://localhost:4000/attendance/${match}/${player}`
+      );
+
+      if (attendanceData.status === 200) {
+        setAttendanceComplete(true);
+      }
+    } catch (error) {
+      console.error("에러 발생", error);
+    }
+  };
+
   useEffect(() => {
     fetchLocationPosition();
     fetchMatchStartTime();
+    fetchPlayerAttendance();
   }, []);
 
   const handleLocationClick = () => {
@@ -88,8 +106,20 @@ const RtAttendance = () => {
     }
   };
 
-  const handleAttendanceClick = () => {
-    console.log("출석 ㅊㅋㅊㅋ");
+  const handleAttendanceClick = async () => {
+    const attendance = await axios.post(
+      `http://localhost:4000/attendance/${match}`,
+      { player, matchStartTime, checkLate }
+    );
+
+    if (attendance.status === 200) {
+      setAttendanceComplete(true);
+      alert(
+        `출석 완료되었습니다. 당신의 출석 상태는 ${attendance.data}입니다.`
+      );
+    }
+    console.log(attendance.status);
+    console.log(attendance.data);
   };
 
   useEffect(() => {
@@ -117,17 +147,31 @@ const RtAttendance = () => {
     return num < 10 ? `0${num}` : num;
   };
 
-  // const isDistanceExceeded = distance > 30;
-
   const now = new Date(); // 현재 시간
 
-  const matchStartTimeMinusCheckLateHours = matchStartTime
+  const attendanceTimeHours = matchStartTime
+    ? formatTwoDigits(
+        new Date(
+          matchStartTime.getTime() - checkLate * 60 * 1000 - 30 * 60 * 1000
+        ).getHours()
+      )
+    : null;
+
+  const attendanceTimeMinutes = matchStartTime
+    ? formatTwoDigits(
+        new Date(
+          matchStartTime.getTime() - checkLate * 60 * 1000 - 30 * 60 * 1000
+        ).getMinutes()
+      )
+    : null;
+
+  const lateStandardHours = matchStartTime
     ? formatTwoDigits(
         new Date(matchStartTime.getTime() - checkLate * 60 * 1000).getHours()
       )
     : null;
 
-  const matchStartTimeMinusCheckLateMinutes = matchStartTime
+  const lateStandardMinutes = matchStartTime
     ? formatTwoDigits(
         new Date(matchStartTime.getTime() - checkLate * 60 * 1000).getMinutes()
       )
@@ -155,7 +199,8 @@ const RtAttendance = () => {
 
   const isAttendanceEnabled =
     matchStartTime &&
-    now.getTime() >= matchStartTime.getTime() - checkLate * 60 * 1000 &&
+    now.getTime() >=
+      matchStartTime.getTime() - checkLate * 60 * 1000 - 30 * 60 * 1000 &&
     now.getTime() <= matchEndTimePlusDuration.getTime() &&
     !isDistanceExceeded;
 
@@ -165,10 +210,10 @@ const RtAttendance = () => {
       <S.HorizontalLine />
       <S.Container>
         <S.NoticeWrapper>
+          <S.Label>출석 기준</S.Label>
           <S.Notice>
             <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
-              {matchStartTimeMinusCheckLateHours}시{" "}
-              {matchStartTimeMinusCheckLateMinutes}분
+              {attendanceTimeHours}시 {attendanceTimeMinutes}분
             </span>{" "}
             부터{" "}
             <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
@@ -177,17 +222,14 @@ const RtAttendance = () => {
             </span>{" "}
             까지 출석 가능합니다.
           </S.Notice>
-          <S.Notice>
-            모임 위치 반경{" "}
-            <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>30m</span>{" "}
-            내에서만 출석 가능합니다.
-          </S.Notice>
-          <S.DistanceNotice>
-            모임 위치까지 거리:{" "}
+          <S.Notice style={{ marginBottom: "10px" }}>
             <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
-              {distance}m
+              {lateStandardHours}시 {lateStandardMinutes}분
             </span>
-          </S.DistanceNotice>
+            부터{" "}
+            <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>지각</span>
+            입니다.
+          </S.Notice>
         </S.NoticeWrapper>
         <KakaoMap
           position={locationPosition}
@@ -195,18 +237,33 @@ const RtAttendance = () => {
           moveLocationPosition={moveLocationPosition}
           moveMyPosition={moveMyPosition}
         />
+        <S.Notice>
+          모임 위치 반경{" "}
+          <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>30m</span>{" "}
+          내에서만 출석 가능합니다.
+        </S.Notice>
+        <S.DistanceNotice>
+          모임 위치까지 거리:{" "}
+          <span style={{ fontWeight: "700", fontSize: "1.2rem" }}>
+            {distance}m
+          </span>
+        </S.DistanceNotice>
         <S.MyLocationBtn onClick={handleLocationClick}>
           모임 위치 확인
         </S.MyLocationBtn>
         <S.MyLocationBtn onClick={handleMyLocationClick}>
           현재 위치 확인
         </S.MyLocationBtn>
-        <S.AttendanceBtn
-          disabled={!isAttendanceEnabled}
-          onClick={handleAttendanceClick}
-        >
-          출석
-        </S.AttendanceBtn>
+        {attendanceComplete ? (
+          <S.AttendanceBtn disabled={true}>출석 완료</S.AttendanceBtn>
+        ) : (
+          <S.AttendanceBtn
+            disabled={!isAttendanceEnabled}
+            onClick={handleAttendanceClick}
+          >
+            출석
+          </S.AttendanceBtn>
+        )}
       </S.Container>
     </>
   );

@@ -44,8 +44,6 @@ const ScheduleUpdate = () => {
         const result = await axios.get(
           `http://localhost:4000/schedule/${match}`
         );
-
-        console.log(result);
         const timestamp = result.data.DATE;
         const date = moment(timestamp).format("YYYY/MM/DD h:mm A");
 
@@ -104,8 +102,6 @@ const ScheduleUpdate = () => {
         setLocationPosition(position);
       }
     }
-
-    console.log(name, value);
 
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -181,7 +177,6 @@ const ScheduleUpdate = () => {
     );
 
     navigate(`/schedule/${match}`);
-    console.log(response.data);
   };
 
   return (

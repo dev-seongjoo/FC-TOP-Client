@@ -48,6 +48,8 @@ const ScheduleDetail = () => {
 
   const checkLate = `오전 ${hour - 1}시 ${60 - schedule.CHECK_LATE}분 이후`;
 
+  const currentTime = new Date();
+
   const onAddressUpdate = (newAddress) => {
     setLocationAddress(newAddress);
   };
@@ -105,7 +107,6 @@ const ScheduleDetail = () => {
               <KakaoMap
                 position={schedule.LOCATION_POSITION}
                 onAddressUpdate={onAddressUpdate}
-                isMarker={true}
               />
 
               {locationAddress[0] === "" ? (
@@ -142,9 +143,13 @@ const ScheduleDetail = () => {
             <S.LabelWrapper>
               <S.VoteWrapper>
                 <S.Label>투표</S.Label>
-                <S.VoteResult onClick={handleVoteResultClick}>
-                  {voteResult ? "닫기" : "자세히 보기"}
-                </S.VoteResult>
+                {currentTime > new Date(schedule.DATE) ? (
+                  <div> 투표가 종료되었습니다 </div>
+                ) : (
+                  <S.VoteResult onClick={handleVoteResultClick}>
+                    {voteResult ? "닫기" : "자세히 보기"}
+                  </S.VoteResult>
+                )}
               </S.VoteWrapper>
               {voteResult ? <VoteResult /> : <Vote />}
             </S.LabelWrapper>

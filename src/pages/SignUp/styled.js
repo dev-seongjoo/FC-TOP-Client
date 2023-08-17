@@ -1,9 +1,7 @@
 import styled, { keyframes } from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  position: relative;
-  top: 300px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -13,7 +11,7 @@ export const Container = styled.div`
 export const Title = styled.span`
   font-size: 2rem;
   font-weight: 700;
-  margin-bottom: 20px;
+  margin: 20px 0;
 `;
 export const Content = styled.div``;
 
@@ -30,7 +28,7 @@ export const Id = styled.div`
 `;
 
 export const IdInput = styled.input`
-  width: 250px;
+  width: 200px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,7 +53,7 @@ export const IdCheckBtn = styled.button`
 `;
 
 export const LastNameInput = styled.input`
-  width: 120px;
+  width: 170px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -64,7 +62,7 @@ export const LastNameInput = styled.input`
 `;
 
 export const FirstNameInput = styled.input`
-  width: 278px;
+  width: 175px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -72,7 +70,6 @@ export const FirstNameInput = styled.input`
 `;
 
 export const LabelGroup = styled.label`
-  width: 400px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,7 +99,7 @@ export const ResetMsg = styled.span`
 `;
 
 export const PasswordInput = styled.input`
-  width: 400px;
+  width: 348px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -115,7 +112,7 @@ export const Phone = styled.div`
 `;
 
 export const PhoneInput = styled.input`
-  width: 250px;
+  width: 230px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -124,7 +121,7 @@ export const PhoneInput = styled.input`
 `;
 
 export const PhoneBtn = styled.button`
-  width: 145px;
+  width: 115px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: transparent;
@@ -161,7 +158,7 @@ export const PhoneAuthTimer = styled.div`
 `;
 
 export const PhoneAuthInput = styled.input`
-  width: 250px;
+  width: 230px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -170,7 +167,7 @@ export const PhoneAuthInput = styled.input`
 `;
 
 export const PhoneAuthBtn = styled.button`
-  width: 145px;
+  width: 115px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: transparent;
@@ -197,7 +194,7 @@ export const PostCode = styled.div`
 
 export const PostCodeInput = styled.input`
   display: inline;
-  width: 250px;
+  width: 230px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -220,7 +217,7 @@ const highlightAnimation = keyframes`
 `;
 
 export const PostCodeSearchBtn = styled.button`
-  width: 145px;
+  width: 115px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   background-color: transparent;
@@ -241,7 +238,7 @@ export const PostCodeSearchBtn = styled.button`
 
 export const Address = styled.input`
   display: block;
-  width: 400px;
+  width: 350px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -249,7 +246,7 @@ export const Address = styled.input`
 `;
 
 export const Select = styled.select`
-  width: 132px;
+  width: 115px;
   padding: 13px 16px;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -262,13 +259,13 @@ export const Option = styled.option`
 `;
 
 export const SignUpBtn = styled.button`
-  width: 420px;
+  width: 350px;
   height: 50px;
   color: white;
   background-color: #c70101;
   border-radius: 30px;
   border: none;
-  margin-top: 10px;
+  margin: 20px 0;
 
   &:hover {
     opacity: 0.9;
@@ -278,17 +275,4 @@ export const SignUpBtn = styled.button`
   &:active {
     opacity: 1;
   }
-`;
-
-export const StyledLink = styled(Link)`
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-`;
-
-export const kakaoMap = styled.div`
-  width: 500px;
-  height: 500px;
 `;

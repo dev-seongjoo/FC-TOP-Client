@@ -2,12 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const Container = styled.div`
-  position: relative;
-  top: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 80vh; /* Adjust the height as needed */
 `;
 
 export const Title = styled.span`
@@ -38,7 +37,7 @@ export const ErrorMsg = styled.span`
 `;
 
 export const IdInput = styled.input`
-  width: 400px;
+  width: 300px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -47,7 +46,7 @@ export const IdInput = styled.input`
 `;
 
 export const PasswordInput = styled.input`
-  width: 400px;
+  width: 300px;
   height: 50px;
   padding: 10px;
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -55,13 +54,13 @@ export const PasswordInput = styled.input`
 `;
 
 export const LoginBtn = styled.button`
-  width: 420px;
+  width: 320px;
   height: 50px;
   color: white;
   background-color: #c70101;
   border-radius: 30px;
   border: none;
-  margin-top: 10px;
+  margin-top: 20px;
 
   &:hover {
     opacity: 0.9;

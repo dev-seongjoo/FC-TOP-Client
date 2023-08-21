@@ -67,7 +67,15 @@ export const Year = styled.div`
   margin-bottom: 20px;
 `;
 
-export const InfoGroup = styled.div`
+export const InfoAttendanceGroup = styled.div`
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+`;
+
+export const InfoRecordGroup = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;

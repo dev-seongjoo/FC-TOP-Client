@@ -57,6 +57,7 @@ const LoginPage = () => {
       .then((res) => {
         localStorage.setItem("accessToken", res.data.accessToken);
         localStorage.setItem("player", JSON.stringify(res.data.player.ID));
+        localStorage.setItem("role", res.data.player.ROLE);
         axios.defaults.headers.common["Authorization"] =
           "Bearer " + localStorage.getItem("accessToken");
         setIsLoggedIn(true);

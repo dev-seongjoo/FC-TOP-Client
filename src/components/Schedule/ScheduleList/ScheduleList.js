@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import * as S from "./styled";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const ScheduleList = () => {
+  const { userRole } = useContext(AuthContext); // 사용자 역할 정보 가져오기
+
   const currentTime = Date.now();
   const currentMonth = new Date().getMonth() + 1;
   const monthOptions = Array.from({ length: 12 }, (_, index) => index + 1);
@@ -110,7 +113,9 @@ const ScheduleList = () => {
             </S.MatchBox>
           ))
         )}
-        <S.UploadBtn to='/schedule/register'>일정 등록</S.UploadBtn>
+        {userRole === "MASTER" || userRole === "CAPTAIN" ? (
+          <S.UploadBtn to='/schedule/register'>일정 등록</S.UploadBtn>
+        ) : null}
       </S.Container>
     </>
   );

@@ -11,7 +11,7 @@ export const Title = styled.div`
 
 export const Container = styled.div`
   width: 100%;
-  padding: 0 5px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -43,8 +43,10 @@ const ScheduleRecordSetting = () => {
   const handleRecordBtnClick = () => {
     if (currentFormation === null) {
       alert("선발 명단을 작성해주세요.");
+      navigate(`/schedule/recordsetting/${match}`);
+    } else {
+      navigate(`/schedule/record/${match}/${quarter}`);
     }
-    navigate(`/schedule/record/${match}/${quarter}`);
   };
 
   const fetchDataDetail = async () => {

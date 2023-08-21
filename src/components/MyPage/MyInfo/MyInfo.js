@@ -1,93 +1,74 @@
 import React from "react";
-import {
-  Year,
-  TitleRow,
-  CardRow,
-  Card,
-  CardGroup,
-  CardTitle,
-  Container,
-  Title,
-  CardSearch,
-  Info,
-  InfoTitle,
-  InfoGroup,
-  InfoContent,
-  InfoDetailGroup,
-  InfoDetail,
-  InfoDetailKey,
-  InfoBigChar,
-} from "./styled";
+import * as S from "./styled";
 
 const MyInfo = () => {
   return (
-    <Container>
-      <Title>김성주님의 TOP</Title>
-
-      <CardGroup>
-        <TitleRow>
-          <CardTitle>김성주님의 출석</CardTitle>
-          <CardSearch>자세히 보기</CardSearch>
-        </TitleRow>
-        <Card>
-          <Info>
-            <Year>2023 시즌</Year>
-            <InfoGroup>
-              <InfoContent>
-                <InfoTitle>출석 현황</InfoTitle>
-                <InfoDetailGroup>
-                  <InfoDetail>
-                    <InfoDetailKey>참석:</InfoDetailKey>
+    <S.Container>
+      <S.Title>김성주님의 TOP</S.Title>
+      <S.CardGroup>
+        <S.TitleRow>
+          <S.CardTitle>김성주님의 출석</S.CardTitle>
+          <S.CardSearch>자세히 보기</S.CardSearch>
+        </S.TitleRow>
+        <S.Card>
+          <S.Info>
+            <S.Year>2023 시즌</S.Year>
+            <S.InfoAttendanceGroup>
+              <S.InfoContent>
+                <S.InfoTitle>출석 현황</S.InfoTitle>
+                <S.InfoDetailGroup>
+                  <S.InfoDetail>
+                    <S.InfoDetailKey>참석:</S.InfoDetailKey>
                     18회
-                  </InfoDetail>
-                  <InfoDetail>
-                    <InfoDetailKey>무단지각:</InfoDetailKey>
+                  </S.InfoDetail>
+                  <S.InfoDetail>
+                    <S.InfoDetailKey>무단지각:</S.InfoDetailKey>
                     2회
-                  </InfoDetail>
-                  <InfoDetail>
-                    <InfoDetailKey>무단결석:</InfoDetailKey>
+                  </S.InfoDetail>
+                  <S.InfoDetail>
+                    <S.InfoDetailKey>무단결석:</S.InfoDetailKey>
                     0회
-                  </InfoDetail>
-                  <InfoDetail>
-                    <InfoDetailKey>결석:</InfoDetailKey>
+                  </S.InfoDetail>
+                  <S.InfoDetail>
+                    <S.InfoDetailKey>결석:</S.InfoDetailKey>
                     0회
-                  </InfoDetail>
-                </InfoDetailGroup>
-              </InfoContent>
-              <InfoContent>
-                <InfoTitle>출석 점수</InfoTitle>
-                <InfoBigChar>52점</InfoBigChar>
-              </InfoContent>
-            </InfoGroup>
-          </Info>
-        </Card>
-      </CardGroup>
-      <CardGroup>
-        <TitleRow>
-          <CardTitle>김성주님의 경기 기록</CardTitle>
-          <CardSearch>자세히 보기</CardSearch>
-        </TitleRow>
-        <Card>
-          <Info>
-            <Year>2023 시즌</Year>
-            <InfoGroup>
-              <InfoContent>
-                <InfoTitle>출전</InfoTitle>
-                <InfoBigChar>30경기</InfoBigChar>
-              </InfoContent>
-              <InfoContent>
-                <InfoTitle>득점</InfoTitle>
-                <InfoBigChar>5골</InfoBigChar>
-              </InfoContent>
-              <InfoContent>
-                <InfoTitle>도움</InfoTitle>
-                <InfoBigChar>5도움</InfoBigChar>
-              </InfoContent>
-            </InfoGroup>
-          </Info>
-        </Card>
-      </CardGroup>
-    </Container>
+                  </S.InfoDetail>
+                </S.InfoDetailGroup>
+              </S.InfoContent>
+              <S.InfoContent>
+                <S.InfoTitle>출석 점수</S.InfoTitle>
+                <S.InfoBigChar>52점</S.InfoBigChar>
+              </S.InfoContent>
+            </S.InfoAttendanceGroup>
+          </S.Info>
+        </S.Card>
+      </S.CardGroup>
+      <S.CardGroup>
+        <S.TitleRow>
+          <S.CardTitle>김성주님의 경기 기록</S.CardTitle>
+          <S.CardSearch>자세히 보기</S.CardSearch>
+        </S.TitleRow>
+        <S.Card>
+          <S.Info>
+            <S.Year>2023 시즌</S.Year>
+            <S.InfoRecordGroup>
+              <S.InfoContent>
+                <S.InfoTitle>출전</S.InfoTitle>
+                <S.InfoBigChar>30경기</S.InfoBigChar>
+              </S.InfoContent>
+              <S.InfoContent>
+                <S.InfoTitle>득점</S.InfoTitle>
+                <S.InfoBigChar>5골</S.InfoBigChar>
+              </S.InfoContent>
+              <S.InfoContent>
+                <S.InfoTitle>도움</S.InfoTitle>
+                <S.InfoBigChar>5도움</S.InfoBigChar>
+              </S.InfoContent>
+            </S.InfoRecordGroup>
+          </S.Info>
+        </S.Card>
+      </S.CardGroup>
+    </S.Container>
   );
 };
 

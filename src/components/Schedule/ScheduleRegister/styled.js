@@ -16,7 +16,7 @@ export const HorizontalLine = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto 50px auto;
   display: flex;
   flex-direction: column;
@@ -27,6 +27,7 @@ export const LabelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: -10px;
   margin-bottom: 30px;
 `;
 
@@ -117,6 +118,7 @@ export const Select = styled.select`
   font-size: 1rem;
   text-align: center;
   border: 3px solid black;
+  margin-bottom: 10px;
 
   &:hover {
     cursor: pointer;

@@ -21,11 +21,11 @@ const ScheduleRecordSummary = () => {
 
   const fetchQuarterRecord = async () => {
     const quarterInfo = await axios.get(
-      `http://localhost:4000/${match}/${quarter}`
+      `http://localhost:4000/schedule/${match}/${quarter}`
     );
 
     const quarterRecordInfo = await axios.get(
-      `http://localhost:4000/goal/${match}/${quarter}`
+      `http://localhost:4000/data/${match}/${quarter}`
     );
 
     setGoals(quarterRecordInfo.data.goals);
@@ -118,7 +118,7 @@ const ScheduleRecordSummary = () => {
             ))}
           </S.RecordWrapper>
         </S.RecordContainer>
-        <S.ListBtn to={`/schedule/recordsetting/${match}`}>확인 </S.ListBtn>
+        <S.ListBtn to={`/schedule/recordsetting/${match}`}>확인</S.ListBtn>
       </S.Container>
     </>
   );

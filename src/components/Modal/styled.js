@@ -20,6 +20,7 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   padding: 20px;
+  margin: 20px;
   background-color: #fff;
   border-radius: 10px;
 `;

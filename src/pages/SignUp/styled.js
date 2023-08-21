@@ -11,7 +11,7 @@ export const Container = styled.div`
 export const Title = styled.span`
   font-size: 2rem;
   font-weight: 700;
-  margin: 20px 0;
+  margin: 40px 0 20px 0;
 `;
 export const Content = styled.div``;
 

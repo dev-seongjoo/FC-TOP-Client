@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 80vh; /* Adjust the height as needed */
+  height: 80vh;
 `;
 
 export const Title = styled.span`

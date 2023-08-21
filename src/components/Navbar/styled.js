@@ -9,6 +9,7 @@ export const NavContainer = styled.div`
   align-items: center;
   background-color: black;
   padding: 0 30px;
+  z-index: 100;
 `;
 
 export const Logo = styled.div`
@@ -54,8 +55,12 @@ export const Menu = styled(Link)`
   font-size: 1rem;
   font-weight: 400;
   text-decoration: none;
-  background-color: white;
+  background-color: #ccc;
   border-bottom: 1px solid black;
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 export const NavLeft = styled.div`

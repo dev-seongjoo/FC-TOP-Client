@@ -30,7 +30,7 @@ const ScheduleRegister = () => {
   });
   const [locationPosition, setLocationPosition] = useState(
     "37.761615734035495,126.74125327825291"
-  ); // 위치 주소 상태 추가
+  );
 
   const currentDate = new Date();
   const nextMonth = addMonths(startOfMonth(currentDate), 1);
@@ -87,7 +87,6 @@ const ScheduleRegister = () => {
           customLocationAddress: "",
         }));
 
-        // 사용자가 선택한 위치의 좌표를 조회합니다.
         const response = await axios.post(
           `http://localhost:4000/location/position`,
           { value }
@@ -95,7 +94,6 @@ const ScheduleRegister = () => {
 
         const position = response.data;
 
-        // 조회한 좌표를 상태로 설정합니다.
         setLocationPosition(position);
       }
     }
@@ -106,7 +104,6 @@ const ScheduleRegister = () => {
   const onPositionUpdate = (newPosition) => {
     const La = newPosition.La;
     const Ma = newPosition.Ma;
-    console.log(La, Ma);
 
     setFormData((prevData) => ({
       ...prevData,

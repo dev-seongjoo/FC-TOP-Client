@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import * as S from "./styled";
 import { useNavigate, useParams } from "react-router-dom";
 import KakaoMap from "../../KakaoMap/KakaoMap";
 import Vote from "../../Vote/Vote";
 import VoteResult from "../../Vote/VoteResult/VoteResult";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const ScheduleDetail = () => {
+  const { userRole } = useContext(AuthContext); // 사용자 역할 정보 가져오기
+
   const [isLoading, setIsLoading] = useState(true);
   const [schedule, setSchedule] = useState({});
   const [locationAddress, setLocationAddress] = useState([]);
@@ -160,11 +163,19 @@ const ScheduleDetail = () => {
               )}
             </S.LabelWrapper>
             <S.BtnWrapper>
-              <S.RecordBtn to={`/schedule/recordsetting/${match}`}>
-                기록
-              </S.RecordBtn>
-              <S.UpdateBtn to={`/schedule/update/${match}`}>수정</S.UpdateBtn>
-              <S.DeleteBtn onClick={handleDelete}>삭제</S.DeleteBtn>
+              {userRole === "COACH" && (
+                <S.RecordBtn to={`/schedule/recordsetting/${match}`}>
+                  기록
+                </S.RecordBtn>
+              )}
+              {userRole === "MASTER" || userRole === "CAPTAIN" ? (
+                <>
+                  <S.UpdateBtn to={`/schedule/update/${match}`}>
+                    수정
+                  </S.UpdateBtn>
+                  <S.DeleteBtn onClick={handleDelete}>삭제</S.DeleteBtn>
+                </>
+              ) : null}
             </S.BtnWrapper>
           </S.Container>
         </>
